@@ -3,6 +3,9 @@ import Figure from './components/Figure'
 import StatCard from './components/StatCard'
 import AnimatedValue from './components/CountUp'
 import { Timeline, GenAIProcess, ConceptLadder, ToolBoard, PricingTiers, Breakthroughs } from './components/Visuals'
+import {
+  CapIntro, CapCimientos, CapLenguaje, CapTokens, CapHoy, CapExpertos, CapColaborador, CapImporta,
+} from './components/Capsule'
 import type { SlideDef } from './components/Deck'
 import type { Figure as Fig } from './lib/chartOptions'
 import global from '../data/global.json'
@@ -643,6 +646,15 @@ export const slides: SlideDef[] = [
   { id: 'adopcion', num: '01', title: 'La adopción más rápida de la historia', node: <AdoptionSpeedSlide /> },
   { id: 'frontera', num: '02', title: 'La frontera en vivo: Claude Fable 5', node: <FrontierSlide /> },
   { id: 'historia', num: '03', title: 'Historia de la IA', node: <HistorySlide /> },
+  /* ░░ Cápsula · Fundamentos de IA en simple — módulo didáctico interactivo ░░ */
+  { id: 'cap-intro', num: '✦', title: 'Cápsula · Fundamentos de IA', node: <CapIntro /> },
+  { id: 'cap-cimientos', num: 'F1', title: 'Los cimientos: IA · ML · DL · Modelo', node: <CapCimientos /> },
+  { id: 'cap-lenguaje', num: 'F2', title: 'Cómo hablan los modelos: LLM · Prompt · Contexto', node: <CapLenguaje /> },
+  { id: 'cap-tokens', num: 'F3', title: 'Tokens y ventana de contexto', node: <CapTokens /> },
+  { id: 'cap-hoy', num: 'F4', title: 'Lo que pueden hacer hoy', node: <CapHoy /> },
+  { id: 'cap-expertos', num: 'F5', title: 'Expertos en lo tuyo: fine-tuning vs. RAG', node: <CapExpertos /> },
+  { id: 'cap-colaborador', num: 'F6', title: 'De herramienta a colaborador: agentes', node: <CapColaborador /> },
+  { id: 'cap-importa', num: '✦', title: 'Cápsula · Lo que de verdad importa', node: <CapImporta /> },
   /* Acto II — Cómo funciona */
   { id: 'genai', num: '04', title: 'Cómo funciona la IA generativa', node: <GenAISlide /> },
   { id: 'conceptos', num: '05', title: 'Chatbot · Asistente · Agente · Workflow', node: <ConceptsSlide /> },
