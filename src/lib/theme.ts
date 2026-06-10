@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 
 export type Theme = 'dark' | 'light'
 
+const KEY = 'soa-theme-v2'
+
 function current(): Theme {
   const t = document.documentElement.dataset.theme
-  return t === 'light' ? 'light' : 'dark'
+  return t === 'dark' ? 'dark' : 'light'
 }
 
 export function useTheme(): [Theme, () => void] {
@@ -12,7 +14,7 @@ export function useTheme(): [Theme, () => void] {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
-    try { localStorage.setItem('soa-theme', theme) } catch { /* ignore */ }
+    try { localStorage.setItem(KEY, theme) } catch { /* ignore */ }
   }, [theme])
 
   const toggle = () => {

@@ -1,0 +1,150 @@
+import { useCallback, useEffect, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
+import { useTheme } from '../lib/theme'
+
+export interface SlideDef { id: string; num: string; title: string; node: ReactNode }
+
+const PDF = `${import.meta.env.BASE_URL}Informe-IA-AEC-2026.pdf`
+
+function readHash(total: number): number {
+  const m = /^#(\d+)/.exec(location.hash)
+  if (m) { const n = parseInt(m[1], 10) - 1; if (n >= 0 && n < total) return n }
+  return 0
+}
+
+/** Una diapositiva. Las no-activas quedan en `visibility:hidden` + `inert`
+ *  (sin foco ni lectura por AT), pero conservan tamaño para que ECharts
+ *  renderice correctamente desde el montaje. */
+function SlideFrame({ state, id, index, total, label, children }: {
+  state: 'prev' | 'current' | 'next'; id: string; index: number; total: number; label: string; children: ReactNode
+}) {
+  const ref = useRef<HTMLElement>(null)
+  useEffect(() => { const el = ref.current as any; if (el) el.inert = state !== 'current' }, [state])
+  return (
+    <section
+      ref={ref}
+      id={`slide-${id}`}
+      className="slide"
+      data-state={state}
+      role="group"
+      aria-roledescription="diapositiva"
+      aria-label={`${index + 1} de ${total}: ${label}`}
+      aria-hidden={state !== 'current'}
+    >
+      <div className="slide-inner"><div className="slide-content">{children}</div></div>
+    </section>
+  )
+}
+
+export default function Deck({ slides }: { slides: SlideDef[] }) {
+  const total = slides.length
+  const [cur, setCur] = useState(() => readHash(total))
+  const [overview, setOverview] = useState(false)
+  const [theme, toggleTheme] = useTheme()
+  const curRef = useRef(cur); curRef.current = cur
+  const touch = useRef<{ x: number; y: number } | null>(null)
+
+  const go = useCallback((i: number) => setCur(Math.max(0, Math.min(total - 1, i))), [total])
+  const next = useCallback(() => go(curRef.current + 1), [go])
+  const prev = useCallback(() => go(curRef.current - 1), [go])
+
+  const toggleFs = useCallback(() => {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(() => {})
+    else document.exitFullscreen?.().catch(() => {})
+  }, [])
+
+  // Teclado: flechas / espacio / inicio-fin / índice (g·o) / pantalla completa (f)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return
+      switch (e.key) {
+        case 'ArrowRight': case 'PageDown': case ' ': e.preventDefault(); next(); break
+        case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break
+        case 'Home': e.preventDefault(); go(0); break
+        case 'End': e.preventDefault(); go(total - 1); break
+        case 'g': case 'G': case 'o': case 'O': setOverview((v) => !v); break
+        case 'f': case 'F': toggleFs(); break
+        case 'Escape': setOverview(false); break
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [next, prev, go, total, toggleFs])
+
+  // Deep-linking por hash (#3) — compartible y restaurable al recargar.
+  useEffect(() => { const h = `#${cur + 1}`; if (location.hash !== h) history.replaceState(null, '', h) }, [cur])
+  useEffect(() => {
+    const onHash = () => go(readHash(total))
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [go, total])
+
+  const onTouchStart = (e: React.TouchEvent) => { const t = e.touches[0]; touch.current = { x: t.clientX, y: t.clientY } }
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const t = touch.current; if (!t) return; touch.current = null
+    const dx = e.changedTouches[0].clientX - t.x, dy = e.changedTouches[0].clientY - t.y
+    if (Math.abs(dx) > 56 && Math.abs(dx) > Math.abs(dy) * 1.4) { if (dx < 0) next(); else prev() }
+  }
+
+  const cs = slides[cur]
+  return (
+    <div className="deck" data-overview={overview ? 'on' : undefined}>
+      <div className="deck-progress" aria-hidden="true"><span style={{ width: `${((cur + 1) / total) * 100}%` }} /></div>
+
+      <header className="deck-bar">
+        <button className="deck-brand" onClick={() => go(0)} aria-label="Ir a la portada">
+          <span className="brand-dot" aria-hidden="true" />
+          <span>GEN<span className="plus">+</span></span>
+          <span className="deck-brand-sub">State of AI in AEC</span>
+        </button>
+        <div className="deck-actions">
+          <button className="icon-btn" onClick={() => setOverview((v) => !v)} aria-label="Índice de diapositivas" title="Índice (G)">▦</button>
+          <button className="icon-btn" onClick={toggleTheme} aria-label={`Cambiar a tema ${theme === 'dark' ? 'claro' : 'oscuro'}`} title="Tema">{theme === 'dark' ? '☀' : '☾'}</button>
+          <button className="icon-btn show-md" onClick={toggleFs} aria-label="Pantalla completa" title="Pantalla completa (F)">⤢</button>
+          <a className="btn btn-cta deck-dl" href={PDF} target="_blank" rel="noopener" download><span aria-hidden="true">↓</span> PDF</a>
+        </div>
+      </header>
+
+      <main className="slides" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+        {slides.map((s, i) => (
+          <SlideFrame key={s.id} id={s.id} index={i} total={total} label={s.title}
+            state={i === cur ? 'current' : i < cur ? 'prev' : 'next'}>
+            {s.node}
+          </SlideFrame>
+        ))}
+      </main>
+
+      <nav className="deck-nav" aria-label="Navegación de diapositivas">
+        <button className="nav-arrow" onClick={prev} disabled={cur === 0} aria-label="Diapositiva anterior">‹</button>
+        <button className="nav-count" onClick={() => setOverview(true)} aria-label={`Diapositiva ${cur + 1} de ${total}. Abrir índice`}>
+          <span className="nc-cur tnum">{String(cur + 1).padStart(2, '0')}</span>
+          <span className="nc-sep">/</span>
+          <span className="nc-tot tnum">{String(total).padStart(2, '0')}</span>
+          <span className="nc-title">{cs.title}</span>
+        </button>
+        <button className="nav-arrow" onClick={next} disabled={cur === total - 1} aria-label="Diapositiva siguiente">›</button>
+      </nav>
+
+      {overview && (
+        <div className="overview" role="dialog" aria-modal="true" aria-label="Índice de diapositivas" onClick={() => setOverview(false)}>
+          <div className="overview-inner" onClick={(e) => e.stopPropagation()}>
+            <div className="overview-head">
+              <h2>Índice · {total} diapositivas</h2>
+              <button className="icon-btn" onClick={() => setOverview(false)} aria-label="Cerrar índice">✕</button>
+            </div>
+            <ol className="overview-grid">
+              {slides.map((s, i) => (
+                <li key={s.id}>
+                  <button className={`ov-card ${i === cur ? 'active' : ''}`} onClick={() => { go(i); setOverview(false) }}>
+                    <span className="ov-num tnum">{s.num || String(i + 1).padStart(2, '0')}</span>
+                    <span className="ov-title">{s.title}</span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

@@ -32,7 +32,7 @@ body::before {
 
 h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-height: 1.08; letter-spacing: -0.02em; font-weight: 600; text-wrap: balance; }
 p { text-wrap: pretty; }
-a { color: var(--blue); text-decoration: none; transition: color var(--dur-1) var(--ease-out); }
+a { color: var(--accent); text-decoration: none; transition: color var(--dur-1) var(--ease-out); }
 a:hover { color: var(--ink); }
 img, svg { display: block; max-width: 100%; }
 b, strong { color: var(--ink); font-weight: 600; }

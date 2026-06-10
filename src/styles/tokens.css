@@ -1,12 +1,12 @@
 /* =========================================================================
    GEN+ · State of AI in AEC — Design tokens (OKLCH)
-   El sistema lo dirige el hue de marca. Azul = estructura/confianza,
-   Naranja = único call-to-action. Dos temas: dark científico (default) + light.
+   Presentación / deck. Estética editorial: escala de GRISES + un único VERDE.
+   Verde = acento/marca (usado con avaricia). Tema claro por defecto.
    ========================================================================= */
 
 :root {
-  --hue-blue: 255;
-  --hue-orange: 42;
+  color-scheme: light;
+  --hue: 155; /* verde de marca */
 
   /* Tipografía */
   --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
@@ -18,17 +18,16 @@
   --step-0:  clamp(0.95rem, 0.90rem + 0.22vw, 1.05rem);
   --step-1:  clamp(1.15rem, 1.05rem + 0.45vw, 1.4rem);
   --step-2:  clamp(1.45rem, 1.25rem + 0.9vw, 2rem);
-  --step-3:  clamp(1.9rem, 1.5rem + 1.8vw, 3rem);
-  --step-4:  clamp(2.5rem, 1.9rem + 3vw, 4.4rem);
-  --step-5:  clamp(3rem, 2.1rem + 4.6vw, 6rem);
+  --step-3:  clamp(1.8rem, 1.45rem + 1.6vw, 2.7rem);
+  --step-4:  clamp(2.3rem, 1.8rem + 2.6vw, 3.8rem);
+  --step-5:  clamp(2.6rem, 1.9rem + 3.6vw, 4.8rem);
 
   /* Espacio / radios / sombras */
   --radius-sm: 8px;
   --radius: 14px;
   --radius-lg: 22px;
   --maxw-content: 760px;
-  --maxw-wide: 1320px;
-  --sidebar-w: 280px;
+  --maxw-wide: 1280px;
 
   /* Motion (Emil) */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -37,74 +36,77 @@
   --dur-2: 220ms;
   --dur-3: 320ms;
 
-  /* Paleta de datos (categórica, científica) — compartida por ambos temas */
-  --d-blue:   oklch(0.66 0.16 255);
-  --d-indigo: oklch(0.60 0.17 280);
-  --d-purple: oklch(0.62 0.18 300);
-  --d-teal:   oklch(0.74 0.12 195);
-  --d-green:  oklch(0.78 0.15 162);
-  --d-orange: oklch(0.72 0.18 45);
-  --d-amber:  oklch(0.82 0.15 80);
-  --d-pink:   oklch(0.72 0.16 350);
-  --d-red:    oklch(0.66 0.20 22);
+  /* -------- Paleta de DATOS: grises + verde (compartida por ambos temas) ----
+     Los nombres heredan del esquema original, pero todos caen en
+     una rampa monocroma verde→grafito→gris, para que las gráficas
+     conserven variedad sin salir de la identidad escala-de-grises+verde. */
+  --d-green:  #1f8a5b;   /* verde primario (vivo) */
+  --d-teal:   #3fa877;   /* verde secundario */
+  --d-blue:   #39423e;   /* grafito (estructura) */
+  --d-indigo: #5b655f;   /* gris medio-oscuro */
+  --d-purple: #828c86;   /* gris */
+  --d-orange: #9aa39e;   /* gris claro */
+  --d-amber:  #bcc3be;   /* gris más claro */
+  --d-pink:   #6e7873;   /* gris */
+  --d-red:    #1c211f;   /* casi negro (énfasis) */
 }
 
-/* ----------------------------- DARK (default) ------------------------- */
-:root, [data-theme='dark'] {
+/* ----------------------------- LIGHT (default) ------------------------ */
+:root, [data-theme='light'] {
+  color-scheme: light;
+  --bg:        oklch(0.984 0.004 155);
+  --bg-deep:   oklch(0.955 0.006 155);
+  --surface:   oklch(1 0 0);
+  --surface-2: oklch(0.974 0.004 155);
+  --panel:     color-mix(in oklch, white 80%, transparent);
+  --border:    color-mix(in oklch, oklch(0.30 0.02 155) 13%, transparent);
+  --border-strong: color-mix(in oklch, oklch(0.30 0.02 155) 22%, transparent);
+
+  --ink:       oklch(0.26 0.018 155);
+  --ink-soft:  oklch(0.38 0.016 155);
+  --muted:     oklch(0.52 0.014 155);
+  --faint:     oklch(0.66 0.012 155);
+
+  --blue:      oklch(0.42 0.022 155);   /* grafito = estructura/texto base */
+  --blue-deep: oklch(0.34 0.02 155);
+  --accent:    oklch(0.55 0.13 155);    /* VERDE = único call-to-action */
+  --accent-ink: oklch(0.99 0.01 155);
+
+  --ok:        oklch(0.54 0.13 155);    /* verde verificado */
+  --warn:      oklch(0.55 0.008 155);   /* gris proyección */
+  --grid:      color-mix(in oklch, black 7%, transparent);
+
+  --glow-a: oklch(0.72 0.08 155 / 0.10);
+  --glow-b: oklch(0.60 0.02 155 / 0.05);
+  --shadow: 0 22px 54px -32px oklch(0.30 0.03 155 / 0.32);
+}
+
+/* ------------------------------- DARK --------------------------------- */
+[data-theme='dark'] {
   color-scheme: dark;
-  --bg:        oklch(0.16 0.022 255);
-  --bg-deep:   oklch(0.12 0.02 255);
-  --surface:   oklch(0.20 0.026 255);
-  --surface-2: oklch(0.24 0.03 255);
-  --panel:     color-mix(in oklch, var(--surface) 70%, transparent);
+  --bg:        oklch(0.17 0.010 155);
+  --bg-deep:   oklch(0.13 0.010 155);
+  --surface:   oklch(0.21 0.012 155);
+  --surface-2: oklch(0.25 0.014 155);
+  --panel:     color-mix(in oklch, var(--surface) 72%, transparent);
   --border:    color-mix(in oklch, white 11%, transparent);
   --border-strong: color-mix(in oklch, white 18%, transparent);
 
-  --ink:       oklch(0.97 0.008 255);
-  --ink-soft:  oklch(0.86 0.02 255);
-  --muted:     oklch(0.70 0.03 255);
-  --faint:     oklch(0.56 0.03 255);
+  --ink:       oklch(0.96 0.006 155);
+  --ink-soft:  oklch(0.85 0.012 155);
+  --muted:     oklch(0.68 0.014 155);
+  --faint:     oklch(0.55 0.014 155);
 
-  --blue:      oklch(0.70 0.14 255);   /* estructura / enlaces */
-  --blue-deep: oklch(0.40 0.10 255);
-  --accent:    oklch(0.72 0.19 42);    /* ÚNICO CTA (naranja) */
-  --accent-ink: oklch(0.18 0.04 42);
+  --blue:      oklch(0.80 0.02 155);
+  --blue-deep: oklch(0.62 0.04 155);
+  --accent:    oklch(0.74 0.15 155);
+  --accent-ink: oklch(0.16 0.03 155);
 
-  --ok:        oklch(0.80 0.15 162);
-  --warn:      oklch(0.82 0.15 80);
+  --ok:        oklch(0.74 0.15 155);
+  --warn:      oklch(0.70 0.010 155);
   --grid:      color-mix(in oklch, white 8%, transparent);
 
-  --glow-a: oklch(0.55 0.18 255 / 0.18);
-  --glow-b: oklch(0.55 0.18 300 / 0.16);
-  --shadow: 0 18px 50px -28px oklch(0 0 0 / 0.75);
-}
-
-/* ------------------------------- LIGHT -------------------------------- */
-[data-theme='light'] {
-  color-scheme: light;
-  --bg:        oklch(0.985 0.004 255);
-  --bg-deep:   oklch(0.95 0.008 255);
-  --surface:   oklch(1 0 0);
-  --surface-2: oklch(0.97 0.006 255);
-  --panel:     color-mix(in oklch, white 75%, transparent);
-  --border:    color-mix(in oklch, black 10%, transparent);
-  --border-strong: color-mix(in oklch, black 16%, transparent);
-
-  --ink:       oklch(0.22 0.03 255);
-  --ink-soft:  oklch(0.34 0.03 255);
-  --muted:     oklch(0.48 0.03 255);
-  --faint:     oklch(0.62 0.03 255);
-
-  --blue:      oklch(0.52 0.16 255);
-  --blue-deep: oklch(0.40 0.12 255);
-  --accent:    oklch(0.64 0.20 42);
-  --accent-ink: oklch(0.99 0.02 80);
-
-  --ok:        oklch(0.58 0.14 162);
-  --warn:      oklch(0.70 0.14 70);
-  --grid:      color-mix(in oklch, black 8%, transparent);
-
-  --glow-a: oklch(0.70 0.16 255 / 0.12);
-  --glow-b: oklch(0.70 0.16 300 / 0.10);
-  --shadow: 0 18px 50px -30px oklch(0.4 0.05 255 / 0.30);
+  --glow-a: oklch(0.60 0.10 155 / 0.12);
+  --glow-b: oklch(0.50 0.02 155 / 0.10);
+  --shadow: 0 18px 50px -28px oklch(0 0 0 / 0.7);
 }
