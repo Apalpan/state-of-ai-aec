@@ -58,6 +58,9 @@
 [data-accent="red"], .anchor.red { --ac: var(--d-red); }
 [data-accent="green"], .anchor.green { --ac: var(--d-green); }
 [data-accent="teal"], .anchor.teal { --ac: var(--d-teal); }
+[data-accent="indigo"], .anchor.indigo { --ac: var(--d-indigo); }
+[data-accent="amber"], .anchor.amber { --ac: var(--d-amber); }
+[data-accent="pink"], .anchor.pink { --ac: var(--d-pink); }
 
 /* ===================== STAT CARD ===================== */
 .stat { position: relative; padding: 18px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); overflow: hidden; }

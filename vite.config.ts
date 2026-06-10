@@ -8,5 +8,14 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     chunkSizeWarningLimit: 1200,
+    rollupOptions: {
+      output: {
+        // Separa las librerías pesadas en chunks propios: mejor cacheo y LCP.
+        manualChunks: {
+          echarts: ['echarts'],
+          react: ['react', 'react-dom'],
+        },
+      },
+    },
   },
 })

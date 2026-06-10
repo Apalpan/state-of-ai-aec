@@ -259,6 +259,86 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         }],
       }
     }
+    /* ---------------- GROWTH (multi-línea, escala log opcional) ---------------- */
+    case 'growth': {
+      const log = !!d.log
+      const sci = (v: number) => {
+        const e = Math.round(Math.log10(v))
+        const sup = String(e).replace(/[0-9]/g, (n) => '⁰¹²³⁴⁵⁶⁷⁸⁹'[+n])
+        return `10${sup}`
+      }
+      const series = (d.series as any[]).map((s) => ({
+        name: s.name, type: 'line', smooth: !log, symbol: 'circle', symbolSize: s.accent ? 7 : 0,
+        lineStyle: s.accent
+          ? { width: 3.4, color: GREEN, shadowBlur: 12, shadowColor: ga(0.4) }
+          : { width: 1.8, type: 'dashed', color: C.muted },
+        itemStyle: s.accent ? { color: GREEN, borderColor: '#fff', borderWidth: 1.5 } : { color: C.muted },
+        areaStyle: s.accent && !log ? { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: ga(0.20) }, { offset: 1, color: ga(0) }]) } : undefined,
+        emphasis: { focus: 'series' }, data: s.values, z: s.accent ? 5 : 2,
+      }))
+      return {
+        ...base,
+        grid: { left: 8, right: 16, top: 30, bottom: 4, containLabel: true },
+        legend: (d.series as any[]).length > 1 ? { top: 0, right: 0, textStyle: { color: C.muted, fontSize: 10.5 }, itemWidth: 16, itemHeight: 8, icon: 'roundRect' } : undefined,
+        tooltip: { ...base.tooltip, trigger: 'axis', valueFormatter: (v: any) => (log ? `${sci(v)} ${unit}` : `${v}${unit}`) },
+        xAxis: { type: 'category', boundaryGap: false, data: d.x, axisLabel: { color: C.muted, fontSize: 10.5 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
+        yAxis: log
+          ? { type: 'log', min: d.ymin, max: d.ymax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: (v: number) => sci(v) } }
+          : { type: 'value', min: d.ymin, max: d.ymax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: `{value}${unit}` } },
+        series,
+      }
+    }
+    /* ---------------- GROUP BARS (clúster + referencia humana) ---------------- */
+    case 'groupBars': {
+      const cats = d.categories as any[]
+      const groups = d.groups as string[]
+      const colors = (d.colors as string[]) || ['indigo', 'green']
+      const series = groups.map((g, gi) => ({
+        name: g, type: 'bar', barGap: '12%', barWidth: groups.length > 1 ? '30%' : '46%',
+        label: { show: true, position: 'top', color: C.ink, fontWeight: 700, fontSize: 11, formatter: (p: any) => `${p.value}${unit}` },
+        itemStyle: { color: grad(colors[gi], colors[gi], 'v'), borderRadius: [6, 6, 0, 0] },
+        data: cats.map((c) => c.values[gi]),
+        ...(gi === groups.length - 1 && d.human
+          ? { markLine: { silent: true, symbol: 'none', lineStyle: { color: C.muted, type: 'dashed', width: 1.4 }, label: { formatter: 'referencia humana', color: C.muted, fontSize: 10, position: 'insideEndTop' }, data: [{ yAxis: d.human }] } }
+          : {}),
+      }))
+      // gradiente real por grupo
+      series.forEach((s: any, gi: number) => { s.itemStyle = { color: grad(colors[gi], colors[gi] === 'green' ? 'teal' : 'purple', 'v'), borderRadius: [6, 6, 0, 0] } })
+      return {
+        ...base,
+        grid: { left: 6, right: 12, top: 34, bottom: 4, containLabel: true },
+        legend: { top: 0, left: 0, textStyle: { color: C.muted, fontSize: 10.5 }, itemWidth: 16, itemHeight: 8, icon: 'roundRect' },
+        tooltip: { ...base.tooltip, trigger: 'axis', axisPointer: { type: 'shadow' } },
+        xAxis: { type: 'category', data: cats.map((c) => c.label), axisLabel: { color: C.ink, fontSize: 10.5, interval: 0, lineHeight: 13 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
+        yAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: `{value}${unit}` } },
+        series,
+      }
+    }
+    /* ---------------- RADAR MULTI (comparar modelos) ---------------- */
+    case 'radarMulti': {
+      const ss = d.series as any[]
+      return {
+        ...base,
+        legend: { top: 0, right: 0, textStyle: { color: C.muted, fontSize: 10.5 }, itemWidth: 16, itemHeight: 8, icon: 'roundRect' },
+        tooltip: { ...base.tooltip, trigger: 'item' },
+        radar: {
+          center: ['50%', '56%'], radius: '64%', indicator: d.indicators,
+          axisName: { color: C.ink, fontSize: 10.5, fontFamily: 'Space Grotesk Variable, sans-serif' },
+          splitLine: { lineStyle: { color: C.grid } },
+          splitArea: { areaStyle: { color: [isDark ? 'rgba(255,255,255,0.02)' : 'rgba(20,40,30,0.025)', 'transparent'] } },
+          axisLine: { lineStyle: { color: C.axis } },
+        },
+        series: [{
+          type: 'radar', symbolSize: 4,
+          data: ss.map((s) => ({
+            value: s.values, name: s.name,
+            lineStyle: { width: 2.2, color: col(s.color) },
+            itemStyle: { color: col(s.color) },
+            areaStyle: { color: col(s.color), opacity: 0.10 },
+          })),
+        }],
+      }
+    }
     default:
       return base
   }
@@ -278,6 +358,9 @@ export function figureHeight(fig: Figure): number {
     case 'donut': return 280
     case 'diffusion': return 300
     case 'radar': return 340
+    case 'growth': return 330
+    case 'groupBars': return 320
+    case 'radarMulti': return 360
     default: return 300
   }
 }

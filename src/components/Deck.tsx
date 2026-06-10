@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { createContext, useCallback, useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { useTheme } from '../lib/theme'
 
 export interface SlideDef { id: string; num: string; title: string; node: ReactNode }
+
+/** True sólo cuando la diapositiva es la actual: dispara count-up y re-anima gráficas. */
+export const SlideActiveContext = createContext(false)
 
 const PDF = `${import.meta.env.BASE_URL}Informe-IA-AEC-2026.pdf`
 
@@ -31,7 +34,9 @@ function SlideFrame({ state, id, index, total, label, children }: {
       aria-label={`${index + 1} de ${total}: ${label}`}
       aria-hidden={state !== 'current'}
     >
-      <div className="slide-inner"><div className="slide-content">{children}</div></div>
+      <div className="slide-inner"><div className="slide-content">
+        <SlideActiveContext.Provider value={state === 'current'}>{children}</SlideActiveContext.Provider>
+      </div></div>
     </section>
   )
 }

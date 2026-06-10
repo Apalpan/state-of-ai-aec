@@ -1,0 +1,390 @@
+{
+  "thesis": {
+    "kicker": "La tesis",
+    "lead": "La brecha no está entre humanos e IA.",
+    "highlight": "Está entre quien usa la IA como un chat y quien la convierte en un sistema de trabajo.",
+    "foot": "Y en el sector AEC esa brecha es, además, la mayor oportunidad de productividad de la década."
+  },
+
+  "history": {
+    "title": "Setenta años en una línea: de la teoría a la IA que opera",
+    "source": "Síntesis histórica: Turing 1950 · Dartmouth 1956 · Vaswani et al. 2017 · OpenAI/Anthropic/Google 2022–2026.",
+    "events": [
+      { "year": "1950", "t": "Test de Turing", "d": "Alan Turing plantea «¿pueden pensar las máquinas?»." },
+      { "year": "1956", "t": "Nace el término «IA»", "d": "Conferencia de Dartmouth funda el campo." },
+      { "year": "1997", "t": "Deep Blue", "d": "La máquina vence a Kaspárov en ajedrez." },
+      { "year": "2012", "t": "AlexNet", "d": "El deep learning despega en visión por computadora." },
+      { "year": "2017", "t": "«Attention is all you need»", "d": "Google inventa el Transformer: base de los LLM." },
+      { "year": "2022", "t": "ChatGPT", "d": "La IA generativa llega al público: 100 M usuarios en 2 meses." },
+      { "year": "2024", "t": "Razonadores y agentes", "d": "Modelos que planifican, usan herramientas y sostienen tareas largas." },
+      { "year": "2026", "t": "Era agéntica", "d": "La frontera pasa de «responder» a «operar» con el humano supervisando." }
+    ]
+  },
+
+  "genai": {
+    "title": "Cómo funciona la IA generativa, sin humo",
+    "source": "Modelo conceptual de un LLM (Transformer): entrenamiento + inferencia autoregresiva.",
+    "steps": [
+      { "n": "1", "t": "Datos", "d": "Se entrena con enormes corpus de texto, código e imágenes." },
+      { "n": "2", "t": "Tokenización", "d": "El texto se parte en «tokens» (trozos de palabra) y se vuelve números." },
+      { "n": "3", "t": "Entrenamiento", "d": "La red aprende patrones: qué token tiende a seguir a cuál." },
+      { "n": "4", "t": "Predicción", "d": "Ante un prompt, estima el siguiente token más probable." },
+      { "n": "5", "t": "Generación", "d": "Repite la predicción token a token hasta formar la respuesta." },
+      { "n": "6", "t": "Validación", "d": "El criterio humano revisa: el modelo suena coherente, no sabe si acierta." }
+    ],
+    "tokenExample": ["La", " inteli", "gencia", " arti", "ficial", " trans", "forma", " el", " AEC"],
+    "tokenNote": "«La IA no sabe si tiene razón: sabe sonar coherente». Por eso el criterio profesional no desaparece — se vuelve más importante."
+  },
+
+  "concepts": {
+    "title": "Chatbot conversa · Asistente ayuda · Agente ejecuta · Workflow deja evidencia",
+    "source": "Marco de madurez de uso de IA (Guía de investigación GEN+ / AECODE, 2026).",
+    "items": [
+      { "k": "Chatbot", "does": "Responde preguntas en conversación.", "risk": "Inventar o simplificar de más.", "lvl": 1 },
+      { "k": "Asistente / copiloto", "does": "Produce, resume, analiza, usa herramientas.", "risk": "Dependencia sin validación.", "lvl": 2 },
+      { "k": "Agente", "does": "Planifica y ejecuta pasos con herramientas.", "risk": "Autonomía prematura, costos, permisos.", "lvl": 3 },
+      { "k": "Workflow de IA", "does": "Proceso completo: input → IA → validación → decisión → registro.", "risk": "Mal diseño de datos o responsabilidades.", "lvl": 4 }
+    ]
+  },
+
+  "compute": {
+    "id": "compute", "type": "growth", "status": "verified",
+    "title": "Cómputo de entrenamiento de los modelos frontera",
+    "source": "Epoch AI — el cómputo de entrenamiento se duplica ≈ cada 6 meses (mucho más rápido que la Ley de Moore).",
+    "note": "Escala logarítmica: una recta = crecimiento exponencial sostenido. ~10.000 millones de veces más cómputo que AlexNet (2012).",
+    "data": {
+      "log": true, "unit": " FLOP", "ymin": 1e16, "ymax": 1e27,
+      "x": ["2012", "2015", "2018", "2020", "2022", "2024", "2026"],
+      "series": [
+        { "name": "Cómputo de entrenamiento (FLOP)", "accent": true, "values": [4.0e17, 2.0e19, 3.0e21, 3.0e23, 2.0e24, 5.0e25, 4.0e26] }
+      ]
+    }
+  },
+
+  "singularity": {
+    "title": "El debate de la singularidad: señal, no profecía",
+    "source": "Encuestas a investigadores (AI Index 2025) · proyección conceptual — los plazos son especulativos.",
+    "note": "Rigor: hablamos de capacidades crecientes y de exposición por tarea, no de fechas de «AGI». La curva es ilustrativa.",
+    "milestones": [
+      { "t": "IA estrecha", "d": "Una tarea concreta: ajedrez, recomendación, visión." },
+      { "t": "IA generativa", "d": "Lenguaje, imagen, código de propósito general." },
+      { "t": "IA agéntica", "d": "Planifica y opera con herramientas y memoria." },
+      { "t": "¿AGI?", "d": "Generalidad a nivel humano: horizonte abierto y debatido." }
+    ],
+    "data": {
+      "log": false, "unit": "", "ymin": 0, "ymax": 100,
+      "x": ["2012", "2016", "2020", "2022", "2024", "2026", "2028", "2030"],
+      "series": [
+        { "name": "Capacidad relativa (índice ilustrativo)", "accent": true, "values": [6, 12, 24, 38, 58, 74, 86, 95] },
+        { "name": "Referencia humana", "accent": false, "values": [70, 70, 70, 70, 70, 70, 70, 70] }
+      ]
+    }
+  },
+
+  "stateStats": {
+    "title": "El estado de la IA en 2025: ya es infraestructura de trabajo",
+    "source": "McKinsey, The State of AI 2025 · Stanford HAI, AI Index 2025/2026.",
+    "items": [
+      { "value": "88%", "label": "de organizaciones usa IA en al menos una función", "source": "McKinsey 2025", "accent": "green" },
+      { "value": "~1 / 3", "label": "logra escalar la IA; el resto sigue en piloto", "source": "McKinsey 2025", "accent": "blue" },
+      { "value": "62% / 23%", "label": "experimenta con agentes / los escala a producción", "source": "McKinsey 2025", "accent": "teal" },
+      { "value": "39%", "label": "reporta impacto medible en EBIT atribuible a IA", "source": "McKinsey 2025", "accent": "indigo" },
+      { "value": "51%", "label": "reportó alguna consecuencia negativa por IA mal gobernada", "source": "McKinsey 2025", "accent": "red" },
+      { "value": "US$285,9 B", "label": "inversión privada en IA (EE. UU.) en 2025", "source": "Stanford AI Index 2026", "accent": "green" }
+    ]
+  },
+
+  "benchmarks": {
+    "id": "benchmarks", "type": "groupBars", "status": "mixed",
+    "title": "La IA alcanza al humano: salto en un solo año",
+    "source": "Stanford HAI, AI Index 2025. Saltos verificados: SWE-bench +67,3 pp · GPQA +48,9 pp · MMMU +18,8 pp (líneas base reconstruidas).",
+    "note": "Barras = % resuelto. La línea marca la referencia humana experta.",
+    "data": {
+      "unit": "%", "vmax": 100, "human": 90,
+      "groups": ["2023", "2024"],
+      "colors": ["indigo", "green"],
+      "categories": [
+        { "label": "SWE-bench\n(código)", "values": [4.4, 71.7] },
+        { "label": "GPQA\n(ciencia PhD)", "values": [34, 83] },
+        { "label": "MMMU\n(multimodal)", "values": [59, 78] }
+      ]
+    }
+  },
+
+  "models": {
+    "id": "models", "type": "radarMulti", "status": "projection",
+    "title": "La batalla de los modelos frontera",
+    "source": "Posicionamiento cualitativo por familia (síntesis de leaderboards públicos 2025–2026); no es un benchmark único.",
+    "note": "Cada eje 0–100. GPT, Claude y Gemini lideran ejes distintos: la «mejor IA» depende de la tarea.",
+    "data": {
+      "indicators": [
+        { "name": "Razonamiento", "max": 100 },
+        { "name": "Código", "max": 100 },
+        { "name": "Multimodal", "max": 100 },
+        { "name": "Contexto largo", "max": 100 },
+        { "name": "Costo-eficiencia", "max": 100 },
+        { "name": "Velocidad", "max": 100 }
+      ],
+      "series": [
+        { "name": "GPT (OpenAI)", "values": [92, 88, 90, 80, 70, 82], "color": "indigo" },
+        { "name": "Claude (Anthropic)", "values": [90, 94, 78, 88, 74, 78], "color": "green" },
+        { "name": "Gemini (Google)", "values": [88, 84, 92, 95, 80, 85], "color": "purple" }
+      ]
+    }
+  },
+
+  "popUsage": {
+    "id": "pop-usage", "type": "bars", "status": "verified",
+    "title": "La IA generativa más usada por la población",
+    "source": "Cuota de tráfico web de chatbots, jun 2026 (First Page Sage / Momentic).",
+    "note": "ChatGPT lidera con ~800–900 M de usuarios semanales, pero Gemini y Claude ganan terreno rápido.",
+    "data": {
+      "vmax": 60, "unit": "%",
+      "items": [
+        { "label": "ChatGPT (OpenAI)", "value": 54.7, "from": "green", "to": "teal" },
+        { "label": "Gemini (Google)", "value": 27.4, "from": "blue", "to": "indigo" },
+        { "label": "Claude (Anthropic)", "value": 8.2, "from": "indigo", "to": "purple" },
+        { "label": "Perplexity", "value": 3.6, "from": "purple", "to": "indigo" },
+        { "label": "Copilot / otros", "value": 6.1, "from": "orange", "to": "amber" }
+      ]
+    }
+  },
+
+  "pricing": {
+    "title": "Cómo paga la población por la IA generativa",
+    "source": "Precios públicos de lista 2026 (OpenAI / Anthropic / Google). La conversión a pago es una estimación de mercado.",
+    "note": "La mayoría usa el plan gratuito; la conversión a pago ronda un dígito porcentual — el valor está en quien sube de nivel.",
+    "tiers": [
+      { "name": "Gratis", "price": "US$0", "who": "La gran mayoría", "share": 90, "feat": "Acceso básico, límites de uso", "accent": "indigo" },
+      { "name": "Plus / Pro", "price": "US$20 /mes", "who": "Profesional individual", "share": 8, "feat": "Modelos frontera, más límites", "accent": "green" },
+      { "name": "Max / Pro+", "price": "US$100–200 /mes", "who": "Power users", "share": 1.5, "feat": "Uso intensivo, razonamiento", "accent": "teal" },
+      { "name": "API / Empresa", "price": "Por uso (tokens)", "who": "Productos y equipos", "share": 0.5, "feat": "Integración, escala, gobierno", "accent": "blue" }
+    ]
+  },
+
+  "toolboard": {
+    "title": "Tablero de herramientas de IA por uso principal",
+    "source": "Selección por categoría de uso (2026). El criterio no es la marca: es la tarea.",
+    "note": "«No gana quien abre más apps. Gana quien elige la herramienta correcta para cada tarea».",
+    "cats": [
+      { "cat": "Texto y razonamiento", "tools": ["ChatGPT", "Claude", "Gemini"] },
+      { "cat": "Búsqueda con fuentes", "tools": ["Perplexity", "NotebookLM"] },
+      { "cat": "Código", "tools": ["Claude Code", "Cursor", "Copilot"] },
+      { "cat": "Imagen", "tools": ["Midjourney", "Firefly", "Nano Banana"] },
+      { "cat": "Video", "tools": ["Sora", "Runway", "Veo"] },
+      { "cat": "Voz / audio", "tools": ["ElevenLabs", "Whisper"] },
+      { "cat": "Productividad M365", "tools": ["Copilot 365"] },
+      { "cat": "Automatización", "tools": ["n8n", "Zapier", "Make"] },
+      { "cat": "AEC / visión", "tools": ["VisionPro", "Autodesk AI"] }
+    ]
+  },
+
+  "market": {
+    "id": "market-size", "type": "areaBand", "status": "verified",
+    "title": "Tamaño del mercado de la IA: rumbo al futuro",
+    "source": "Statista · NextMSC · Fortune Business Insights · Precedence Research (2025–2026).",
+    "note": "Banda = dispersión entre fuentes. CAGR ≈ 26–33 %: el mercado se multiplica ~10× en una década.",
+    "data": {
+      "x": ["2024", "2025", "2030", "2034"],
+      "y": [224, 294, 1200, 2480],
+      "low": [205, 255, 1050, 2100],
+      "high": [255, 380, 1240, 3680],
+      "unit": "USD mil M", "color": "green"
+    }
+  },
+
+  "capex": {
+    "id": "capex", "type": "barsV", "status": "verified",
+    "title": "La batalla de las big tech: capex en IA (2025)",
+    "source": "Guidance corporativa y Value Add VC / Visual Capitalist 2025.",
+    "note": "Los hiperescaladores invierten > US$300 B en 2025 — la mayor construcción de infraestructura de la historia.",
+    "data": {
+      "vmax": 120, "unit": " B",
+      "items": [
+        { "label": "Amazon", "value": 100, "from": "blue", "to": "indigo" },
+        { "label": "Microsoft", "value": 80, "from": "indigo", "to": "purple" },
+        { "label": "Alphabet", "value": 75, "from": "teal", "to": "green" },
+        { "label": "Meta", "value": 65, "from": "green", "to": "teal" }
+      ]
+    }
+  },
+
+  "funding": {
+    "id": "funding", "type": "bars", "status": "mixed",
+    "title": "Levantamiento de capital: los laboratorios frontera",
+    "source": "Valuación privada 2025–2026 (TechFundingNews / Crunchbase). Señal de mercado, no estado contable.",
+    "note": "Juntos, OpenAI + Anthropic + xAI ≈ US$1 billón de valor privado. Rondas 2025: OpenAI $40 B · xAI $20 B · Anthropic $13 B.",
+    "data": {
+      "vmax": 340, "unit": " B",
+      "items": [
+        { "label": "OpenAI", "value": 300, "from": "green", "to": "teal" },
+        { "label": "xAI", "value": 230, "from": "blue", "to": "indigo" },
+        { "label": "Anthropic", "value": 183, "from": "indigo", "to": "purple" },
+        { "label": "Mistral AI", "value": 14, "from": "orange", "to": "amber" }
+      ]
+    }
+  },
+
+  "nvidia": {
+    "title": "El punto clave: todos compran las mismas palas",
+    "source": "NVIDIA 8-K FY2025 · carboncredits / Wikipedia 2025.",
+    "donut": { "id": "nvidia-share", "type": "donut", "status": "verified", "title": "Cuota de NVIDIA en aceleradores de IA", "source": "Estimaciones de mercado 2025", "data": { "value": 90, "label": "aceleradores de IA", "rest": "AMD / otros", "color": "green" } },
+    "stats": [
+      { "value": "US$4 B*", "label": "primera empresa en superar US$4 billones de valor (jul 2025)", "source": "*trillones", "accent": "green" },
+      { "value": "US$115 B", "label": "ingresos de data center FY2025 (+142 % interanual)", "source": "NVIDIA 8-K", "accent": "blue" },
+      { "value": "→ US$1 B*", "label": "proyección de ingresos de data center a 2028 (*billón)", "source": "J. Huang", "accent": "teal" }
+    ],
+    "note": "En una fiebre del oro, vende palas. El cuello de botella del mundo hoy es el cómputo — y casi todo pasa por una empresa."
+  },
+
+  "regions": {
+    "id": "regions", "type": "rose", "status": "mixed",
+    "title": "Estructura de la inversión en IA por región",
+    "source": "Síntesis a partir de Stanford AI Index 2026 (EE. UU. concentra la inversión privada) y reportes regionales.",
+    "note": "Norteamérica y China dominan; Latinoamérica capta una fracción mínima del flujo global.",
+    "data": {
+      "highlight": "LATAM",
+      "items": [
+        { "name": "Norteamérica", "value": 50, "color": "blue" },
+        { "name": "China", "value": 25, "color": "indigo" },
+        { "name": "Europa", "value": 12, "color": "purple" },
+        { "name": "Asia (resto)", "value": 8, "color": "teal" },
+        { "name": "MENA / África", "value": 3, "color": "amber" },
+        { "name": "LATAM", "value": 2, "color": "green" }
+      ]
+    }
+  },
+
+  "anthropic": {
+    "title": "Adopción real según Anthropic: aumento, no reemplazo",
+    "source": "Anthropic Economic Index (nov 2025) — análisis de patrones de uso reales, por tarea.",
+    "chart": {
+      "id": "anthropic-aug", "type": "bars", "status": "verified",
+      "title": "¿Cómo se usa la IA en el trabajo?",
+      "source": "Anthropic Economic Index, nov 2025",
+      "data": { "vmax": 60, "unit": "%", "items": [
+        { "label": "Aumento (humano + IA colaboran)", "value": 52, "from": "green", "to": "teal" },
+        { "label": "Automatización (delegar la tarea)", "value": 45, "from": "indigo", "to": "purple" },
+        { "label": "Otros / directivo", "value": 3, "from": "orange", "to": "amber" }
+      ] }
+    },
+    "stats": [
+      { "value": "84,8%", "label": "de exposición a la IA en arquitectura e ingeniería", "source": "Anthropic EI", "accent": "green" },
+      { "value": "49%", "label": "de los empleos usa IA en ≥ ¼ de sus tareas", "source": "Anthropic EI", "accent": "blue" },
+      { "value": "24%", "label": "de las conversaciones se concentra en 10 tareas (coding-heavy)", "source": "Anthropic EI", "accent": "teal" }
+    ],
+    "key": "La idea clave: la IA no automatiza empleos completos — automatiza tareas. Un rol no desaparece; sus tareas informacionales se aceleran."
+  },
+
+  "funnel": {
+    "id": "mckinsey-funnel", "type": "funnel", "status": "verified",
+    "title": "El embudo de adopción de IA (McKinsey)",
+    "source": "McKinsey, The State of AI 2025 (88 / 62 / 23 verificados; pilotos y núcleo interpolados).",
+    "note": "El valle de la muerte está entre el piloto y la producción: muchos prueban, pocos escalan.",
+    "data": { "items": [
+      { "name": "Usa IA (alguna función)", "value": 88 },
+      { "name": "Experimenta con agentes", "value": 62 },
+      { "name": "Tiene pilotos formales", "value": 40 },
+      { "name": "Escala agentes a producción", "value": 23 },
+      { "name": "IA en el núcleo del negocio", "value": 10 }
+    ] }
+  },
+
+  "aecGap": {
+    "id": "aec-gap", "type": "bars", "status": "verified",
+    "title": "La paradoja AEC: potencial probado vs. uso real",
+    "source": "Anthropic Economic Index (exposición 84,8 %) · uso real por fase del proyecto.",
+    "note": "La distancia entre el 84,8 % de potencial y el 25 % / 1 % de uso real es la oportunidad del sector.",
+    "data": { "vmax": 100, "unit": "%", "items": [
+      { "label": "Potencial de IA (exposición)", "value": 84.8, "from": "green", "to": "teal" },
+      { "label": "Uso real · oficina técnica", "value": 25, "from": "indigo", "to": "purple" },
+      { "label": "Uso real · obra física", "value": 1, "from": "red", "to": "orange" }
+    ] }
+  },
+
+  "productivity": {
+    "id": "productivity", "type": "barsV", "status": "verified",
+    "title": "Productividad anual comparada por sector",
+    "source": "McKinsey 2025. La 4ª barra suma el potencial +1,8 pp de la IA a la construcción.",
+    "note": "La construcción crece 0,7 %/año; la IA podría casi cuadruplicar ese ritmo.",
+    "data": { "vmax": 4.2, "unit": "% anual", "items": [
+      { "label": "Construcción", "value": 0.7, "from": "red", "to": "orange" },
+      { "label": "Economía global", "value": 2.8, "from": "indigo", "to": "purple" },
+      { "label": "Manufactura", "value": 3.6, "from": "blue", "to": "indigo" },
+      { "label": "Constr. + IA", "value": 2.5, "from": "green", "to": "teal" }
+    ] }
+  },
+
+  "aecState": {
+    "title": "El estado y la madurez del AEC: el rezagado con más por ganar",
+    "source": "Autodesk 2026 State of Design & Make · RICS 2025 · ServiceTitan 2026.",
+    "stats": [
+      { "value": "98% / 84%", "label": "de líderes de Design & Make usa ≥1 IA / dice que subió la productividad", "source": "Autodesk 2026", "accent": "green" },
+      { "value": "45% / <12%", "label": "de la construcción sin IA / la usa de forma regular", "source": "RICS 2025", "accent": "red" },
+      { "value": "38%", "label": "de contratistas reporta impacto medible (subió de 17 %)", "source": "ServiceTitan 2026", "accent": "teal" }
+    ],
+    "chart": {
+      "id": "aec-regular", "type": "bars", "status": "verified",
+      "title": "Uso regular de IA: corporativo vs. construcción",
+      "source": "McKinsey 2025 · RICS 2025",
+      "data": { "vmax": 100, "unit": "%", "items": [
+        { "label": "Corporativo (alguna función)", "value": 88, "from": "green", "to": "teal" },
+        { "label": "Design & Make (≥1 herramienta)", "value": 98, "from": "teal", "to": "green" },
+        { "label": "Construcción (uso regular)", "value": 12, "from": "red", "to": "orange" },
+        { "label": "Construcción (sin IA)", "value": 45, "from": "orange", "to": "amber" }
+      ] }
+    }
+  },
+
+  "emerging": {
+    "id": "emerging", "type": "bars", "status": "mixed",
+    "title": "Tecnologías emergentes en construcción: nivel de adopción",
+    "source": "Síntesis Autodesk / JBKnowledge / RICS 2025. La IA y la robótica siguen en la cola.",
+    "note": "El BIM y la nube ya son mayoritarios; la IA, la visión y los gemelos digitales recién despegan.",
+    "data": { "vmax": 70, "unit": "% adopción",
+      "items": [
+        { "label": "BIM", "value": 60, "from": "green", "to": "teal" },
+        { "label": "Colaboración en la nube", "value": 55, "from": "teal", "to": "green" },
+        { "label": "Drones / UAV", "value": 42, "from": "indigo", "to": "purple" },
+        { "label": "IA / machine learning", "value": 22, "from": "blue", "to": "indigo" },
+        { "label": "Gemelo digital", "value": 18, "from": "purple", "to": "indigo" },
+        { "label": "Computer vision en obra", "value": 16, "from": "orange", "to": "amber" },
+        { "label": "Robótica / impresión 3D", "value": 9, "from": "red", "to": "orange" }
+      ] }
+  },
+
+  "dataBottleneck": {
+    "id": "data-waste", "type": "donut", "status": "verified",
+    "title": "El cuello de botella: la data que se tira",
+    "source": "FMI / Autodesk — el 96 % de la data de ingeniería y construcción no se usa.",
+    "note": "Sin datos no hay IA escalable. La mala gestión de datos costó al sector US$1,84 billones en 2020 (FMI).",
+    "data": { "value": 96, "label": "data E&C sin usar", "rest": "Aprovechada", "color": "red" }
+  },
+
+  "skills": {
+    "id": "skills", "type": "groupBars", "status": "mixed",
+    "title": "Skills clave: del profesional de hoy al «AI-first»",
+    "source": "World Economic Forum, Future of Jobs 2025 (IA & big data = skill de mayor crecimiento).",
+    "note": "Barras = importancia relativa. El salto no es saber prompts: es pensar con datos, criterio y IA.",
+    "data": {
+      "unit": "", "vmax": 100, "human": null,
+      "groups": ["Hoy", "AI-first 2030"],
+      "colors": ["indigo", "green"],
+      "categories": [
+        { "label": "Pensamiento\nanalítico", "values": [78, 88] },
+        { "label": "IA & big\ndata", "values": [42, 90] },
+        { "label": "Pensamiento\ncreativo", "values": [60, 80] },
+        { "label": "Curiosidad /\naprendizaje", "values": [55, 82] },
+        { "label": "Alfabetización\ntecnológica", "values": [50, 84] },
+        { "label": "Criterio /\nliderazgo", "values": [58, 78] }
+      ]
+    }
+  },
+
+  "actions": [
+    { "t": "Empresas", "ac": "green", "d": "Elige UN proceso con dolor medible y haz un piloto de 30 días. Mide tiempo, costo y calidad. Escala por evidencia, no por entusiasmo." },
+    { "t": "Gobierno y autoridades", "ac": "blue", "d": "Mandato de datos (BIM) + formación subsidiada para pymes + compra pública como driver. Cierra la brecha antes de que se ensanche." },
+    { "t": "Academia", "ac": "indigo", "d": "IA aplicada en la malla de arquitectura e ingeniería, en formato verificable. El título solo ya no basta." },
+    { "t": "Profesionales", "ac": "teal", "d": "Domina prompting + workflow + un caso real de tu rol. Construye skills verificables y sube un nivel de madurez." }
+  ]
+}
