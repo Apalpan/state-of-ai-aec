@@ -70,17 +70,85 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
     /* ---------------- BARS (horizontal) ---------------- */
     case 'bars': {
       const items = d.items as any[]
+      const human = d.human as number | undefined
+      const hl = d.highlight as string | undefined
       return {
         ...base,
-        grid: { left: 4, right: 56, top: 8, bottom: 4, containLabel: true },
-        tooltip: { ...base.tooltip, trigger: 'item', formatter: (p: any) => `${p.name}<br/><b style="font-size:14px">${p.value}${unit}</b>` },
+        grid: { left: 4, right: 66, top: human != null ? 20 : 8, bottom: 4, containLabel: true },
+        tooltip: { ...base.tooltip, trigger: 'item', axisPointer: { type: 'shadow' }, formatter: (p: any) => `${p.name}<br/><b style="font-size:15px;color:${GREEN}">${p.value}${unit}</b>` },
         xAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: `{value}${unit === '%' ? '%' : ''}` }, axisLine: { show: false }, axisTick: { show: false } },
-        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, width: 180, overflow: 'truncate' }, axisLine: { show: false }, axisTick: { show: false } },
+        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, width: 200, overflow: 'truncate' }, axisLine: { show: false }, axisTick: { show: false } },
         series: [{
-          type: 'bar', barWidth: '58%',
-          label: { show: true, position: 'right', color: C.ink, fontWeight: 700, fontSize: 12, formatter: (p: any) => `${p.value}${unit === '%' ? '%' : ''}` },
-          data: items.map((i) => ({ value: i.value, itemStyle: { color: grad(i.from, i.to, 'h'), borderRadius: [0, 6, 6, 0] } })),
+          type: 'bar', barWidth: '60%', cursor: 'default',
+          label: { show: true, position: 'right', color: C.ink, fontWeight: 700, fontSize: 12.5, formatter: (p: any) => `${p.value}${unit === '%' ? '%' : ''}` },
+          emphasis: { focus: 'self', itemStyle: { shadowBlur: 16, shadowColor: ga(0.45) } },
+          animationDelay: (i: number) => 70 + i * 90, animationDuration: 720, animationEasing: 'cubicOut',
+          data: items.map((i) => {
+            const isHl = hl && i.label === hl
+            return {
+              value: i.value,
+              label: isHl ? { color: GREEN, fontWeight: 800 } : undefined,
+              itemStyle: { color: grad(i.from || 'green', i.to || 'teal', 'h'), borderRadius: [0, 7, 7, 0], ...(isHl ? { shadowBlur: 18, shadowColor: ga(0.5) } : {}) },
+            }
+          }),
+          ...(human != null ? { markLine: { silent: true, symbol: 'none', lineStyle: { color: C.muted, type: 'dashed', width: 1.6 }, label: { formatter: d.humanLabel || `humano ${human}${unit}`, color: C.muted, fontSize: 10.5, position: 'insideEndTop' }, data: [{ xAxis: human }] } } : {}),
         }],
+      }
+    }
+    /* ---------------- COMPARE BARS (uno destacado en verde, resto grafito) ---------------- */
+    case 'compareBars': {
+      const items = d.items as any[]
+      const hl = d.highlight as string | undefined
+      const m1 = isDark ? '#3f4a44' : '#cdd5cf'
+      const m2 = isDark ? '#525d57' : '#b3bcb6'
+      return {
+        ...base,
+        grid: { left: 4, right: 70, top: 8, bottom: 4, containLabel: true },
+        tooltip: { ...base.tooltip, trigger: 'item', formatter: (p: any) => `${p.name}<br/><b style="font-size:15px">${p.value}${unit}</b>` },
+        xAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10 }, axisLine: { show: false }, axisTick: { show: false } },
+        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, width: 200, overflow: 'truncate' }, axisLine: { show: false }, axisTick: { show: false } },
+        series: [{
+          type: 'bar', barWidth: '56%', cursor: 'default',
+          label: { show: true, position: 'right', fontWeight: 700, fontSize: 12.5, formatter: (p: any) => `${p.value}${unit}` },
+          emphasis: { focus: 'self', itemStyle: { shadowBlur: 16, shadowColor: ga(0.4) } },
+          animationDelay: (i: number) => 70 + i * 100, animationDuration: 720, animationEasing: 'cubicOut',
+          data: items.map((i) => {
+            const isHl = hl && i.label === hl
+            return {
+              value: i.value,
+              label: { color: isHl ? GREEN : C.ink, fontWeight: isHl ? 800 : 700 },
+              itemStyle: { color: isHl ? grad('green', 'teal', 'h') : grad(m1, m2, 'h'), borderRadius: [0, 7, 7, 0], ...(isHl ? { shadowBlur: 20, shadowColor: ga(0.55) } : {}) },
+            }
+          }),
+        }],
+      }
+    }
+    /* ---------------- WATERFALL (cascada: creados / desplazados / neto) ---------------- */
+    case 'waterfall': {
+      const items = d.items as any[]
+      let run = 0
+      const place: number[] = []
+      const bar: number[] = []
+      const colors: any[] = []
+      items.forEach((it) => {
+        if (it.kind === 'total') { place.push(0); bar.push(Math.abs(it.value)); colors.push(grad('green', 'teal', 'v')) }
+        else if (it.value >= 0) { place.push(run); bar.push(it.value); colors.push(grad('teal', 'green', 'v')); run += it.value }
+        else { run += it.value; place.push(run); bar.push(Math.abs(it.value)); colors.push(grad(isDark ? '#525d57' : '#b3bcb6', isDark ? '#3f4a44' : '#9aa39e', 'v')) }
+      })
+      return {
+        ...base,
+        grid: { left: 6, right: 12, top: 30, bottom: 4, containLabel: true },
+        tooltip: { ...base.tooltip, trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps: any) => { const i = ps[0].dataIndex; const v = items[i].value; return `${items[i].label}<br/><b style="font-size:15px">${v > 0 ? '+' : ''}${v}${unit}</b>` } },
+        xAxis: { type: 'category', data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 10.5, interval: 0, lineHeight: 13 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
+        yAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: `{value}${unit}` } },
+        series: [
+          { type: 'bar', stack: 'wf', silent: true, itemStyle: { color: 'transparent' }, emphasis: { disabled: true }, tooltip: { show: false }, data: place },
+          { type: 'bar', stack: 'wf', barWidth: '48%', cursor: 'default',
+            label: { show: true, position: 'top', color: C.ink, fontWeight: 700, fontSize: 13, formatter: (p: any) => { const v = items[p.dataIndex].value; return `${v > 0 ? '+' : ''}${v}` } },
+            emphasis: { focus: 'self', itemStyle: { shadowBlur: 16, shadowColor: ga(0.4) } },
+            animationDelay: (i: number) => 100 + i * 150, animationDuration: 760, animationEasing: 'cubicOut',
+            data: bar.map((v, i) => ({ value: v, itemStyle: { color: colors[i], borderRadius: [6, 6, 0, 0] } })) },
+        ],
       }
     }
     /* ---------------- BARS (vertical) ---------------- */
@@ -93,8 +161,10 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         xAxis: { type: 'category', data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 10.5, interval: 0, lineHeight: 13 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
         yAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10 } },
         series: [{
-          type: 'bar', barWidth: '46%',
-          label: { show: true, position: 'top', color: C.ink, fontWeight: 700, fontSize: 12, formatter: (p: any) => `${p.value}` },
+          type: 'bar', barWidth: '46%', cursor: 'default',
+          label: { show: true, position: 'top', color: C.ink, fontWeight: 700, fontSize: 12.5, formatter: (p: any) => `${p.value}${unit}` },
+          emphasis: { focus: 'self', itemStyle: { shadowBlur: 16, shadowColor: ga(0.42) } },
+          animationDelay: (i: number) => 70 + i * 100, animationDuration: 740, animationEasing: 'cubicOut',
           data: items.map((i) => ({ value: i.value, itemStyle: { color: grad(i.from, i.to, 'v'), borderRadius: [6, 6, 0, 0] } })),
         }],
       }
@@ -294,9 +364,11 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
       const groups = d.groups as string[]
       const colors = (d.colors as string[]) || ['indigo', 'green']
       const series = groups.map((g, gi) => ({
-        name: g, type: 'bar', barGap: '12%', barWidth: groups.length > 1 ? '30%' : '46%',
+        name: g, type: 'bar', barGap: '12%', barWidth: groups.length > 1 ? '30%' : '46%', cursor: 'default',
         label: { show: true, position: 'top', color: C.ink, fontWeight: 700, fontSize: 11, formatter: (p: any) => `${p.value}${unit}` },
         itemStyle: { color: grad(colors[gi], colors[gi], 'v'), borderRadius: [6, 6, 0, 0] },
+        emphasis: { focus: 'series', itemStyle: { shadowBlur: 14, shadowColor: ga(0.4) } },
+        animationDelay: (i: number) => 80 + i * 70 + gi * 40, animationDuration: 720, animationEasing: 'cubicOut',
         data: cats.map((c) => c.values[gi]),
         ...(gi === groups.length - 1 && d.human
           ? { markLine: { silent: true, symbol: 'none', lineStyle: { color: C.muted, type: 'dashed', width: 1.4 }, label: { formatter: 'referencia humana', color: C.muted, fontSize: 10, position: 'insideEndTop' }, data: [{ yAxis: d.human }] } }
@@ -348,6 +420,8 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
 export function figureHeight(fig: Figure): number {
   switch (fig.type) {
     case 'bars': return Math.max(230, (fig.data?.items?.length ?? 4) * 48)
+    case 'compareBars': return Math.max(230, (fig.data?.items?.length ?? 4) * 54)
+    case 'waterfall': return 300
     case 'barsV': return 270
     case 'funnel': return 290
     case 'areaBand': return 300

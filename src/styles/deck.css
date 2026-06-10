@@ -253,3 +253,42 @@ body { overflow: hidden; }
 .ts-fill { display: block; height: 100%; background: linear-gradient(90deg, var(--blue), var(--accent)); }
 .ts-pct { font-variant-numeric: tabular-nums; font-size: 0.74rem; color: var(--muted); }
 @media (max-width: 960px) { .tiers { grid-template-columns: 1fr 1fr; } }
+
+/* =========================== BREAKTHROUGHS ======================= */
+.breaks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.break { position: relative; padding: 18px 20px 15px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); background: var(--surface); display: flex; flex-direction: column; gap: 8px;
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2), box-shadow var(--dur-2); }
+.break:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 16px 36px -22px color-mix(in oklch, var(--accent) 70%, transparent); }
+.break-n { font-family: var(--font-display); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.04em; color: var(--accent-ink); background: var(--accent); width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; }
+.break-t { font-family: var(--font-display); font-weight: 700; font-size: var(--step-0); color: var(--ink); line-height: 1.22; }
+.break-d { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.5; flex: 1; }
+.break-src { color: var(--muted); font-size: 0.7rem; letter-spacing: 0.02em; }
+@media (max-width: 960px) { .breaks { grid-template-columns: 1fr; } }
+
+/* ===================== PLAIN NOTE (explicación sencilla) ========= */
+.plain { position: relative; margin-top: 4px; padding: 15px 18px 14px 20px; border-radius: var(--radius);
+  background: color-mix(in oklch, var(--accent) 7%, var(--surface)); border: 1px solid color-mix(in oklch, var(--accent) 20%, transparent); }
+.plain::before { content: 'En simple'; position: absolute; top: -9px; left: 16px; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
+  color: var(--accent-ink); background: var(--accent); padding: 2px 9px; border-radius: 6px; }
+.plain p { color: var(--ink-soft); font-size: var(--step-0); line-height: 1.55; margin: 0; }
+.plain b { color: var(--ink); }
+
+/* ===================== FRONTIER (Fable 5) ======================== */
+.frontier-flag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-family: var(--font-display); font-weight: 700; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--accent-ink); background: var(--accent); padding: 5px 12px; border-radius: 999px; }
+.frontier-flag .pulse { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 0 currentColor; animation: pulse 1.8s var(--ease-out) infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--accent-ink) 55%, transparent); } 70% { box-shadow: 0 0 0 7px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+@media (prefers-reduced-motion: reduce) { .frontier-flag .pulse { animation: none; } }
+
+/* ===================== PRÓXIMA FASE (focus-group, separado) ====== */
+.next-phase { position: relative; border: 1px dashed var(--border-strong); border-radius: var(--radius-lg); padding: clamp(20px, 3vw, 32px); background: linear-gradient(160deg, color-mix(in oklch, var(--blue) 6%, var(--surface)), var(--surface)); }
+.next-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+.next-tag::before { content: ''; width: 22px; height: 2px; background: var(--blue); }
+.next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+.next-step { padding: 16px 18px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.next-step .ns-n { font-family: var(--font-display); font-weight: 700; color: var(--blue); font-size: 0.9rem; }
+.next-step .ns-t { font-family: var(--font-display); font-weight: 600; color: var(--ink); display: block; margin: 6px 0 4px; }
+.next-step .ns-d { color: var(--muted); font-size: var(--step--1); line-height: 1.45; }
+.next-foot { margin-top: 16px; color: var(--ink-soft); font-size: var(--step--1); }
+.next-foot b { color: var(--ink); }
+@media (max-width: 960px) { .next-grid { grid-template-columns: 1fr; } }

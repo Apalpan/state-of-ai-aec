@@ -80,6 +80,24 @@ export function ToolBoard({ cats }: { cats: { cat: string; tools: string[] }[] }
   )
 }
 
+/* --------------------------- BREAKTHROUGHS --------------------------- */
+export function Breakthroughs({ items }: {
+  items: { icon: string; t: string; d: string; src: string }[]
+}) {
+  return (
+    <div className="breaks up" style={st(1)}>
+      {items.map((it, i) => (
+        <div className="break" key={i} style={st(i + 1)}>
+          <span className="break-n" aria-hidden="true">{it.icon}</span>
+          <span className="break-t">{it.t}</span>
+          <span className="break-d">{it.d}</span>
+          <span className="break-src">{it.src}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 /* ----------------------------- PLANES DE PAGO ------------------------- */
 export function PricingTiers({ tiers }: {
   tiers: { name: string; price: string; who: string; share: number; feat: string; accent: string }[]

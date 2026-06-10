@@ -29,5 +29,16 @@
   { "id": "grattan-2025", "org": "Grattan Institute", "title": "Megaprojects and cost overruns", "year": 2025, "type": "Estudio", "url": "https://grattan.edu.au" },
   { "id": "mit-rct", "org": "MIT / GitHub / Microsoft / Wharton", "title": "Randomized controlled trials de productividad con IA (n=4.867 devs)", "year": 2024, "type": "RCT", "url": "https://arxiv.org" },
   { "id": "euaiact", "org": "Unión Europea", "title": "EU AI Act — Reglamento (UE) 2024/1689", "year": 2024, "type": "Regulación", "url": "https://artificialintelligenceact.eu" },
-  { "id": "iso42001", "org": "ISO/IEC", "title": "ISO/IEC 42001:2023 — Sistema de gestión de IA", "year": 2023, "type": "Norma", "url": "https://www.iso.org/standard/81230.html" }
+  { "id": "iso42001", "org": "ISO/IEC", "title": "ISO/IEC 42001:2023 — Sistema de gestión de IA", "year": 2023, "type": "Norma", "url": "https://www.iso.org/standard/81230.html" },
+  { "id": "anthropic-fable5-2026", "org": "Anthropic", "title": "Claude Fable 5 and Claude Mythos 5", "year": 2026, "type": "Anuncio", "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5" },
+  { "id": "nber-32966", "org": "Bick, Blandin & Deming (NBER)", "title": "The Rapid Adoption of Generative AI — Working Paper 32966", "year": 2025, "type": "Working paper", "url": "https://www.nber.org/papers/w32966" },
+  { "id": "reuters-chatgpt-1b", "org": "Reuters / Sensor Tower", "title": "ChatGPT app hits 1 billion monthly active users in record time", "year": 2026, "type": "Noticia", "url": "https://www.reuters.com/technology/" },
+  { "id": "nature-hle-2026", "org": "Nature (Center for AI Safety & Scale AI)", "title": "Humanity's Last Exam — benchmark de nivel experto", "year": 2026, "type": "Paper", "url": "https://www.nature.com/articles/s41586-025-09962-4" },
+  { "id": "epoch-hle", "org": "Epoch AI / Scale AI", "title": "Humanity's Last Exam — leaderboard", "year": 2026, "type": "Leaderboard", "url": "https://epoch.ai/benchmarks/hle" },
+  { "id": "google-research-2025", "org": "Google Research", "title": "Year in Review 2025 — IMO/ICPC gold, breakthroughs", "year": 2025, "type": "Informe", "url": "https://blog.google/innovation-and-ai/products/2025-research-breakthroughs/" },
+  { "id": "axios-breakthroughs-2025", "org": "Axios / UC San Diego", "title": "2025 AI-fueled scientific breakthroughs", "year": 2025, "type": "Recopilación", "url": "https://www.axios.com/2025/12/31/2025-ai-scientific-breakthroughs" },
+  { "id": "bigtech-capex-2026", "org": "CNBC / Tom's Hardware / Futurum", "title": "Hyperscaler AI capex guidance 2026 (~US$665–725 B)", "year": 2026, "type": "Análisis", "url": "https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html" },
+  { "id": "fortune-aec-labor-2026", "org": "Fortune", "title": "U.S. construction needs ~500,000 new workers in 2026", "year": 2026, "type": "Noticia", "url": "https://fortune.com/2026/02/07/us-construction-industry-employment-outlook-500000-new-workers-ai-boom-infrastructure-skilled-trades/" },
+  { "id": "asce-aec-2025", "org": "ASCE", "title": "AEC sector slow to adopt AI — survey", "year": 2025, "type": "Encuesta", "url": "https://www.asce.org/publications-and-news/civil-engineering-source" },
+  { "id": "grandview-agents-2026", "org": "Grand View / Precedence / MarketsandMarkets", "title": "AI Agents Market — forecast", "year": 2026, "type": "Market report", "url": "https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report" }
 ]

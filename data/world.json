@@ -195,16 +195,17 @@
 
   "capex": {
     "id": "capex", "type": "barsV", "status": "verified",
-    "title": "La batalla de las big tech: capex en IA (2025)",
-    "source": "Guidance corporativa y Value Add VC / Visual Capitalist 2025.",
-    "note": "Los hiperescaladores invierten > US$300 B en 2025 — la mayor construcción de infraestructura de la historia.",
+    "title": "La batalla de las big tech: capex en IA (2026)",
+    "source": "Guidance corporativa 2026 (CNBC · Tom's Hardware · Futurum).",
+    "note": "Juntas, Amazon + Alphabet + Microsoft + Meta guían ~US$665 B en 2026 (+77 % vs 2025): la mayor construcción de infraestructura de la historia. Es como levantar una ciudad entera de servidores cada año.",
+    "plain": "Las cuatro empresas más grandes del mundo están apostando casi todo a la IA: cerca de US$700 mil millones este año, más que el PBI de muchos países.",
     "data": {
-      "vmax": 120, "unit": " B",
+      "vmax": 215, "unit": " B",
       "items": [
-        { "label": "Amazon", "value": 100, "from": "blue", "to": "indigo" },
-        { "label": "Microsoft", "value": 80, "from": "indigo", "to": "purple" },
-        { "label": "Alphabet", "value": 75, "from": "teal", "to": "green" },
-        { "label": "Meta", "value": 65, "from": "green", "to": "teal" }
+        { "label": "Amazon", "value": 200, "from": "blue", "to": "indigo" },
+        { "label": "Alphabet", "value": 185, "from": "teal", "to": "green" },
+        { "label": "Microsoft", "value": 145, "from": "indigo", "to": "purple" },
+        { "label": "Meta", "value": 135, "from": "green", "to": "teal" }
       ]
     }
   },
@@ -379,6 +380,146 @@
         { "label": "Criterio /\nliderazgo", "values": [58, 78] }
       ]
     }
+  },
+
+  "frontier": {
+    "title": "La frontera se mueve ahora: ayer cambió otra vez",
+    "lead": "No hablamos de un futuro lejano. El 9 de junio de 2026 —ayer— se anunció un nuevo modelo de frontera. Estos son sus resultados reales, no promesas.",
+    "source": "Anthropic — Claude Fable 5 y Mythos 5 (9 jun 2026).",
+    "note": "Claude Fable 5: estado del arte en casi todos los benchmarks probados. US$10 / US$50 por millón de tokens (menos de la mitad del modelo anterior). La capacidad sube y el precio baja al mismo tiempo.",
+    "stats": [
+      { "value": "50 M líneas", "label": "migró un código de 50 millones de líneas en 1 día (Stripe). Antes: más de 2 meses.", "source": "Anthropic 2026", "accent": "green" },
+      { "value": "~10×", "label": "aceleró el diseño de fármacos; 9 de 14 dianas de proteína dieron candidatos fuertes.", "source": "Anthropic 2026", "accent": "blue" },
+      { "value": "~80%", "label": "de las veces los científicos prefirieron sus hipótesis nuevas en pruebas a ciegas.", "source": "Anthropic 2026", "accent": "teal" },
+      { "value": "100× menor", "label": "creó un modelo de genómica 100× más pequeño que el publicado en Science… y lo superó.", "source": "Anthropic 2026", "accent": "indigo" }
+    ]
+  },
+
+  "adoptionSpeed": {
+    "id": "adoption-speed", "type": "compareBars", "status": "verified",
+    "title": "La IA se adoptó más rápido que cualquier tecnología de la historia",
+    "source": "Bick, Blandin & Deming — NBER WP 32966 · Stanford HAI AI Index 2026.",
+    "note": "Años en alcanzar al 40 % de la población. Lo que a la computadora le tomó 12 años, la IA generativa lo logró en 2.",
+    "plain": "Es como si pusieran una autopista donde había un camino de tierra, de la noche a la mañana. Ni el internet ni el celular se expandieron tan rápido.",
+    "data": {
+      "vmax": 13, "unit": " años", "highlight": "IA generativa",
+      "items": [
+        { "label": "Computadora personal", "value": 12 },
+        { "label": "Internet", "value": 4 },
+        { "label": "Smartphone", "value": 3.5 },
+        { "label": "IA generativa", "value": 2 }
+      ]
+    }
+  },
+
+  "reach": {
+    "title": "Mil millones de personas, en tiempo récord",
+    "source": "Reuters / Sensor Tower · Stanford HAI AI Index 2026.",
+    "stats": [
+      { "value": "1000 M", "label": "usuarios mensuales de ChatGPT: la app más rápida de la historia en lograrlo (may 2026).", "source": "Reuters · Sensor Tower", "accent": "green" },
+      { "value": "900 M", "label": "usuarios semanales: el doble que un año antes (feb 2025 → feb 2026).", "source": "OpenAI 2026", "accent": "blue" },
+      { "value": "5 días", "label": "tardó en llegar a su primer millón de usuarios. El internet tardó años.", "source": "Stanford 2026", "accent": "teal" },
+      { "value": "52%", "label": "de quienes la usan hoy son mujeres (al inicio era 80 % hombres): ya es de todos.", "source": "Stanford HAI 2026", "accent": "indigo" }
+    ]
+  },
+
+  "hle": {
+    "id": "hle", "type": "bars", "status": "verified",
+    "title": "Le pusieron el examen más difícil del mundo",
+    "source": "«Humanity's Last Exam» — Nature (ene 2026) · leaderboard Scale AI / Epoch (jun 2026).",
+    "note": "2.500 preguntas de nivel doctorado en 100+ materias. En un año, la IA pasó de ~3 % a 44,7 %. El experto humano ronda el 90 %.",
+    "plain": "3.000 expertos crearon el examen más difícil jamás escrito para que la IA no pudiera resolverlo. En enero de 2025 sacaba 3 %. Hoy ya saca casi la mitad.",
+    "data": {
+      "vmax": 100, "unit": "%", "human": 90, "humanLabel": "experto humano ~90 %",
+      "items": [
+        { "label": "IA · inicio 2025", "value": 3, "from": "indigo", "to": "purple" },
+        { "label": "IA · inicio 2026", "value": 37, "from": "teal", "to": "green" },
+        { "label": "IA · junio 2026", "value": 44.7, "from": "green", "to": "teal" }
+      ]
+    }
+  },
+
+  "breakthroughs": {
+    "title": "Ya no es teoría: lo que la IA logró este año",
+    "source": "Google Research 2025 · UC San Diego · Axios · Nature · Anthropic 2026.",
+    "items": [
+      { "icon": "01", "t": "Oro en matemáticas y programación", "d": "«Gemini Deep Think» ganó medalla de oro en la Olimpiada Internacional de Matemáticas (jul 2025) y en el mundial de programación ICPC (sept 2025): nivel de los jóvenes más brillantes del planeta.", "src": "Google Research 2025" },
+      { "icon": "02", "t": "Diseña medicinas reales", "d": "Por primera vez, fármacos diseñados por IA entraron a ensayos clínicos en humanos (2026). La IA también halló una causa del Alzheimer al visualizar la estructura 3D de una proteína.", "src": "UC San Diego · Axios 2025" },
+      { "icon": "03", "t": "Predice desastres de 1-en-1.000 años", "d": "Combinada con modelos de física, anticipa eventos climáticos extremos («cisnes grises») que ocurren una vez cada mil años: alertas que salvan vidas.", "src": "Google Research · Axios 2025" },
+      { "icon": "04", "t": "Hipótesis científicas nuevas", "d": "En pruebas a ciegas, los científicos prefirieron las hipótesis del modelo de frontera el ~80 % de las veces, y aceleró el diseño de fármacos ~10×.", "src": "Anthropic 2026" }
+    ]
+  },
+
+  "jobsBalance": {
+    "id": "jobs-balance", "type": "waterfall", "status": "verified",
+    "title": "¿La IA destruye empleos? El saldo es positivo",
+    "source": "World Economic Forum — Future of Jobs Report 2025 (al 2030).",
+    "note": "170 M de empleos nuevos, 92 M desplazados: saldo neto +78 M al 2030. El problema no es que falten empleos, es que los nuevos piden otras habilidades.",
+    "plain": "La IA no viene a quitarte el trabajo. Viene a cambiar cómo trabajas. Quien aprenda a usarla, tendrá ventaja; quien no, quedará atrás.",
+    "data": {
+      "unit": " M", "vmax": 185,
+      "items": [
+        { "label": "Empleos nuevos", "value": 170, "kind": "up" },
+        { "label": "Empleos desplazados", "value": -92, "kind": "down" },
+        { "label": "Saldo neto 2030", "value": 78, "kind": "total" }
+      ]
+    }
+  },
+
+  "productivityByArea": {
+    "id": "productivity-area", "type": "bars", "status": "verified",
+    "title": "Cuánto tiempo te ahorra la IA, según el trabajo",
+    "source": "Stanford HAI AI Index 2026 · McKinsey State of AI 2025.",
+    "note": "Quienes usan IA son entre 14 % y 50 % más rápidos según el área. Y los que más ganan son los principiantes (+34 %): la IA achica la brecha entre el experto y el novato.",
+    "plain": "Imagina hacer en 4 horas lo que antes te tomaba 8. Eso ya está pasando, y nivela el campo de juego a favor de quien recién empieza.",
+    "data": {
+      "vmax": 60, "unit": "%", "highlight": "Principiantes (cualquier área)",
+      "items": [
+        { "label": "Marketing / contenidos", "value": 50, "from": "green", "to": "teal" },
+        { "label": "Tareas rutinarias", "value": 46, "from": "teal", "to": "green" },
+        { "label": "Principiantes (cualquier área)", "value": 34, "from": "green", "to": "teal" },
+        { "label": "Programación", "value": 26, "from": "indigo", "to": "purple" },
+        { "label": "Atención al cliente", "value": 14, "from": "purple", "to": "indigo" }
+      ]
+    }
+  },
+
+  "agentsRise": {
+    "title": "Lo que viene: los agentes que actúan solos",
+    "lead": "Hoy le pides algo a la IA y responde. El agente lo HACE: cotiza 3 proveedores de concreto, los compara, elige el mejor y emite la orden de compra — solo.",
+    "source": "Stanford HAI AI Index 2026 · Grand View / Precedence Research.",
+    "note": "Hace un año los agentes funcionaban el 20 % de las veces; hoy, el 77 %. El mercado de agentes se multiplicará ~37× en una década.",
+    "chart": {
+      "id": "agents-market", "type": "growth", "status": "mixed",
+      "title": "Mercado global de agentes de IA",
+      "source": "Grand View / Precedence / MarketsandMarkets 2026 (proyección).",
+      "note": "Proyección de mercado: las cifras a 10 años son estimaciones, pero la dirección es clara.",
+      "data": {
+        "log": false, "unit": " B", "ymin": 0, "ymax": 320,
+        "x": ["2025", "2027", "2030", "2033", "2035"],
+        "series": [
+          { "name": "Mercado de agentes (US$ mil M)", "accent": true, "values": [8, 35, 90, 190, 295] }
+        ]
+      }
+    },
+    "stats": [
+      { "value": "20% → 77%", "label": "tasa de éxito de los agentes en tareas reales, en solo un año.", "source": "Stanford HAI 2026", "accent": "green" },
+      { "value": "51%", "label": "de las empresas ya desplegó algún tipo de agente de IA.", "source": "Deloitte 2026", "accent": "blue" },
+      { "value": "76%", "label": "menos tiempo: un agente planificó un viaje en 9 min vs 38 min de una persona.", "source": "BayelsaWatch 2026", "accent": "teal" }
+    ]
+  },
+
+  "aecLabor": {
+    "title": "Por qué la IA en obra es urgente, no opcional",
+    "lead": "La construcción no adopta IA por moda: la adopta porque no hay suficiente gente para hacer el trabajo.",
+    "source": "Fortune 2026 · ASCE 2025 · AgentPMT 2026 · ServiceTitan 2026.",
+    "note": "La IA no viene a reemplazar al albañil: viene a que menos personas hagan más, mejor y más seguro.",
+    "stats": [
+      { "value": "499000", "label": "trabajadores de construcción faltan solo en 2026 (EE. UU.).", "source": "Fortune 2026", "accent": "red" },
+      { "value": "41%", "label": "de la fuerza laboral actual se jubila hacia 2031: el relevo no existe.", "source": "Fortune 2026", "accent": "amber" },
+      { "value": "~37%", "label": "de las constructoras ya usa IA en operaciones (sube rápido, empujada por la escasez).", "source": "AgentPMT 2026", "accent": "green" },
+      { "value": "94%", "label": "de quienes ya usan IA aumentarán su uso este año.", "source": "ServiceTitan 2026", "accent": "teal" }
+    ]
   },
 
   "actions": [
