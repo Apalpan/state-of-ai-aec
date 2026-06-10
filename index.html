@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/state-of-ai-aec/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <title>State of AI in AEC · Observatorio GEN+ 2026</title>
+    <meta name="description" content="Observatorio científico interactivo del estado y la madurez de la Inteligencia Artificial en el mundo y en el sector Arquitectura, Ingeniería y Construcción. Benchmark global + encuesta a +1.000 profesionales de Latinoamérica. GEN+ / AECODE — AI Construction Summit 2026." />
+    <meta name="author" content="GEN+ / AECODE" />
+    <meta property="og:title" content="State of AI in AEC · Observatorio GEN+ 2026" />
+    <meta property="og:description" content="La brecha entre el potencial y el uso real de la IA en arquitectura, ingeniería y construcción. Estudio científico interactivo." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0a0f1d" />
+    <script>
+      // Flash-free theme: aplica el tema guardado antes del primer paint.
+      (function () {
+        try {
+          var t = localStorage.getItem('soa-theme');
+          if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          document.documentElement.dataset.theme = t;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

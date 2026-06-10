@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "State of AI in AEC",
+    "subtitle": "Observatorio del estado y la madurez de la Inteligencia Artificial en el mundo y en el sector AEC",
+    "edition": "Edición 2026",
+    "org": "GEN+ / AECODE",
+    "event": "AI Construction Summit 2026 · 17–18 julio · CIP Lima",
+    "thesis": "Medir la brecha entre el potencial de la IA (exposición) y su uso real en arquitectura, ingeniería y construcción — con benchmark global y data primaria de +1.000 profesionales de Latinoamérica.",
+    "updated": "2026-06-09"
+  },
+  "anchors": [
+    { "value": "92%", "label": "de proyectos termina con sobrecostos (+28% promedio)", "source": "Project Control Academy / Grattan 2025", "accent": "orange" },
+    { "value": "96%", "label": "de la data que genera una obra nunca se usa", "source": "Klutch AI 2025", "accent": "purple" },
+    { "value": "12%", "label": "del sector construcción usa IA regularmente", "source": "Datagrid AECO 2025", "accent": "red" },
+    { "value": "84.8%", "label": "de exposición a IA en arquitectura e ingeniería", "source": "Anthropic Economic Index 2025", "accent": "blue" }
+  ],
+  "radar": {
+    "indicators": [
+      { "name": "Madurez", "max": 100 },
+      { "name": "Productividad", "max": 100 },
+      { "name": "Mercado", "max": 100 },
+      { "name": "Talento", "max": 100 },
+      { "name": "Datos", "max": 100 },
+      { "name": "Brecha digital", "max": 100 },
+      { "name": "Oportunidades", "max": 100 },
+      { "name": "Riesgos / gob.", "max": 100 }
+    ],
+    "values": [25, 75, 85, 35, 30, 40, 80, 55],
+    "note": "Índice 0–100 que sintetiza madurez observada, tamaño de oportunidad y urgencia por dimensión."
+  },
+  "world": {
+    "adoption": {
+      "categories": ["Organizaciones usan IA (global)", "GenAI en empresas", "Experimenta con agentes", "Escala agentes a producción"],
+      "values": [88, 72, 62, 23],
+      "source": "McKinsey, The State of AI in 2025"
+    },
+    "investment": {
+      "categories": ["2023", "2024", "2025"],
+      "values": [96, 110, 131],
+      "unit": "USD mil M (inversión privada global en IA)",
+      "source": "Stanford HAI, AI Index 2025 (orden de magnitud)"
+    }
+  },
+  "diffusion": {
+    "x": [0, 2, 4, 6, 8, 10, 12, 14, 16],
+    "xlabel": "años desde su lanzamiento",
+    "series": [
+      { "name": "Electricidad", "values": [10, 16, 25, 36, 50, 64, 75, 84, 90], "accent": false },
+      { "name": "Teléfono", "values": [5, 10, 19, 33, 50, 67, 81, 90, 95], "accent": false },
+      { "name": "Internet", "values": [2, 5, 12, 27, 50, 73, 88, 95, 98], "accent": false },
+      { "name": "IA generativa", "values": [2, 9, 30, 62, 85, 95, 99, 100, 100], "accent": true }
+    ],
+    "source": "Curvas ilustrativas. Referencia: Anthropic Economic Index sep 2025 (~10× más rápido que tecnologías del s. XX)."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "status": "pending",
+  "note": "Esquema listo para inyectar resultados reales tras el cierre de campo (n ≥ 1.000). Mientras tanto se muestran placeholders marcados como proyección.",
+  "method": {
+    "population": "Profesionales, estudiantes y decisores del sector AEC en Latinoamérica",
+    "sampling": "No probabilístico por cuotas",
+    "target": "n ≥ 1.000 · margen ±3 % (95 % de confianza)",
+    "instrument": "25 preguntas · 6 bloques (A–F) · ~8 min",
+    "approach": "Tarea-céntrico (metodología Anthropic): se pregunta por tareas antes que por herramientas",
+    "field": "Junio–julio 2026",
+    "privacy": "Anónima y agregada · Ley N° 29733 (Perú)"
+  },
+  "blocks": [
+    { "code": "A", "name": "Perfil", "count": 5 },
+    { "code": "B", "name": "Adopción", "count": 6 },
+    { "code": "C", "name": "Impacto", "count": 5 },
+    { "code": "D", "name": "Talento", "count": 4 },
+    { "code": "E", "name": "Visión", "count": 3 },
+    { "code": "F", "name": "Evento", "count": 2 }
+  ],
+  "goldQuestions": [
+    { "code": "C4", "text": "¿En qué tarea específica la IA te ha ahorrado más tiempo o dinero?", "output": "Ranking real de ROI · nube de palabras" },
+    { "code": "F1", "text": "Una cosa que le dirías a un decisor sobre IA en AEC.", "output": "Quotes proyectados en el evento" }
+  ],
+  "barriers": {
+    "title": "Barrera principal para adoptar IA (proyección)",
+    "unit": "%",
+    "items": [
+      { "label": "Falta de formación", "value": 28, "from": "blue", "to": "purple" },
+      { "label": "Costo", "value": 22, "from": "orange", "to": "amber" },
+      { "label": "Falta de datos", "value": 18, "from": "purple", "to": "indigo" },
+      { "label": "Cultura / resistencia", "value": 14, "from": "teal", "to": "green" },
+      { "label": "Desconfianza", "value": 10, "from": "indigo", "to": "blue" },
+      { "label": "Regulación / legal", "value": 8, "from": "red", "to": "orange" }
+    ]
+  },
+  "tasksCloud": [
+    { "text": "Redacción de memorias", "weight": 30 },
+    { "text": "Metrados y estimación", "weight": 42 },
+    { "text": "Detección de interferencias", "weight": 28 },
+    { "text": "Cronogramas", "weight": 24 },
+    { "text": "Reportes de obra", "weight": 22 },
+    { "text": "Diseño conceptual", "weight": 26 },
+    { "text": "Análisis de datos", "weight": 20 },
+    { "text": "Documentación técnica", "weight": 34 },
+    { "text": "Búsqueda normativa", "weight": 18 },
+    { "text": "Presentaciones", "weight": 16 }
+  ]
+}

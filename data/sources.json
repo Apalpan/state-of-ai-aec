@@ -1,0 +1,22 @@
+[
+  { "id": "mckinsey-soai-2025", "org": "McKinsey & Company", "title": "The State of AI in 2025", "year": 2025, "type": "Informe", "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" },
+  { "id": "anthropic-ei-2025", "org": "Anthropic", "title": "Anthropic Economic Index — exposición ocupacional a la IA", "year": 2025, "type": "Índice", "url": "https://www.anthropic.com/economic-index" },
+  { "id": "anthropic-ei-2026", "org": "Anthropic", "title": "Anthropic Economic Index — uso real por tarea (actualización)", "year": 2026, "type": "Índice", "url": "https://www.anthropic.com/economic-index" },
+  { "id": "stanford-hai-2025", "org": "Stanford HAI", "title": "Artificial Intelligence Index Report 2025", "year": 2025, "type": "Informe", "url": "https://aiindex.stanford.edu/report/" },
+  { "id": "microsoft-wti-2025", "org": "Microsoft", "title": "Work Trend Index 2025 — The Frontier Firm", "year": 2025, "type": "Informe", "url": "https://www.microsoft.com/worklab/work-trend-index" },
+  { "id": "gartner-2025", "org": "Gartner", "title": "Predicts 2025: Agentic AI", "year": 2025, "type": "Análisis", "url": "https://www.gartner.com" },
+  { "id": "mordor-2025", "org": "Mordor Intelligence", "title": "AI in Construction Market — Size & Share Analysis", "year": 2025, "type": "Market report", "url": "https://www.mordorintelligence.com" },
+  { "id": "fortunebi-2025", "org": "Fortune Business Insights", "title": "Artificial Intelligence in Construction Market", "year": 2025, "type": "Market report", "url": "https://www.fortunebusinessinsights.com" },
+  { "id": "precedence-2025", "org": "Precedence Research", "title": "Construction Artificial Intelligence Market", "year": 2025, "type": "Market report", "url": "https://www.precedenceresearch.com" },
+  { "id": "servicetitan-2026", "org": "ServiceTitan", "title": "Construction Industry Report 2026", "year": 2026, "type": "Informe", "url": "https://www.servicetitan.com" },
+  { "id": "datagrid-2025", "org": "Datagrid", "title": "AECO Industry AI Adoption Report 2025", "year": 2025, "type": "Informe", "url": "https://www.datagrid.com" },
+  { "id": "klutch-2025", "org": "Klutch AI", "title": "Construction Data Report 2025", "year": 2025, "type": "Informe", "url": "https://www.klutch.ai" },
+  { "id": "openasset-2025", "org": "OpenAsset", "title": "AEC Industry & Talent Outlook 2025", "year": 2025, "type": "Informe", "url": "https://openasset.com" },
+  { "id": "hexagon-2025", "org": "Hexagon", "title": "Digital Twin & Productivity Report 2025", "year": 2025, "type": "Informe", "url": "https://hexagon.com" },
+  { "id": "pmi", "org": "Project Management Institute", "title": "Pulse of the Profession — pérdidas por retrabajo e información", "year": 2024, "type": "Informe", "url": "https://www.pmi.org" },
+  { "id": "projectcontrol-2025", "org": "Project Control Academy", "title": "Cost & Schedule Overruns in Construction", "year": 2025, "type": "Análisis", "url": "https://projectcontrolacademy.com" },
+  { "id": "grattan-2025", "org": "Grattan Institute", "title": "Megaprojects and cost overruns", "year": 2025, "type": "Estudio", "url": "https://grattan.edu.au" },
+  { "id": "mit-rct", "org": "MIT / GitHub / Microsoft / Wharton", "title": "Randomized controlled trials de productividad con IA (n=4.867 devs)", "year": 2024, "type": "RCT", "url": "https://arxiv.org" },
+  { "id": "euaiact", "org": "Unión Europea", "title": "EU AI Act — Reglamento (UE) 2024/1689", "year": 2024, "type": "Regulación", "url": "https://artificialintelligenceact.eu" },
+  { "id": "iso42001", "org": "ISO/IEC", "title": "ISO/IEC 42001:2023 — Sistema de gestión de IA", "year": 2023, "type": "Norma", "url": "https://www.iso.org/standard/81230.html" }
+]

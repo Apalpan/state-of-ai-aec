@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "Si usas este estudio, por favor cítalo así."
+title: "State of AI in AEC — Observatorio del estado y la madurez de la IA en el sector AEC"
+abstract: >-
+  Estudio científico interactivo sobre el estado y la madurez de la Inteligencia Artificial
+  en el mundo y en el sector Arquitectura, Ingeniería y Construcción (AEC). Combina un benchmark
+  global verificable con una encuesta primaria a +1.000 profesionales de Latinoamérica,
+  midiendo la brecha entre el potencial de la IA y su uso real con metodología tarea-céntrica.
+type: dataset
+authors:
+  - given-names: Alejandro
+    family-names: Pálpan
+    affiliation: "GEN+ / AECODE"
+    email: apalpan@genplusdesign.com
+version: "1.0.0"
+date-released: "2026-06-09"
+license: CC-BY-4.0
+url: "https://apalpan.github.io/state-of-ai-aec/"
+keywords:
+  - inteligencia artificial
+  - AEC
+  - construcción
+  - madurez digital
+  - productividad
+  - Latinoamérica

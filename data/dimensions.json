@@ -1,0 +1,332 @@
+[
+  {
+    "id": "madurez",
+    "num": "D1",
+    "title": "Madurez y adopción",
+    "hypothesis": "Menos del 15 % del sector AEC usa IA de forma sistemática; la mayoría está en «piloto eterno».",
+    "lead": "Mientras el 88 % de las organizaciones del mundo ya usa IA, solo 12 % de la construcción lo hace de forma regular y 45 % no tiene ninguna implementación.",
+    "stats": [
+      { "value": "12%", "label": "del sector construcción usa IA regularmente", "source": "Datagrid AECO 2025", "accent": "red" },
+      { "value": "45%", "label": "tiene cero implementación de IA", "source": "Datagrid AECO 2025", "accent": "orange" },
+      { "value": "5–10 años", "label": "de rezago frente a la manufactura", "source": "Hexagon / McKinsey 2025", "accent": "blue" }
+    ],
+    "insights": [
+      "El 88 % del mundo usa IA, pero solo 12 % de la construcción lo hace de forma regular.",
+      "El valle de la muerte está entre pilotos y producción: 62 % experimenta con agentes, solo 23 % los escala.",
+      "La oficina técnica ya realiza el 25 % de sus tareas con IA; la obra física, menos del 1 %."
+    ],
+    "figures": [
+      {
+        "id": "adopcion-aec", "type": "bars", "status": "verified",
+        "title": "Adopción de IA: mundo vs. construcción",
+        "source": "McKinsey 2025 · ServiceTitan 2026 · Datagrid 2025",
+        "data": { "vmax": 100, "unit": "%", "items": [
+          { "label": "Organizaciones usan IA (global)", "value": 88, "from": "blue", "to": "indigo" },
+          { "label": "GenAI en empresas", "value": 72, "from": "purple", "to": "indigo" },
+          { "label": "Impacto medible en construcción", "value": 38, "from": "teal", "to": "green" },
+          { "label": "Construcción usa IA regularmente", "value": 12, "from": "orange", "to": "amber" },
+          { "label": "Construcción sin implementación", "value": 45, "from": "red", "to": "orange" }
+        ] }
+      },
+      {
+        "id": "embudo-madurez", "type": "funnel", "status": "projection",
+        "title": "El embudo de la madurez organizacional",
+        "source": "McKinsey 2025 (88/62/23 verificados) + proyección",
+        "note": "Los extremos del embudo se calibran con la encuesta (pregunta B1).",
+        "data": { "items": [
+          { "name": "Usa IA (alguna)", "value": 88, "from": "blue", "to": "indigo" },
+          { "name": "Experimenta agentes", "value": 62, "from": "indigo", "to": "purple" },
+          { "name": "Tiene pilotos", "value": 40, "from": "teal", "to": "green" },
+          { "name": "Escala a producción", "value": 23, "from": "green", "to": "teal" },
+          { "name": "IA en el núcleo", "value": 10, "from": "orange", "to": "amber" }
+        ] }
+      }
+    ],
+    "sources": ["datagrid-2025", "mckinsey-soai-2025", "servicetitan-2026", "anthropic-ei-2026", "hexagon-2025"]
+  },
+  {
+    "id": "productividad",
+    "num": "D2",
+    "title": "Productividad e impacto económico",
+    "hypothesis": "Quienes usan IA reportan 20–40 % de ahorro de tiempo en tareas informacionales del flujo AEC.",
+    "lead": "La IA puede duplicar la tasa de productividad del sector (hoy de apenas 0,4–1 % anual). No se automatiza un empleo: se automatizan tareas.",
+    "stats": [
+      { "value": "30–60%", "label": "del tiempo de un trabajador del conocimiento es automatizable", "source": "MIT/GitHub/Wharton", "accent": "teal" },
+      { "value": "14 h", "label": "por semana pierde un profesional AEC en búsqueda y retrabajo", "source": "PMI", "accent": "orange" },
+      { "value": "+1,8 pp", "label": "de productividad anual podría sumar la IA al sector", "source": "McKinsey 2025", "accent": "green" }
+    ],
+    "insights": [
+      "Arquitectura e ingeniería son el 4º sector más expuesto del mundo a la IA: 84,8 %.",
+      "La distancia entre el potencial (84,8 %) y el uso real (25 % oficina / <1 % obra) es la oportunidad del sector.",
+      "El impacto medible de IA en construcción saltó de 17 % a 38 % en un solo año."
+    ],
+    "figures": [
+      {
+        "id": "brecha-potencial-uso", "type": "bars", "status": "verified",
+        "title": "Potencial vs. uso real de la IA en AEC",
+        "source": "Anthropic Economic Index (feb 2025 / mar 2026)",
+        "data": { "vmax": 100, "unit": "%", "items": [
+          { "label": "Potencial de IA (exposición)", "value": 84.8, "from": "blue", "to": "purple" },
+          { "label": "Uso real · oficina técnica", "value": 25, "from": "orange", "to": "amber" },
+          { "label": "Uso real · obra física", "value": 1, "from": "red", "to": "orange" }
+        ] }
+      },
+      {
+        "id": "exposicion-ocupacion", "type": "bars", "status": "mixed",
+        "title": "Exposición a la IA por ocupación AEC",
+        "source": "Ancla: Arq./Ing. 84,8 % (Anthropic). Resto: estimación de canasta de tareas.",
+        "data": { "vmax": 100, "unit": "%", "items": [
+          { "label": "Operario / oficial", "value": 10, "from": "indigo", "to": "blue" },
+          { "label": "Supervisor de obra", "value": 45, "from": "orange", "to": "amber" },
+          { "label": "Planner / cronogramas", "value": 80, "from": "teal", "to": "green" },
+          { "label": "Arquitecto / Ingeniero", "value": 84.8, "from": "blue", "to": "purple" },
+          { "label": "Estimador / presupuestos", "value": 88, "from": "purple", "to": "indigo" },
+          { "label": "Proyectista / BIM", "value": 90, "from": "blue", "to": "indigo" }
+        ] }
+      },
+      {
+        "id": "productividad-comparada", "type": "barsV", "status": "verified",
+        "title": "Productividad anual comparada por sector",
+        "source": "McKinsey 2025. La 4ª barra suma el potencial +1,8 pp de la IA.",
+        "data": { "vmax": 4.2, "unit": "% anual", "items": [
+          { "label": "Construcción", "value": 0.7, "from": "red", "to": "orange" },
+          { "label": "Economía global", "value": 2.8, "from": "teal", "to": "green" },
+          { "label": "Manufactura", "value": 3.6, "from": "green", "to": "teal" },
+          { "label": "Constr. + IA", "value": 2.5, "from": "blue", "to": "purple" }
+        ] }
+      }
+    ],
+    "sources": ["anthropic-ei-2025", "anthropic-ei-2026", "mckinsey-soai-2025", "servicetitan-2026", "mit-rct", "pmi"]
+  },
+  {
+    "id": "mercado",
+    "num": "D3",
+    "title": "Mercado y crecimiento",
+    "hypothesis": "La inversión en IA-AEC crece >24 % anual, pero LATAM capta menos del 5 % del flujo global.",
+    "lead": "El mercado de IA en construcción crece ~7× a 2034 (CAGR 24,8–32,8 %). El dinero ya se mueve; la pregunta es quién lo captura.",
+    "stats": [
+      { "value": "$35,5 B", "label": "tamaño del mercado IA-construcción proyectado a 2034", "source": "Fortune BI / Mordor 2025", "accent": "blue" },
+      { "value": "24,8–32,8%", "label": "CAGR del mercado según fuente", "source": "Mordor / Precedence 2025", "accent": "purple" },
+      { "value": "<5%", "label": "del flujo global de inversión IA-AEC lo capta LATAM", "source": "Síntesis", "accent": "orange" }
+    ],
+    "insights": [
+      "El mercado de IA en construcción crece ~7×: de $4,9 B (2025) a $35,5 B (2034).",
+      "Tres megafuerzas lo empujan: escasez de talento, mandatos de seguridad/emisiones y presión de predictibilidad.",
+      "El mercado AEC global total es de $16,3 billones: el sector más grande de la economía mundial."
+    ],
+    "figures": [
+      {
+        "id": "mercado-2034", "type": "areaBand", "status": "verified",
+        "title": "Mercado IA-construcción 2023 → 2034",
+        "source": "Fortune Business Insights · Precedence Research · Mordor Intelligence 2025",
+        "note": "Banda = dispersión entre fuentes (distintas definiciones de mercado).",
+        "data": {
+          "x": ["2023", "2025", "2030", "2034"],
+          "y": [3.0, 4.86, 16, 35.53],
+          "low": [2.6, 4.4, 13, 28],
+          "high": [3.4, 5.3, 19, 40],
+          "unit": "USD mil M", "color": "orange"
+        }
+      },
+      {
+        "id": "inversion-region", "type": "rose", "status": "projection",
+        "title": "Estructura de la inversión por región",
+        "source": "Estimación de estructura a partir de reportes regionales.",
+        "data": { "highlight": "LATAM", "items": [
+          { "name": "Norteamérica", "value": 40, "color": "blue" },
+          { "name": "Europa", "value": 25, "color": "purple" },
+          { "name": "Asia-Pacífico", "value": 20, "color": "teal" },
+          { "name": "MENA / África", "value": 10, "color": "green" },
+          { "name": "LATAM", "value": 5, "color": "orange" }
+        ] }
+      }
+    ],
+    "sources": ["fortunebi-2025", "precedence-2025", "mordor-2025", "openasset-2025"]
+  },
+  {
+    "id": "talento",
+    "num": "D4",
+    "title": "Talento y capital humano",
+    "hypothesis": "Más del 60 % reconoce brecha de skills, pero menos del 25 % recibió formación formal en 12 meses.",
+    "lead": "La IA generativa entró diez veces más rápido que la electricidad, el teléfono o internet. El talento no se actualiza a ese ritmo.",
+    "stats": [
+      { "value": "69%", "label": "de firmas AEC espera que la escasez de talento continúe", "source": "OpenAsset 2025", "accent": "red" },
+      { "value": "82%", "label": "de líderes contratará 'fuerza laboral digital' en 12–18 meses", "source": "Microsoft WTI 2025", "accent": "purple" },
+      { "value": "~10×", "label": "más rápida es la adopción de IA vs. tecnologías del s. XX", "source": "Anthropic 2025", "accent": "blue" }
+    ],
+    "insights": [
+      "La IA se adopta ~10× más rápido que la electricidad, el teléfono o internet.",
+      "Las empresas líderes en IA son 3,6× más propensas a rediseñar workflows completos.",
+      "Perfiles emergentes: AI-augmented architect, construction data scientist, digital twin engineer."
+    ],
+    "figures": [
+      {
+        "id": "difusion-tecnologica", "type": "diffusion", "status": "verified",
+        "title": "Velocidad de adopción tecnológica (difusión acumulada)",
+        "source": "Curvas ilustrativas. Ref.: Anthropic Economic Index sep 2025.",
+        "data": null
+      },
+      {
+        "id": "skills-demandadas", "type": "bars", "status": "projection",
+        "title": "Skills de IA que el sector necesita desarrollar",
+        "source": "Proyección · se calibra con la encuesta (pregunta D2).",
+        "data": { "vmax": 70, "unit": "% que la necesita", "items": [
+          { "label": "Prompting / comunicarse con IA", "value": 62, "from": "blue", "to": "indigo" },
+          { "label": "Análisis de datos", "value": 55, "from": "indigo", "to": "purple" },
+          { "label": "BIM + IA", "value": 50, "from": "purple", "to": "indigo" },
+          { "label": "Gestión de proyectos con IA", "value": 46, "from": "teal", "to": "green" },
+          { "label": "Automatización / agentes", "value": 44, "from": "green", "to": "teal" },
+          { "label": "Computer vision", "value": 38, "from": "orange", "to": "amber" }
+        ] }
+      }
+    ],
+    "sources": ["openasset-2025", "microsoft-wti-2025", "mckinsey-soai-2025", "anthropic-ei-2025"]
+  },
+  {
+    "id": "datos",
+    "num": "D5",
+    "title": "Datos e infraestructura",
+    "hypothesis": "La falta de datos digitalizados es la barrera #1 o #2 para adoptar IA en AEC.",
+    "lead": "El 96 % de la información que genera una obra se desperdicia. La IA necesita esa materia prima: por eso la digitalización y el BIM son el prerrequisito olvidado.",
+    "stats": [
+      { "value": "96%", "label": "de la data de obra se genera y nunca se usa", "source": "Klutch AI 2025", "accent": "red" },
+      { "value": "51%", "label": "reportó incidentes por IA mal gobernada", "source": "McKinsey 2025", "accent": "orange" },
+      { "value": "39%", "label": "ve impacto medible en EBIT atribuible a IA", "source": "McKinsey 2025", "accent": "blue" }
+    ],
+    "insights": [
+      "El 96 % de la data que genera una obra se desperdicia: la materia prima de la IA se tira a la basura.",
+      "Sin datos no hay IA: la digitalización y el BIM Nivel 2+ son el piso mínimo.",
+      "Querer 'comprar IA' sin base de datos explica por qué 51 % reporta incidentes y solo 39 % ve impacto en EBIT."
+    ],
+    "figures": [
+      {
+        "id": "data-desperdiciada", "type": "donut", "status": "verified",
+        "title": "La data de obra que se tira",
+        "source": "Klutch AI 2025",
+        "data": { "value": 96, "label": "data de obra desperdiciada", "color": "red", "rest": "Aprovechada" }
+      },
+      {
+        "id": "preparacion-datos", "type": "bars", "status": "projection",
+        "title": "Preparación de datos por nivel (adopción)",
+        "source": "Proyección de estructura para LATAM.",
+        "data": { "vmax": 100, "unit": "% de organizaciones", "items": [
+          { "label": "Digitalización básica (sin papel)", "value": 55, "from": "orange", "to": "amber" },
+          { "label": "BIM Nivel 2+", "value": 38, "from": "purple", "to": "indigo" },
+          { "label": "Digital twin", "value": 18, "from": "blue", "to": "indigo" },
+          { "label": "IA / agentes en producción", "value": 12, "from": "green", "to": "teal" }
+        ] }
+      }
+    ],
+    "sources": ["klutch-2025", "mckinsey-soai-2025", "hexagon-2025"]
+  },
+  {
+    "id": "brecha",
+    "num": "D6",
+    "title": "Brecha digital y equidad",
+    "hypothesis": "La adopción se concentra en empresas grandes y países de mayor ingreso; las pymes quedan rezagadas 3–5×.",
+    "lead": "Las herramientas son baratas y democráticas, pero la capacidad organizacional (datos, procesos, agentes) sigue concentrada en las grandes empresas.",
+    "stats": [
+      { "value": "<5%", "label": "de la inversión global en IA-AEC la capta LATAM", "source": "Síntesis", "accent": "red" },
+      { "value": "45%", "label": "de la construcción tiene cero implementación de IA", "source": "Datagrid 2025", "accent": "orange" },
+      { "value": "$20", "label": "/mes basta para que un independiente use IA de frontera", "source": "Precios públicos 2026", "accent": "blue" }
+    ],
+    "insights": [
+      "Las herramientas son baratas; la capacidad organizacional sigue concentrada en las grandes empresas.",
+      "Las grandes empresas adoptan 3–5× más que las pymes (hipótesis a calibrar con la encuesta).",
+      "Política pública: si la IA suma +1,8 pp al sector, ¿quién garantiza que la pyme acceda?"
+    ],
+    "figures": [
+      {
+        "id": "madurez-tamano", "type": "bars", "status": "projection",
+        "title": "Madurez de IA por tamaño de empresa",
+        "source": "Proyección · encuesta A3 × B1.",
+        "note": "Hipótesis H6: las grandes adoptan 3–5× más que las pymes.",
+        "data": { "vmax": 100, "unit": "índice madurez IA-AEC", "items": [
+          { "label": "Independiente", "value": 20, "from": "red", "to": "orange" },
+          { "label": "Pyme (11–50)", "value": 28, "from": "orange", "to": "amber" },
+          { "label": "Mediana (51–200)", "value": 55, "from": "teal", "to": "green" },
+          { "label": "Grande (200+)", "value": 80, "from": "blue", "to": "purple" }
+        ] }
+      }
+    ],
+    "sources": ["datagrid-2025", "microsoft-wti-2025", "mordor-2025"]
+  },
+  {
+    "id": "oportunidades",
+    "num": "D7",
+    "title": "Oportunidades de negocio",
+    "hypothesis": "El mayor ROI percibido está en la oficina técnica (informacional), no en la obra física.",
+    "lead": "El mayor ROI temprano está en la oficina técnica (25 % de tareas ya con IA) y no en la obra física (<1 %). La regla: empezar por el proceso con dolor medible.",
+    "stats": [
+      { "value": "25% / <1%", "label": "tareas con IA en oficina técnica vs. obra física", "source": "Anthropic 2026", "accent": "blue" },
+      { "value": "30 días", "label": "es el horizonte ideal de un piloto que prueba valor", "source": "Framework GEN+", "accent": "purple" },
+      { "value": "se aprecia", "label": "el trabajador digital mejora con más datos, no se deprecia", "source": "GEN+", "accent": "green" }
+    ],
+    "insights": [
+      "El mayor ROI temprano está en la oficina técnica, no en la obra física.",
+      "La decisión no es 'comprar IA' sino 'contratar trabajadores digitales' proceso por proceso.",
+      "El sector público puede forzar la adopción aguas arriba: BIM mandatorio, smart cities, infraestructura."
+    ],
+    "figures": [
+      {
+        "id": "roi-casos", "type": "treemap", "status": "projection",
+        "title": "Mapa de casos de uso por impacto / ROI",
+        "source": "Síntesis sectorial. El tamaño del bloque = impacto/ROI documentado.",
+        "data": { "items": [
+          { "name": "Estimación / metrados", "value": 90, "color": "blue" },
+          { "name": "Documentación", "value": 85, "color": "purple" },
+          { "name": "Interferencias BIM", "value": 80, "color": "indigo" },
+          { "name": "Cronogramas", "value": 70, "color": "teal" },
+          { "name": "CV control de obra", "value": 60, "color": "green" },
+          { "name": "Diseño generativo", "value": 55, "color": "orange" },
+          { "name": "Ventas inmobiliaria", "value": 50, "color": "pink" },
+          { "name": "Mant. predictivo", "value": 45, "color": "amber" }
+        ] }
+      },
+      {
+        "id": "tarea-fase", "type": "heatmap", "status": "projection",
+        "title": "Penetración de IA por tarea × fase del proyecto",
+        "source": "Proyección · encuesta B4.",
+        "data": {
+          "x": ["Concepto", "Desarrollo", "Documentación", "Licitación", "Construcción", "Operación"],
+          "y": ["Texto GenAI", "Imagen", "Diseño gen.", "Estimación", "CV obra"],
+          "max": 5,
+          "cells": [
+            [0,0,5],[1,0,4],[2,0,2],[3,0,1],[4,0,0],[5,0,0],
+            [0,1,4],[1,1,3],[2,1,2],[3,1,0],[4,1,0],[5,1,1],
+            [0,2,4],[1,2,4],[2,2,5],[3,2,2],[4,2,0],[5,2,1],
+            [0,3,2],[1,3,3],[2,3,2],[3,3,5],[4,3,2],[5,3,1],
+            [0,4,0],[1,4,1],[2,4,1],[3,4,2],[4,4,4],[5,4,3]
+          ]
+        }
+      }
+    ],
+    "sources": ["anthropic-ei-2026", "mckinsey-soai-2025"]
+  },
+  {
+    "id": "riesgos",
+    "num": "D8",
+    "title": "Riesgos y regulación",
+    "hypothesis": "Menos del 20 % del sector conoce marcos como EU AI Act o ISO/IEC 42001.",
+    "lead": "Solo 1 de cada 5 empresas tiene gobierno maduro de IA (human-in-the-loop funcional). Nombrar los riesgos no resta entusiasmo: suma credibilidad.",
+    "stats": [
+      { "value": "51%", "label": "reportó incidentes por IA mal gobernada", "source": "McKinsey 2025", "accent": "red" },
+      { "value": "40%", "label": "de proyectos agentic se cancelará antes de 2027", "source": "Gartner 2025", "accent": "orange" },
+      { "value": "ISO 42001", "label": "el marco para certificar gobierno de IA en empresas", "source": "ISO/IEC 2023", "accent": "blue" }
+    ],
+    "insights": [
+      "Solo 1 de cada 5 empresas tiene gobierno maduro de IA (human-in-the-loop funcional).",
+      "Responsabilidad legal, sesgos de modelos, alucinación, ciberseguridad y 'piloto eterno' son los 5 riesgos clave.",
+      "La regulación (EU AI Act, ISO/IEC 42001) llega antes de que el sector esté listo."
+    ],
+    "figures": [
+      {
+        "id": "gobernanza", "type": "gauge", "status": "verified",
+        "title": "Madurez del gobierno de IA",
+        "source": "Gartner / McKinsey 2025",
+        "data": { "value": 20, "max": 100, "label": "gobierno de IA maduro", "color": "orange" }
+      }
+    ],
+    "sources": ["mckinsey-soai-2025", "gartner-2025", "euaiact", "iso42001"]
+  }
+]

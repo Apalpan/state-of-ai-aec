@@ -1,0 +1,110 @@
+/* =========================================================================
+   GEN+ · State of AI in AEC — Design tokens (OKLCH)
+   El sistema lo dirige el hue de marca. Azul = estructura/confianza,
+   Naranja = único call-to-action. Dos temas: dark científico (default) + light.
+   ========================================================================= */
+
+:root {
+  --hue-blue: 255;
+  --hue-orange: 42;
+
+  /* Tipografía */
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  --font-text: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+
+  /* Escala de tamaño fluida (clamp) */
+  --step--1: clamp(0.78rem, 0.74rem + 0.18vw, 0.88rem);
+  --step-0:  clamp(0.95rem, 0.90rem + 0.22vw, 1.05rem);
+  --step-1:  clamp(1.15rem, 1.05rem + 0.45vw, 1.4rem);
+  --step-2:  clamp(1.45rem, 1.25rem + 0.9vw, 2rem);
+  --step-3:  clamp(1.9rem, 1.5rem + 1.8vw, 3rem);
+  --step-4:  clamp(2.5rem, 1.9rem + 3vw, 4.4rem);
+  --step-5:  clamp(3rem, 2.1rem + 4.6vw, 6rem);
+
+  /* Espacio / radios / sombras */
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --maxw-content: 760px;
+  --maxw-wide: 1320px;
+  --sidebar-w: 280px;
+
+  /* Motion (Emil) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 140ms;
+  --dur-2: 220ms;
+  --dur-3: 320ms;
+
+  /* Paleta de datos (categórica, científica) — compartida por ambos temas */
+  --d-blue:   oklch(0.66 0.16 255);
+  --d-indigo: oklch(0.60 0.17 280);
+  --d-purple: oklch(0.62 0.18 300);
+  --d-teal:   oklch(0.74 0.12 195);
+  --d-green:  oklch(0.78 0.15 162);
+  --d-orange: oklch(0.72 0.18 45);
+  --d-amber:  oklch(0.82 0.15 80);
+  --d-pink:   oklch(0.72 0.16 350);
+  --d-red:    oklch(0.66 0.20 22);
+}
+
+/* ----------------------------- DARK (default) ------------------------- */
+:root, [data-theme='dark'] {
+  color-scheme: dark;
+  --bg:        oklch(0.16 0.022 255);
+  --bg-deep:   oklch(0.12 0.02 255);
+  --surface:   oklch(0.20 0.026 255);
+  --surface-2: oklch(0.24 0.03 255);
+  --panel:     color-mix(in oklch, var(--surface) 70%, transparent);
+  --border:    color-mix(in oklch, white 11%, transparent);
+  --border-strong: color-mix(in oklch, white 18%, transparent);
+
+  --ink:       oklch(0.97 0.008 255);
+  --ink-soft:  oklch(0.86 0.02 255);
+  --muted:     oklch(0.70 0.03 255);
+  --faint:     oklch(0.56 0.03 255);
+
+  --blue:      oklch(0.70 0.14 255);   /* estructura / enlaces */
+  --blue-deep: oklch(0.40 0.10 255);
+  --accent:    oklch(0.72 0.19 42);    /* ÚNICO CTA (naranja) */
+  --accent-ink: oklch(0.18 0.04 42);
+
+  --ok:        oklch(0.80 0.15 162);
+  --warn:      oklch(0.82 0.15 80);
+  --grid:      color-mix(in oklch, white 8%, transparent);
+
+  --glow-a: oklch(0.55 0.18 255 / 0.18);
+  --glow-b: oklch(0.55 0.18 300 / 0.16);
+  --shadow: 0 18px 50px -28px oklch(0 0 0 / 0.75);
+}
+
+/* ------------------------------- LIGHT -------------------------------- */
+[data-theme='light'] {
+  color-scheme: light;
+  --bg:        oklch(0.985 0.004 255);
+  --bg-deep:   oklch(0.95 0.008 255);
+  --surface:   oklch(1 0 0);
+  --surface-2: oklch(0.97 0.006 255);
+  --panel:     color-mix(in oklch, white 75%, transparent);
+  --border:    color-mix(in oklch, black 10%, transparent);
+  --border-strong: color-mix(in oklch, black 16%, transparent);
+
+  --ink:       oklch(0.22 0.03 255);
+  --ink-soft:  oklch(0.34 0.03 255);
+  --muted:     oklch(0.48 0.03 255);
+  --faint:     oklch(0.62 0.03 255);
+
+  --blue:      oklch(0.52 0.16 255);
+  --blue-deep: oklch(0.40 0.12 255);
+  --accent:    oklch(0.64 0.20 42);
+  --accent-ink: oklch(0.99 0.02 80);
+
+  --ok:        oklch(0.58 0.14 162);
+  --warn:      oklch(0.70 0.14 70);
+  --grid:      color-mix(in oklch, black 8%, transparent);
+
+  --glow-a: oklch(0.70 0.16 255 / 0.12);
+  --glow-b: oklch(0.70 0.16 300 / 0.10);
+  --shadow: 0 18px 50px -30px oklch(0.4 0.05 255 / 0.30);
+}
