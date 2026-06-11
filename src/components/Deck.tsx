@@ -29,11 +29,10 @@ function readHash(total: number): number {
   return 0
 }
 
-/** Una diapositiva. Las no-activas quedan en `visibility:hidden` + `inert`
- *  (sin foco ni lectura por AT), pero conservan tamaño para que ECharts
- *  renderice correctamente desde el montaje. */
-function SlideFrame({ state, id, index, total, label, displayNum, children }: {
-  state: 'prev' | 'current' | 'next'; id: string; index: number; total: number; label: string; displayNum: string; children: ReactNode
+/** Una diapositiva. Solo la actual y sus vecinas montan contenido pesado:
+ *  mantiene transiciones fluidas sin inicializar todos los charts a la vez. */
+function SlideFrame({ state, mounted, id, index, total, label, displayNum, children }: {
+  state: 'prev' | 'current' | 'next'; mounted: boolean; id: string; index: number; total: number; label: string; displayNum: string; children: ReactNode
 }) {
   const ref = useRef<HTMLElement>(null)
   useEffect(() => { const el = ref.current as any; if (el) el.inert = state !== 'current' }, [state])
@@ -49,9 +48,11 @@ function SlideFrame({ state, id, index, total, label, displayNum, children }: {
       aria-hidden={state !== 'current'}
     >
       <div className="slide-inner"><div className="slide-content">
-        <SlideActiveContext.Provider value={state === 'current'}>
-          <SlideNumContext.Provider value={displayNum}>{children}</SlideNumContext.Provider>
-        </SlideActiveContext.Provider>
+        {mounted ? (
+          <SlideActiveContext.Provider value={state === 'current'}>
+            <SlideNumContext.Provider value={displayNum}>{children}</SlideNumContext.Provider>
+          </SlideActiveContext.Provider>
+        ) : null}
       </div></div>
     </section>
   )
@@ -79,6 +80,8 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return
+      const target = e.target as HTMLElement | null
+      if (target?.closest?.('input, textarea, select, [contenteditable="true"]')) return
       switch (e.key) {
         case 'ArrowRight': case 'PageDown': case ' ': e.preventDefault(); next(); break
         case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break
@@ -127,12 +130,15 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
       </header>
 
       <main className="slides" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-        {slides.map((s, i) => (
-          <SlideFrame key={s.id} id={s.id} index={i} total={total} label={s.title} displayNum={nums[i]}
-            state={i === cur ? 'current' : i < cur ? 'prev' : 'next'}>
-            {s.node}
-          </SlideFrame>
-        ))}
+        {slides.map((s, i) => {
+          const mounted = Math.abs(i - cur) <= 1
+          return (
+            <SlideFrame key={s.id} id={s.id} index={i} total={total} label={s.title} displayNum={nums[i]}
+              mounted={mounted} state={i === cur ? 'current' : i < cur ? 'prev' : 'next'}>
+              {s.node}
+            </SlideFrame>
+          )
+        })}
       </main>
 
       <nav className="deck-nav" aria-label="Navegación de diapositivas">

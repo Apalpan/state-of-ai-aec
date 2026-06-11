@@ -1,44 +1,378 @@
 [
-  { "id": "mckinsey-soai-2025", "org": "McKinsey & Company", "title": "The State of AI in 2025", "year": 2025, "type": "Informe", "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" },
-  { "id": "anthropic-ei-2025", "org": "Anthropic", "title": "Anthropic Economic Index — exposición ocupacional a la IA", "year": 2025, "type": "Índice", "url": "https://www.anthropic.com/economic-index" },
-  { "id": "anthropic-ei-2026", "org": "Anthropic", "title": "Anthropic Economic Index — uso real por tarea (actualización)", "year": 2026, "type": "Índice", "url": "https://www.anthropic.com/economic-index" },
-  { "id": "stanford-hai-2025", "org": "Stanford HAI", "title": "Artificial Intelligence Index Report 2025", "year": 2025, "type": "Informe", "url": "https://aiindex.stanford.edu/report/" },
-  { "id": "stanford-hai-2026", "org": "Stanford HAI", "title": "AI Index Report 2026", "year": 2026, "type": "Informe", "url": "https://hai.stanford.edu/ai-index/2026-ai-index-report" },
-  { "id": "epoch-2025", "org": "Epoch AI", "title": "Trends in Machine Learning — training compute", "year": 2025, "type": "Dataset", "url": "https://epoch.ai/trends" },
-  { "id": "wef-fjr-2025", "org": "World Economic Forum", "title": "Future of Jobs Report 2025", "year": 2025, "type": "Informe", "url": "https://www.weforum.org/publications/the-future-of-jobs-report-2025/" },
-  { "id": "autodesk-2026", "org": "Autodesk", "title": "2026 State of Design & Make — AI Pulse", "year": 2026, "type": "Informe", "url": "https://www.autodesk.com/design-make/articles/2026-ai-pulse" },
-  { "id": "rics-2025", "org": "RICS", "title": "Artificial Intelligence in Construction Report 2025", "year": 2025, "type": "Informe", "url": "https://www.rics.org/news-insights/artificial-intelligence-in-construction-report" },
-  { "id": "fmi-data", "org": "FMI / Autodesk", "title": "Harnessing the Data Advantage in Construction", "year": 2021, "type": "Informe", "url": "https://fmicorp.com/insights" },
-  { "id": "nvidia-fy25", "org": "NVIDIA", "title": "Form 8-K — Q4 FY2025 & FY2026 results", "year": 2025, "type": "SEC filing", "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001045810" },
-  { "id": "epoch-funding", "org": "Epoch AI / TechFundingNews", "title": "AI companies funding rounds 2025–2026", "year": 2026, "type": "Dataset", "url": "https://epoch.ai/data/ai_companies_funding_rounds.csv" },
-  { "id": "valueadd-capex", "org": "Value Add VC / Visual Capitalist", "title": "Big Tech AI Capex 2025", "year": 2025, "type": "Análisis", "url": "https://valueaddvc.com/ai-spending" },
-  { "id": "firstpagesage-2026", "org": "First Page Sage / Momentic", "title": "Top Generative AI Chatbots by Market Share", "year": 2026, "type": "Market report", "url": "https://firstpagesage.com/reports/top-generative-ai-chatbots/" },
-  { "id": "statista-ai", "org": "Statista / NextMSC / Fortune BI", "title": "Artificial Intelligence — Market Forecast 2025–2034", "year": 2026, "type": "Market report", "url": "https://www.statista.com/outlook/tmo/artificial-intelligence/worldwide" },
-  { "id": "microsoft-wti-2025", "org": "Microsoft", "title": "Work Trend Index 2025 — The Frontier Firm", "year": 2025, "type": "Informe", "url": "https://www.microsoft.com/worklab/work-trend-index" },
-  { "id": "gartner-2025", "org": "Gartner", "title": "Predicts 2025: Agentic AI", "year": 2025, "type": "Análisis", "url": "https://www.gartner.com" },
-  { "id": "mordor-2025", "org": "Mordor Intelligence", "title": "AI in Construction Market — Size & Share Analysis", "year": 2025, "type": "Market report", "url": "https://www.mordorintelligence.com" },
-  { "id": "fortunebi-2025", "org": "Fortune Business Insights", "title": "Artificial Intelligence in Construction Market", "year": 2025, "type": "Market report", "url": "https://www.fortunebusinessinsights.com" },
-  { "id": "precedence-2025", "org": "Precedence Research", "title": "Construction Artificial Intelligence Market", "year": 2025, "type": "Market report", "url": "https://www.precedenceresearch.com" },
-  { "id": "servicetitan-2026", "org": "ServiceTitan", "title": "Construction Industry Report 2026", "year": 2026, "type": "Informe", "url": "https://www.servicetitan.com" },
-  { "id": "datagrid-2025", "org": "Datagrid", "title": "AECO Industry AI Adoption Report 2025", "year": 2025, "type": "Informe", "url": "https://www.datagrid.com" },
-  { "id": "klutch-2025", "org": "Klutch AI", "title": "Construction Data Report 2025", "year": 2025, "type": "Informe", "url": "https://www.klutch.ai" },
-  { "id": "openasset-2025", "org": "OpenAsset", "title": "AEC Industry & Talent Outlook 2025", "year": 2025, "type": "Informe", "url": "https://openasset.com" },
-  { "id": "hexagon-2025", "org": "Hexagon", "title": "Digital Twin & Productivity Report 2025", "year": 2025, "type": "Informe", "url": "https://hexagon.com" },
-  { "id": "pmi", "org": "Project Management Institute", "title": "Pulse of the Profession — pérdidas por retrabajo e información", "year": 2024, "type": "Informe", "url": "https://www.pmi.org" },
-  { "id": "projectcontrol-2025", "org": "Project Control Academy", "title": "Cost & Schedule Overruns in Construction", "year": 2025, "type": "Análisis", "url": "https://projectcontrolacademy.com" },
-  { "id": "grattan-2025", "org": "Grattan Institute", "title": "Megaprojects and cost overruns", "year": 2025, "type": "Estudio", "url": "https://grattan.edu.au" },
-  { "id": "mit-rct", "org": "MIT / GitHub / Microsoft / Wharton", "title": "Randomized controlled trials de productividad con IA (n=4.867 devs)", "year": 2024, "type": "RCT", "url": "https://arxiv.org" },
-  { "id": "euaiact", "org": "Unión Europea", "title": "EU AI Act — Reglamento (UE) 2024/1689", "year": 2024, "type": "Regulación", "url": "https://artificialintelligenceact.eu" },
-  { "id": "iso42001", "org": "ISO/IEC", "title": "ISO/IEC 42001:2023 — Sistema de gestión de IA", "year": 2023, "type": "Norma", "url": "https://www.iso.org/standard/81230.html" },
-  { "id": "anthropic-fable5-2026", "org": "Anthropic", "title": "Claude Fable 5 and Claude Mythos 5", "year": 2026, "type": "Anuncio", "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5" },
-  { "id": "nber-32966", "org": "Bick, Blandin & Deming (NBER)", "title": "The Rapid Adoption of Generative AI — Working Paper 32966", "year": 2025, "type": "Working paper", "url": "https://www.nber.org/papers/w32966" },
-  { "id": "reuters-chatgpt-1b", "org": "Reuters / Sensor Tower", "title": "ChatGPT app hits 1 billion monthly active users in record time", "year": 2026, "type": "Noticia", "url": "https://www.reuters.com/technology/" },
-  { "id": "nature-hle-2026", "org": "Nature (Center for AI Safety & Scale AI)", "title": "Humanity's Last Exam — benchmark de nivel experto", "year": 2026, "type": "Paper", "url": "https://www.nature.com/articles/s41586-025-09962-4" },
-  { "id": "epoch-hle", "org": "Epoch AI / Scale AI", "title": "Humanity's Last Exam — leaderboard", "year": 2026, "type": "Leaderboard", "url": "https://epoch.ai/benchmarks/hle" },
-  { "id": "google-research-2025", "org": "Google Research", "title": "Year in Review 2025 — IMO/ICPC gold, breakthroughs", "year": 2025, "type": "Informe", "url": "https://blog.google/innovation-and-ai/products/2025-research-breakthroughs/" },
-  { "id": "axios-breakthroughs-2025", "org": "Axios / UC San Diego", "title": "2025 AI-fueled scientific breakthroughs", "year": 2025, "type": "Recopilación", "url": "https://www.axios.com/2025/12/31/2025-ai-scientific-breakthroughs" },
-  { "id": "bigtech-capex-2026", "org": "CNBC / Tom's Hardware / Futurum", "title": "Hyperscaler AI capex guidance 2026 (~US$665–725 B)", "year": 2026, "type": "Análisis", "url": "https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html" },
-  { "id": "fortune-aec-labor-2026", "org": "Fortune", "title": "U.S. construction needs ~500,000 new workers in 2026", "year": 2026, "type": "Noticia", "url": "https://fortune.com/2026/02/07/us-construction-industry-employment-outlook-500000-new-workers-ai-boom-infrastructure-skilled-trades/" },
-  { "id": "asce-aec-2025", "org": "ASCE", "title": "AEC sector slow to adopt AI — survey", "year": 2025, "type": "Encuesta", "url": "https://www.asce.org/publications-and-news/civil-engineering-source" },
-  { "id": "grandview-agents-2026", "org": "Grand View / Precedence / MarketsandMarkets", "title": "AI Agents Market — forecast", "year": 2026, "type": "Market report", "url": "https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report" }
+  {
+    "id": "mckinsey-soai-2025",
+    "org": "McKinsey & Company",
+    "title": "The State of AI in 2025",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+  },
+  {
+    "id": "anthropic-ei-2025",
+    "org": "Anthropic",
+    "title": "Anthropic Economic Index — exposición ocupacional a la IA",
+    "year": 2025,
+    "type": "Índice",
+    "url": "https://www.anthropic.com/economic-index"
+  },
+  {
+    "id": "anthropic-ei-2026",
+    "org": "Anthropic",
+    "title": "Anthropic Economic Index — uso real por tarea (actualización)",
+    "year": 2026,
+    "type": "Índice",
+    "url": "https://www.anthropic.com/economic-index"
+  },
+  {
+    "id": "stanford-hai-2025",
+    "org": "Stanford HAI",
+    "title": "Artificial Intelligence Index Report 2025",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://aiindex.stanford.edu/report/"
+  },
+  {
+    "id": "stanford-hai-2026",
+    "org": "Stanford HAI",
+    "title": "AI Index Report 2026",
+    "year": 2026,
+    "type": "Informe",
+    "url": "https://hai.stanford.edu/ai-index/2026-ai-index-report"
+  },
+  {
+    "id": "epoch-2025",
+    "org": "Epoch AI",
+    "title": "Trends in Machine Learning — training compute",
+    "year": 2025,
+    "type": "Dataset",
+    "url": "https://epoch.ai/trends"
+  },
+  {
+    "id": "wef-fjr-2025",
+    "org": "World Economic Forum",
+    "title": "Future of Jobs Report 2025",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://www.weforum.org/publications/the-future-of-jobs-report-2025/"
+  },
+  {
+    "id": "autodesk-2026",
+    "org": "Autodesk",
+    "title": "2026 State of Design & Make — AI Pulse",
+    "year": 2026,
+    "type": "Informe",
+    "url": "https://www.autodesk.com/design-make/articles/2026-ai-pulse"
+  },
+  {
+    "id": "rics-2025",
+    "org": "RICS",
+    "title": "Artificial Intelligence in Construction Report 2025",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://www.rics.org/news-insights/artificial-intelligence-in-construction-report"
+  },
+  {
+    "id": "fmi-data",
+    "org": "FMI / Autodesk",
+    "title": "Harnessing the Data Advantage in Construction",
+    "year": 2021,
+    "type": "Informe",
+    "url": "https://fmicorp.com/insights"
+  },
+  {
+    "id": "nvidia-fy25",
+    "org": "NVIDIA",
+    "title": "Form 8-K — Q4 FY2025 & FY2026 results",
+    "year": 2025,
+    "type": "SEC filing",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001045810"
+  },
+  {
+    "id": "epoch-funding",
+    "org": "Epoch AI / TechFundingNews",
+    "title": "AI companies funding rounds 2025–2026",
+    "year": 2026,
+    "type": "Dataset",
+    "url": "https://epoch.ai/data/ai_companies_funding_rounds.csv"
+  },
+  {
+    "id": "valueadd-capex",
+    "org": "Value Add VC / Visual Capitalist",
+    "title": "Big Tech AI Capex 2025",
+    "year": 2025,
+    "type": "Análisis",
+    "url": "https://valueaddvc.com/ai-spending"
+  },
+  {
+    "id": "firstpagesage-2026",
+    "org": "First Page Sage / Momentic",
+    "title": "Top Generative AI Chatbots by Market Share",
+    "year": 2026,
+    "type": "Market report",
+    "url": "https://firstpagesage.com/reports/top-generative-ai-chatbots/"
+  },
+  {
+    "id": "statista-ai",
+    "org": "Statista / NextMSC / Fortune BI",
+    "title": "Artificial Intelligence — Market Forecast 2025–2034",
+    "year": 2026,
+    "type": "Market report",
+    "url": "https://www.statista.com/outlook/tmo/artificial-intelligence/worldwide"
+  },
+  {
+    "id": "microsoft-wti-2025",
+    "org": "Microsoft",
+    "title": "Work Trend Index 2025 — The Frontier Firm",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://www.microsoft.com/worklab/work-trend-index"
+  },
+  {
+    "id": "gartner-2025",
+    "org": "Gartner",
+    "title": "Predicts 2025: Agentic AI",
+    "year": 2025,
+    "type": "Análisis",
+    "url": "https://www.gartner.com"
+  },
+  {
+    "id": "mordor-2025",
+    "org": "Mordor Intelligence",
+    "title": "AI in Construction Market — Size & Share Analysis",
+    "year": 2025,
+    "type": "Market report",
+    "url": "https://www.mordorintelligence.com"
+  },
+  {
+    "id": "fortunebi-2025",
+    "org": "Fortune Business Insights",
+    "title": "Artificial Intelligence in Construction Market",
+    "year": 2025,
+    "type": "Market report",
+    "url": "https://www.fortunebusinessinsights.com"
+  },
+  {
+    "id": "precedence-2025",
+    "org": "Precedence Research",
+    "title": "Construction Artificial Intelligence Market",
+    "year": 2025,
+    "type": "Market report",
+    "url": "https://www.precedenceresearch.com"
+  },
+  {
+    "id": "servicetitan-2026",
+    "org": "ServiceTitan",
+    "title": "Construction Industry Report 2026",
+    "year": 2026,
+    "type": "Informe",
+    "url": "https://www.servicetitan.com"
+  },
+  {
+    "id": "datagrid-2025",
+    "org": "Datagrid",
+    "title": "AECO Industry AI Adoption Report 2025",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://www.datagrid.com"
+  },
+  {
+    "id": "klutch-2025",
+    "org": "Klutch AI",
+    "title": "Construction Data Report 2025",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://www.klutch.ai"
+  },
+  {
+    "id": "openasset-2025",
+    "org": "OpenAsset",
+    "title": "AEC Industry & Talent Outlook 2025",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://openasset.com"
+  },
+  {
+    "id": "hexagon-2025",
+    "org": "Hexagon",
+    "title": "Digital Twin & Productivity Report 2025",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://hexagon.com"
+  },
+  {
+    "id": "pmi",
+    "org": "Project Management Institute",
+    "title": "Pulse of the Profession — pérdidas por retrabajo e información",
+    "year": 2024,
+    "type": "Informe",
+    "url": "https://www.pmi.org"
+  },
+  {
+    "id": "projectcontrol-2025",
+    "org": "Project Control Academy",
+    "title": "Cost & Schedule Overruns in Construction",
+    "year": 2025,
+    "type": "Análisis",
+    "url": "https://projectcontrolacademy.com"
+  },
+  {
+    "id": "grattan-2025",
+    "org": "Grattan Institute",
+    "title": "Megaprojects and cost overruns",
+    "year": 2025,
+    "type": "Estudio",
+    "url": "https://grattan.edu.au"
+  },
+  {
+    "id": "mit-rct",
+    "org": "MIT / GitHub / Microsoft / Wharton",
+    "title": "Randomized controlled trials de productividad con IA (n=4.867 devs)",
+    "year": 2024,
+    "type": "RCT",
+    "url": "https://arxiv.org"
+  },
+  {
+    "id": "euaiact",
+    "org": "Unión Europea",
+    "title": "EU AI Act — Reglamento (UE) 2024/1689",
+    "year": 2024,
+    "type": "Regulación",
+    "url": "https://artificialintelligenceact.eu"
+  },
+  {
+    "id": "iso42001",
+    "org": "ISO/IEC",
+    "title": "ISO/IEC 42001:2023 — Sistema de gestión de IA",
+    "year": 2023,
+    "type": "Norma",
+    "url": "https://www.iso.org/standard/81230.html"
+  },
+  {
+    "id": "anthropic-fable5-2026",
+    "org": "Anthropic",
+    "title": "Claude Fable 5 and Claude Mythos 5",
+    "year": 2026,
+    "type": "Anuncio",
+    "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5"
+  },
+  {
+    "id": "nber-32966",
+    "org": "Bick, Blandin & Deming (NBER)",
+    "title": "The Rapid Adoption of Generative AI — Working Paper 32966",
+    "year": 2025,
+    "type": "Working paper",
+    "url": "https://www.nber.org/papers/w32966"
+  },
+  {
+    "id": "reuters-chatgpt-1b",
+    "org": "Reuters / Sensor Tower",
+    "title": "ChatGPT app hits 1 billion monthly active users in record time",
+    "year": 2026,
+    "type": "Noticia",
+    "url": "https://www.reuters.com/technology/"
+  },
+  {
+    "id": "nature-hle-2026",
+    "org": "Nature (Center for AI Safety & Scale AI)",
+    "title": "Humanity's Last Exam — benchmark de nivel experto",
+    "year": 2026,
+    "type": "Paper",
+    "url": "https://www.nature.com/articles/s41586-025-09962-4"
+  },
+  {
+    "id": "epoch-hle",
+    "org": "Epoch AI / Scale AI",
+    "title": "Humanity's Last Exam — leaderboard",
+    "year": 2026,
+    "type": "Leaderboard",
+    "url": "https://epoch.ai/benchmarks/hle"
+  },
+  {
+    "id": "google-research-2025",
+    "org": "Google Research",
+    "title": "Year in Review 2025 — IMO/ICPC gold, breakthroughs",
+    "year": 2025,
+    "type": "Informe",
+    "url": "https://blog.google/innovation-and-ai/products/2025-research-breakthroughs/"
+  },
+  {
+    "id": "axios-breakthroughs-2025",
+    "org": "Axios / UC San Diego",
+    "title": "2025 AI-fueled scientific breakthroughs",
+    "year": 2025,
+    "type": "Recopilación",
+    "url": "https://www.axios.com/2025/12/31/2025-ai-scientific-breakthroughs"
+  },
+  {
+    "id": "bigtech-capex-2026",
+    "org": "CNBC / Tom's Hardware / Futurum",
+    "title": "Hyperscaler AI capex guidance 2026 (~US$665–725 B)",
+    "year": 2026,
+    "type": "Análisis",
+    "url": "https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html"
+  },
+  {
+    "id": "fortune-aec-labor-2026",
+    "org": "Fortune",
+    "title": "U.S. construction needs ~500,000 new workers in 2026",
+    "year": 2026,
+    "type": "Noticia",
+    "url": "https://fortune.com/2026/02/07/us-construction-industry-employment-outlook-500000-new-workers-ai-boom-infrastructure-skilled-trades/"
+  },
+  {
+    "id": "asce-aec-2025",
+    "org": "ASCE",
+    "title": "AEC sector slow to adopt AI — survey",
+    "year": 2025,
+    "type": "Encuesta",
+    "url": "https://www.asce.org/publications-and-news/civil-engineering-source"
+  },
+  {
+    "id": "grandview-agents-2026",
+    "org": "Grand View / Precedence / MarketsandMarkets",
+    "title": "AI Agents Market — forecast",
+    "year": 2026,
+    "type": "Market report",
+    "url": "https://www.grandviewresearch.com/industry-analysis/ai-agents-market-report"
+  },
+  {
+    "id": "enia-peru-2026-2030",
+    "org": "Presidencia del Consejo de Ministros del Peru",
+    "title": "Propuesta de la Estrategia Nacional de Inteligencia Artificial 2026-2030",
+    "year": 2025,
+    "type": "Politica publica",
+    "url": "https://www.gob.pe/institucion/pcm/informes-publicaciones/7190386-propuesta-de-la-estrategia-nacional-de-inteligencia-artificial-2026-2030"
+  },
+  {
+    "id": "google-io-2026",
+    "org": "Google",
+    "title": "100 things we announced at I/O 2026",
+    "year": 2026,
+    "type": "Anuncio oficial",
+    "url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/"
+  },
+  {
+    "id": "microsoft-build-2026",
+    "org": "Microsoft",
+    "title": "Microsoft Build 2026: Be yourself at work",
+    "year": 2026,
+    "type": "Anuncio oficial",
+    "url": "https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/"
+  },
+  {
+    "id": "openai-gpt55-2026",
+    "org": "OpenAI",
+    "title": "Introducing GPT-5.5",
+    "year": 2026,
+    "type": "Anuncio oficial",
+    "url": "https://openai.com/index/introducing-gpt-5-5/"
+  },
+  {
+    "id": "anthropic-claude-models-2026",
+    "org": "Anthropic",
+    "title": "Claude models overview",
+    "year": 2026,
+    "type": "Documentacion oficial",
+    "url": "https://platform.claude.com/docs/en/about-claude/models/overview"
+  }
 ]
