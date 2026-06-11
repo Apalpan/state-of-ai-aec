@@ -9,6 +9,7 @@ import {
   CapIntro, CapCimientos, CapLenguaje, CapTokens, CapHoy, CapExpertos, CapColaborador, CapImporta,
 } from './components/Capsule'
 import { SurpriseStat, FableShowcase, ParadoxGap, Cap1Divider } from './components/Showcase'
+import AecodeLogo from './components/AecodeLogo'
 import type { SlideDef } from './components/Deck'
 import type { Figure as Fig } from './lib/chartOptions'
 import global from '../data/global.json'
@@ -41,20 +42,57 @@ function SourceNote({ fig }: { fig: any }) {
 function Plain({ text, i = 2 }: { text: string; i?: number }) {
   return <div className="plain up" style={st(i)}><p dangerouslySetInnerHTML={{ __html: text }} /></div>
 }
+function PresenterNote({ children, i = 2 }: { children: ReactNode; i?: number }) {
+  return <div className="presenter-note up" style={st(i)}>{children}</div>
+}
 
 /* ================================ PORTADA ============================== */
 function Cover() {
   const { meta } = global
   return (
     <div className="cover">
-      <p className="cover-eyebrow up" style={st(0)}>{meta.edition} · Observatorio del estado de la IA</p>
-      <h1 className="cover-title up" style={st(1)}>
-        El estado de la <span className="grad">Inteligencia&nbsp;Artificial</span><br />y su brecha en el sector AEC
+      <AecodeLogo className="cover-mark up" style={st(0)} />
+      <p className="cover-eyebrow up" style={st(1)}>{meta.edition} · Masterclass para profesionales AEC</p>
+      <h1 className="cover-title up" style={st(2)}>
+        Estado actual de la <span className="grad">Inteligencia&nbsp;Artificial</span><br />y oportunidad en AEC
       </h1>
-      <p className="cover-lead up" style={st(2)}>
-        Del mundo a la obra: qué tan lejos llegó la IA, qué tan rápido avanza y por qué la construcción —el sector más grande de la economía— es el que menos la usa.
+      <p className="cover-lead up" style={st(3)}>
+        Una lectura clara para entender qué cambió, qué pueden hacer los modelos actuales y por qué arquitectura, ingeniería y construcción necesitan convertir la IA en habilidad, proceso y evidencia.
       </p>
+      <div className="cover-meta up" style={st(4)}>
+        <span className="chip">AI Construction Summit</span>
+        <span className="chip">Radar AECODE 2026</span>
+        <span className="chip">Reto IA 3 Días</span>
+      </div>
     </div>
+  )
+}
+
+function StoryArcSlide() {
+  const acts = [
+    { n: '01', t: 'La ola', d: 'La IA ya no es curiosidad: entró al trabajo, al capital y a las herramientas diarias.' },
+    { n: '02', t: 'El motor', d: 'Modelos, datos, tokens, RAG, agentes y cómputo explican por qué la capacidad sube tan rápido.' },
+    { n: '03', t: 'La brecha AEC', d: 'AEC tiene mercado enorme, baja productividad y una cantidad masiva de datos todavía no aprovechados.' },
+    { n: '04', t: 'La jugada', d: 'Convertir IA en workflow verificable: crear, consultar, comparar, automatizar y dejar evidencia.' },
+  ]
+  return (
+    <>
+      <Head eyebrow="Storytelling de la masterclass" title="Del asombro a la acción"
+        lead="La clase no debe sentirse como una lista de datos. Debe llevar al público por una tensión clara: la IA avanza más rápido que el sector, pero AEC tiene una oportunidad única si aprende a operar con evidencia." />
+      <div className="story-arc up" style={st(1)}>
+        {acts.map((a, i) => (
+          <div className="story-node" key={a.n} style={st(i + 1)}>
+            <span>{a.n}</span>
+            <h3>{a.t}</h3>
+            <p>{a.d}</p>
+          </div>
+        ))}
+        <div className="story-pulse" aria-hidden="true" />
+      </div>
+      <PresenterNote>
+        <b>Conducción:</b> abrir con una pregunta simple: “si la IA ya puede leer, razonar, programar y usar herramientas, ¿qué tareas AEC siguen esperando demasiado a una persona ocupada?”.
+      </PresenterNote>
+    </>
   )
 }
 
@@ -68,7 +106,7 @@ function ParadoxSlide() {
   return (
     <>
       <Head num="00" eyebrow="El punto de partida"
-        title="La paradoja del gigante dormido"
+        title="La paradoja del AEC"
         lead="El sector más grande de la economía mundial es, a la vez, el menos digitalizado. Toca cada barra para compararlas." />
       <ParadoxGap />
     </>
@@ -440,6 +478,33 @@ function AgentsSlide() {
   )
 }
 
+function CapitalSignalSlide() {
+  const layers = [
+    { t: 'Infraestructura', d: 'chips, data centers, nube y energía' },
+    { t: 'Modelos', d: 'GPT, Claude, Gemini y modelos abiertos' },
+    { t: 'Herramientas', d: 'copilotos, asistentes, búsqueda y código' },
+    { t: 'Workflows AEC', d: 'documentos, BIM, obra, costos y evidencia' },
+  ]
+  return (
+    <>
+      <Head eyebrow="Resultado clave" title="La oportunidad AEC está en la última milla"
+        lead="El capital global está construyendo la capacidad general. La ventaja para arquitectura, ingeniería y construcción aparece cuando esa capacidad se traduce en procesos específicos, auditables y enseñables." />
+      <div className="capital-stack up" style={st(1)}>
+        {layers.map((l, i) => (
+          <div className="capital-layer" key={l.t} style={st(i + 1)}>
+            <span>{String(i + 1).padStart(2, '0')}</span>
+            <h3>{l.t}</h3>
+            <p>{l.d}</p>
+          </div>
+        ))}
+      </div>
+      <PresenterNote>
+        <b>Remate narrativo:</b> el dinero global construye la autopista. La pregunta para AEC es quién aprende a manejar, con qué reglas y con qué evidencia.
+      </PresenterNote>
+    </>
+  )
+}
+
 /* ============================ BRECHA AEC ========================== */
 function AecGapSlide() {
   return (
@@ -585,6 +650,52 @@ function ConclusionsSlide() {
   )
 }
 
+const MOTION_DEMOS = [
+  {
+    k: 'LLM',
+    t: 'Predice el siguiente token',
+    d: 'No responde desde memoria perfecta: calcula continuidad probable y necesita contexto.',
+    steps: ['prompt', 'tokens', 'patrones', 'respuesta'],
+  },
+  {
+    k: 'RAG',
+    t: 'Consulta antes de responder',
+    d: 'Busca fragmentos relevantes en documentos y construye una respuesta con fuente.',
+    steps: ['pregunta', 'embedding', 'búsqueda', 'cita'],
+  },
+  {
+    k: 'Agente',
+    t: 'Planifica y usa herramientas',
+    d: 'Divide una meta en pasos, ejecuta acciones y pide aprobación cuando hay riesgo.',
+    steps: ['objetivo', 'plan', 'acción', 'humano'],
+  },
+]
+
+function ConceptVideoLabSlide() {
+  return (
+    <>
+      <Head eyebrow="Microvideos conceptuales" title="Tres animaciones para que la IA se entienda en segundos"
+        lead="Estos loops convierten conceptos abstractos en movimiento: cómo responde un LLM, cómo recupera información un RAG y cómo opera un agente con control humano." />
+      <div className="video-lab up" style={st(1)}>
+        {MOTION_DEMOS.map((v, i) => (
+          <div className="motion-card" key={v.k} style={st(i + 1)}>
+            <div className="motion-screen" data-kind={v.k.toLowerCase()}>
+              <span className="rec-dot" />
+              <span className="play-triangle" />
+              <div className="motion-track">
+                {v.steps.map((s, j) => <b key={s} style={st(j)}>{s}</b>)}
+              </div>
+            </div>
+            <span className="motion-k">{v.k}</span>
+            <h3>{v.t}</h3>
+            <p>{v.d}</p>
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
 /* ================= PRÓXIMA FASE — investigación propia (separada) === */
 const STEPS = [
   { n: '1', t: 'Capa 1 — Benchmark global', d: 'Lo que acabas de ver: revisión de fuentes 2024–2026 (McKinsey, Anthropic, Stanford HAI, WEF, Autodesk, RICS).' },
@@ -656,10 +767,11 @@ function ReferencesSlide() {
 /* ============================ ORDEN DEL DECK ===================== */
 export const slides: SlideDef[] = [
   { id: 'cover', num: '', title: 'Portada', node: <Cover /> },
+  { id: 'story-arc', num: '·', title: 'Storytelling de la masterclass', node: <StoryArcSlide /> },
 
   /* ═══════════ CÁPSULA 1 · Estado, mercado e impacto de la IA ═══════════ */
   { id: 'div-cap1', num: '✦', title: 'Cápsula 1 · Estado, mercado e impacto', node: <Cap1Divider /> },
-  { id: 'paradoja', num: '00', title: 'La paradoja del gigante dormido', node: <ParadoxSlide /> },
+  { id: 'paradoja', num: '00', title: 'La paradoja del AEC', node: <ParadoxSlide /> },
   { id: 'surprise', num: '✦', title: 'Un dato que nadie espera: 52% mujeres', node: <SurpriseSlide /> },
   { id: 'tesis', num: '·', title: 'La brecha que define la década', node: <ThesisSlide /> },
   { id: 'adopcion', num: '00', title: 'La adopción más rápida de la historia', node: <AdoptionSpeedSlide /> },
@@ -676,6 +788,10 @@ export const slides: SlideDef[] = [
   { id: 'productividad-personal', num: '00', title: 'Cuánto tiempo te ahorra la IA', node: <ProductivityPersonalSlide /> },
   { id: 'empleos', num: '00', title: '¿La IA destruye empleos?', node: <JobsSlide /> },
   { id: 'mercado', num: '00', title: 'Tamaño del mercado de la IA', node: <MarketSlide /> },
+  { id: 'difusion', num: '00', title: 'Velocidad de adopción tecnológica', node: <DiffusionSlide /> },
+  { id: 'capex', num: '00', title: 'Capex e infraestructura de IA', node: <CapexSlide /> },
+  { id: 'capital', num: '00', title: 'Capital privado en modelos frontera', node: <FundingSlide /> },
+  { id: 'nvidia', num: '00', title: 'Chips, cómputo y cuello de botella', node: <NvidiaSlide /> },
   { id: 'regiones', num: '00', title: 'Inversión por región', node: <RegionsSlide /> },
   { id: 'agentes', num: '00', title: 'Lo que viene: los agentes', node: <AgentsSlide /> },
   { id: 'brecha-aec', num: '00', title: 'La paradoja AEC: potencial vs. uso', node: <AecGapSlide /> },
@@ -686,9 +802,11 @@ export const slides: SlideDef[] = [
 
   /* ═══════════ CÁPSULA 2 · Conceptos clave para dominar la IA ═══════════ */
   { id: 'cap-intro', num: '✦', title: 'Cápsula 2 · Conceptos clave', node: <CapIntro /> },
+  { id: 'capital-signal', num: '00', title: 'Oportunidad AEC: última milla', node: <CapitalSignalSlide /> },
   { id: 'cap-cimientos', num: 'F1', title: 'Los cimientos: IA · ML · DL · Modelo', node: <CapCimientos /> },
   { id: 'cap-lenguaje', num: 'F2', title: 'Cómo hablan los modelos: LLM · Prompt · Contexto', node: <CapLenguaje /> },
   { id: 'cap-tokens', num: 'F3', title: 'Tokens y ventana de contexto', node: <CapTokens /> },
+  { id: 'microvideos', num: '✦', title: 'Microvideos conceptuales', node: <ConceptVideoLabSlide /> },
   { id: 'cap-hoy', num: 'F4', title: 'Lo que pueden hacer hoy', node: <CapHoy /> },
   { id: 'cap-expertos', num: 'F5', title: 'Expertos en lo tuyo: fine-tuning vs. RAG', node: <CapExpertos /> },
   { id: 'cap-colaborador', num: 'F6', title: 'De herramienta a colaborador: agentes', node: <CapColaborador /> },

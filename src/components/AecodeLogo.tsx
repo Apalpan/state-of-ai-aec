@@ -1,8 +1,10 @@
 /* Logotipo AECODE (wordmark) — inline en currentColor para adaptarse al tema.
    Derivado de aecode-landing/public/brand/aecode-logo.svg (sin el tagline). */
-export default function AecodeLogo({ className }: { className?: string }) {
+import type { CSSProperties } from 'react'
+
+export default function AecodeLogo({ className, style }: { className?: string; style?: CSSProperties }) {
   return (
-    <svg className={className} viewBox="0 0 151 20.4" fill="currentColor" role="img" aria-label="AECODE">
+    <svg className={className} style={style} viewBox="0 0 151 20.4" fill="currentColor" role="img" aria-label="AECODE">
       <path d="M29.7898 0.234827V4.62054H29.7879V7.98695H29.7898V12.3745H29.7879V15.7697H29.7898V20.1067C27.687 19.8379 26.2069 18.2774 26.182 16.154C26.1381 12.1345 26.1419 8.11323 26.182 4.09555C26.2031 2.0804 27.7501 0.49281 29.7898 0.234827Z" />
       <path d="M47.2996 4.62054H30.8269V0.196941C36.5298 0.182509 47.3111 0.196941 47.3111 0.196941C47.3111 1.45619 47.2996 4.62054 47.2996 4.62054Z" />
       <path d="M47.3091 12.3745H30.8269V7.98515C35.9702 7.97613 42.3492 7.98154 47.3091 7.98154V12.3763V12.3745Z" />
