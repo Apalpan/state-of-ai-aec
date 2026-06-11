@@ -1,33 +1,33 @@
 import * as echarts from 'echarts'
 import type { EChartsOption } from 'echarts'
 
-/** Paleta de datos — ESCALA DE GRISES + VERDE (concreta para canvas, alineada
- *  con los tokens --d-* OKLCH). El verde es el acento; el resto, grafito/gris. */
+/** Paleta de datos — AECODE: TEAL + GRAFITO (concreta para canvas, alineada
+ *  con los tokens --d-* OKLCH). El teal es el acento; el resto, grafito/gris frío. */
 export const PALETTE: Record<string, string> = {
-  green: '#1f8a5b',
-  teal: '#3fa877',
-  blue: '#39423e',
-  indigo: '#5b655f',
-  purple: '#828c86',
-  orange: '#9aa39e',
-  amber: '#bcc3be',
-  pink: '#6e7873',
-  red: '#1c211f',
+  green: '#0e9d88',
+  teal: '#1ac2a3',
+  blue: '#333b44',
+  indigo: '#525c66',
+  purple: '#7c858e',
+  orange: '#9aa2aa',
+  amber: '#c0c6cc',
+  pink: '#69727b',
+  red: '#14171b',
 }
 
-/** Acento verde de marca + helpers de transparencia. */
-const GREEN = '#1f8a5b'
-const ga = (a: number) => `rgba(31,138,91,${a})`
-/** Rampa verde (oscuro→claro) para treemap/funnel/heatmap monocromos. */
-const GREEN_RAMP = ['#0f5236', '#16633f', '#1f8a5b', '#2e9e6b', '#46b07e', '#62c096', '#86d1b1', '#aee0cb']
+/** Acento teal de marca + helpers de transparencia. */
+const GREEN = '#0e9d88'
+const ga = (a: number) => `rgba(14,157,136,${a})`
+/** Rampa teal (oscuro→claro) para treemap/funnel/heatmap monocromos. */
+const GREEN_RAMP = ['#064a40', '#076a5b', '#0e9d88', '#16b89f', '#2fcfb2', '#5fd9c4', '#92e6d6', '#c2f1e9']
 
 export interface ThemeColors {
   ink: string; muted: string; grid: string; axis: string; bg: string; tooltipBg: string; border: string
 }
 export function themeColors(isDark: boolean): ThemeColors {
   return isDark
-    ? { ink: '#eaefec', muted: '#9aa39e', grid: 'rgba(255,255,255,0.08)', axis: 'rgba(255,255,255,0.14)', bg: '#1b211e', tooltipBg: 'rgba(26,32,29,0.95)', border: 'rgba(255,255,255,0.12)' }
-    : { ink: '#26302b', muted: '#5b655f', grid: 'rgba(20,40,30,0.07)', axis: 'rgba(20,40,30,0.16)', bg: '#ffffff', tooltipBg: 'rgba(255,255,255,0.97)', border: 'rgba(20,40,30,0.12)' }
+    ? { ink: '#eaf0ee', muted: '#9aa2aa', grid: 'rgba(255,255,255,0.08)', axis: 'rgba(255,255,255,0.14)', bg: '#191f24', tooltipBg: 'rgba(22,28,33,0.95)', border: 'rgba(255,255,255,0.12)' }
+    : { ink: '#1f262c', muted: '#5b646d', grid: 'rgba(20,36,44,0.07)', axis: 'rgba(20,36,44,0.16)', bg: '#ffffff', tooltipBg: 'rgba(255,255,255,0.97)', border: 'rgba(20,36,44,0.12)' }
 }
 
 const col = (k: string) => PALETTE[k] || k
@@ -77,7 +77,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         grid: { left: 4, right: 66, top: human != null ? 20 : 8, bottom: 4, containLabel: true },
         tooltip: { ...base.tooltip, trigger: 'item', axisPointer: { type: 'shadow' }, formatter: (p: any) => `${p.name}<br/><b style="font-size:15px;color:${GREEN}">${p.value}${unit}</b>` },
         xAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: `{value}${unit === '%' ? '%' : ''}` }, axisLine: { show: false }, axisTick: { show: false } },
-        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, width: 200, overflow: 'truncate' }, axisLine: { show: false }, axisTick: { show: false } },
+        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, width: 260, overflow: 'break', lineHeight: 14 }, axisLine: { show: false }, axisTick: { show: false } },
         series: [{
           type: 'bar', barWidth: '60%', cursor: 'default',
           label: { show: true, position: 'right', color: C.ink, fontWeight: 700, fontSize: 12.5, formatter: (p: any) => `${p.value}${unit === '%' ? '%' : ''}` },
@@ -106,7 +106,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         grid: { left: 4, right: 70, top: 8, bottom: 4, containLabel: true },
         tooltip: { ...base.tooltip, trigger: 'item', formatter: (p: any) => `${p.name}<br/><b style="font-size:15px">${p.value}${unit}</b>` },
         xAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10 }, axisLine: { show: false }, axisTick: { show: false } },
-        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, width: 200, overflow: 'truncate' }, axisLine: { show: false }, axisTick: { show: false } },
+        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, width: 260, overflow: 'break', lineHeight: 14 }, axisLine: { show: false }, axisTick: { show: false } },
         series: [{
           type: 'bar', barWidth: '56%', cursor: 'default',
           label: { show: true, position: 'right', fontWeight: 700, fontSize: 12.5, formatter: (p: any) => `${p.value}${unit}` },
@@ -245,7 +245,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         grid: { left: 6, right: 10, top: 8, bottom: 40, containLabel: true },
         xAxis: { type: 'category', data: d.x, axisLabel: { color: C.muted, fontSize: 9.5, rotate: 26 }, axisLine: { show: false }, axisTick: { show: false }, splitArea: { show: false } },
         yAxis: { type: 'category', data: d.y, axisLabel: { color: C.ink, fontSize: 10 }, axisLine: { show: false }, axisTick: { show: false }, splitArea: { show: false } },
-        visualMap: { min: 0, max: d.max, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, itemWidth: 11, itemHeight: 80, textStyle: { color: C.muted, fontSize: 9 }, inRange: { color: [isDark ? 'rgba(255,255,255,0.06)' : '#eef2f0', '#bfe3d0', '#5fbf93', '#1f8a5b', '#0f5236'] } },
+        visualMap: { min: 0, max: d.max, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, itemWidth: 11, itemHeight: 80, textStyle: { color: C.muted, fontSize: 9 }, inRange: { color: [isDark ? 'rgba(255,255,255,0.06)' : '#eef3f2', '#bfe9dd', '#4fd0b4', '#0e9d88', '#064a40'] } },
         series: [{ type: 'heatmap', data: d.cells, itemStyle: { borderColor: C.bg, borderWidth: 3, borderRadius: 4 }, label: { show: false } }],
       }
     }
@@ -317,7 +317,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
           indicator: d.indicators,
           axisName: { color: C.ink, fontSize: 11, fontFamily: 'Space Grotesk Variable, sans-serif' },
           splitLine: { lineStyle: { color: C.grid } },
-          splitArea: { areaStyle: { color: [isDark ? 'rgba(31,138,91,0.04)' : 'rgba(31,138,91,0.05)', 'transparent'] } },
+          splitArea: { areaStyle: { color: [isDark ? 'rgba(14,157,136,0.05)' : 'rgba(14,157,136,0.06)', 'transparent'] } },
           axisLine: { lineStyle: { color: C.axis } },
         },
         series: [{

@@ -6,6 +6,19 @@ export interface SlideDef { id: string; num: string; title: string; node: ReactN
 
 /** True sólo cuando la diapositiva es la actual: dispara count-up y re-anima gráficas. */
 export const SlideActiveContext = createContext(false)
+/** Número de sección calculado automáticamente (secuencial), provisto a cada slide. */
+export const SlideNumContext = createContext('')
+
+/** Numeración automática: las slides cuyo `num` empieza por dígito se cuentan
+ *  01,02,03…; las demás (portada '', tesis '·', cápsula '✦'/'F1'…) se conservan.
+ *  Así, borrar o insertar slides nunca deja huecos en la numeración visible. */
+function computeNums(slides: SlideDef[]): string[] {
+  let c = 0
+  return slides.map((s) => {
+    if (/^[0-9]/.test(s.num)) { c++; return String(c).padStart(2, '0') }
+    return s.num
+  })
+}
 
 const PDF = `${import.meta.env.BASE_URL}Informe-IA-AEC-2026.pdf`
 
@@ -18,8 +31,8 @@ function readHash(total: number): number {
 /** Una diapositiva. Las no-activas quedan en `visibility:hidden` + `inert`
  *  (sin foco ni lectura por AT), pero conservan tamaño para que ECharts
  *  renderice correctamente desde el montaje. */
-function SlideFrame({ state, id, index, total, label, children }: {
-  state: 'prev' | 'current' | 'next'; id: string; index: number; total: number; label: string; children: ReactNode
+function SlideFrame({ state, id, index, total, label, displayNum, children }: {
+  state: 'prev' | 'current' | 'next'; id: string; index: number; total: number; label: string; displayNum: string; children: ReactNode
 }) {
   const ref = useRef<HTMLElement>(null)
   useEffect(() => { const el = ref.current as any; if (el) el.inert = state !== 'current' }, [state])
@@ -35,7 +48,9 @@ function SlideFrame({ state, id, index, total, label, children }: {
       aria-hidden={state !== 'current'}
     >
       <div className="slide-inner"><div className="slide-content">
-        <SlideActiveContext.Provider value={state === 'current'}>{children}</SlideActiveContext.Provider>
+        <SlideActiveContext.Provider value={state === 'current'}>
+          <SlideNumContext.Provider value={displayNum}>{children}</SlideNumContext.Provider>
+        </SlideActiveContext.Provider>
       </div></div>
     </section>
   )
@@ -43,6 +58,7 @@ function SlideFrame({ state, id, index, total, label, children }: {
 
 export default function Deck({ slides }: { slides: SlideDef[] }) {
   const total = slides.length
+  const nums = computeNums(slides)
   const [cur, setCur] = useState(() => readHash(total))
   const [overview, setOverview] = useState(false)
   const [theme, toggleTheme] = useTheme()
@@ -112,7 +128,7 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
 
       <main className="slides" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         {slides.map((s, i) => (
-          <SlideFrame key={s.id} id={s.id} index={i} total={total} label={s.title}
+          <SlideFrame key={s.id} id={s.id} index={i} total={total} label={s.title} displayNum={nums[i]}
             state={i === cur ? 'current' : i < cur ? 'prev' : 'next'}>
             {s.node}
           </SlideFrame>
@@ -141,7 +157,7 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
               {slides.map((s, i) => (
                 <li key={s.id}>
                   <button className={`ov-card ${i === cur ? 'active' : ''}`} onClick={() => { go(i); setOverview(false) }}>
-                    <span className="ov-num tnum">{s.num || String(i + 1).padStart(2, '0')}</span>
+                    <span className="ov-num tnum">{nums[i] || String(i + 1).padStart(2, '0')}</span>
                     <span className="ov-title">{s.title}</span>
                   </button>
                 </li>

@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
+import { SlideNumContext } from './components/Deck'
 import Figure from './components/Figure'
 import StatCard from './components/StatCard'
 import AnimatedValue from './components/CountUp'
@@ -6,6 +8,7 @@ import { Timeline, GenAIProcess, ConceptLadder, ToolBoard, PricingTiers, Breakth
 import {
   CapIntro, CapCimientos, CapLenguaje, CapTokens, CapHoy, CapExpertos, CapColaborador, CapImporta,
 } from './components/Capsule'
+import { SurpriseStat, FableShowcase, ParadoxGap } from './components/Showcase'
 import type { SlideDef } from './components/Deck'
 import type { Figure as Fig } from './lib/chartOptions'
 import global from '../data/global.json'
@@ -18,10 +21,11 @@ const PDF = `${import.meta.env.BASE_URL}Informe-IA-AEC-2026.pdf`
 const st = (i: number): CSSProperties => ({ ['--i' as any]: i })
 
 /* ----------------------------- helpers de slide ----------------------- */
-function Head({ num, eyebrow, title, lead }: { num: string; eyebrow: string; title: ReactNode; lead?: ReactNode }) {
+function Head({ eyebrow, title, lead }: { num?: string; eyebrow: string; title: ReactNode; lead?: ReactNode }) {
+  const num = useContext(SlideNumContext)
   return (
     <header className="s-head up" style={st(0)}>
-      <p className="eyebrow"><span className="idx">{num}</span> {eyebrow}</p>
+      <p className="eyebrow">{num && <span className="idx">{num}</span>} {eyebrow}</p>
       <h2 className="s-title">{title}</h2>
       <div className="kicker-line" />
       {lead && <p className="lead">{lead}</p>}
@@ -65,16 +69,8 @@ function ParadoxSlide() {
     <>
       <Head num="00" eyebrow="El punto de partida"
         title="La paradoja del gigante dormido"
-        lead="El sector más grande de la economía mundial es también el menos digitalizado. La IA ya es mainstream corporativo; en la obra, sigue atrapada entre la curiosidad y el piloto." />
-      <div className="grid g3 keep anchors up" style={st(1)}>
-        {PARADOX.map((a, i) => (
-          <div key={i} className={`anchor ${a.a}`}>
-            <div className="v tnum"><AnimatedValue text={a.v} /></div>
-            <div className="l">{a.l}</div>
-            <div className="s">{a.s}</div>
-          </div>
-        ))}
-      </div>
+        lead="El sector más grande de la economía mundial es, a la vez, el menos digitalizado. Toca cada barra para compararlas." />
+      <ParadoxGap />
     </>
   )
 }
@@ -84,12 +80,16 @@ function ThesisSlide() {
   const t = W.thesis
   return (
     <div className="thesis">
-      <p className="thesis-kicker up" style={st(0)}>{t.kicker}</p>
       <p className="thesis-lead up" style={st(1)}>{t.lead}</p>
       <p className="thesis-hl up" style={st(2)}>{t.highlight}</p>
       <p className="thesis-foot up" style={st(3)}>{t.foot}</p>
     </div>
   )
+}
+
+/* ===================== UN DATO QUE NADIE ESPERA ===================== */
+function SurpriseSlide() {
+  return <SurpriseStat />
 }
 
 /* =================== ADOPCIÓN MÁS RÁPIDA DE LA HISTORIA ============== */
@@ -98,27 +98,21 @@ function AdoptionSpeedSlide() {
   return (
     <>
       <Head num="01" eyebrow="La velocidad" title={W.adoptionSpeed.title}
-        lead="Ni la computadora, ni el internet, ni el celular se expandieron tan rápido. Lo que a otras tecnologías les tomó una década, a la IA le tomó meses." />
+        lead="Ni la computadora, ni el internet, ni el celular se expandieron tan rápido: lo que a otras tecnologías les tomó una década, a la IA le tomó meses." />
       <div className="slide-two up" style={st(1)}>
-        <Figure fig={W.adoptionSpeed as Fig} height={270} />
-        <div className="grid stat-col">{r.stats.map((s: any, i: number) => <StatCard key={i} {...s} />)}</div>
+        <Figure fig={W.adoptionSpeed as Fig} height={260} />
+        <div className="grid stat-col">{r.stats.slice(0, 3).map((s: any, i: number) => <StatCard key={i} {...s} />)}</div>
       </div>
-      <Plain text={W.adoptionSpeed.plain} />
     </>
   )
 }
 
 /* ===================== LA FRONTERA EN VIVO (Fable 5) ================ */
 function FrontierSlide() {
-  const f = W.frontier
   return (
     <>
-      <Head num="02" eyebrow="La frontera, en vivo" title={f.title} lead={f.lead} />
-      <div className="frontier-flag up" style={st(1)}><span className="pulse" aria-hidden="true" /> Anunciado el 9 jun 2026</div>
-      <div className="grid g2 keep stat-grid up" style={st(2)}>
-        {f.stats.map((s: any, i: number) => <StatCard key={i} {...s} />)}
-      </div>
-      <p className="src-note up" style={st(3)}><b>Fuente:</b> {f.source} · {f.note}</p>
+      <FableShowcase />
+      <p className="src-note up" style={st(4)}><b>Fuente:</b> {W.frontier.source} · {W.frontier.note}</p>
     </>
   )
 }
@@ -212,7 +206,7 @@ function BenchmarksSlide() {
   return (
     <>
       <Head num="09" eyebrow="Capacidad" title={W.benchmarks.title}
-        lead="En benchmarks que en 2023 eran casi imposibles, los modelos pasaron a resolver la mayoría en un solo año. SWE-bench (código real) saltó de 4,4 % a 71,7 %." />
+        lead="Un «benchmark» es un examen estándar para medir a la IA. En pruebas que en 2023 eran casi imposibles, en un solo año pasó a resolver la mayoría: en código real (SWE-bench) saltó de 4 % a 72 %. La línea punteada marca el nivel de un experto humano." />
       <div className="up" style={st(1)}><Figure fig={W.benchmarks as Fig} height={360} /></div>
     </>
   )
@@ -243,12 +237,29 @@ function BreakthroughsSlide() {
 }
 
 /* ============================== MODELOS ============================ */
+const MODELS_BENCH: Fig = {
+  id: 'models-bench', type: 'groupBars', status: 'mixed',
+  title: 'Modelos frontera en los benchmarks clave (2026)',
+  source: 'Síntesis de leaderboards públicos 2026 (Artificial Analysis · tarjetas de los proveedores). Posiciones cualitativas, no un único benchmark oficial.',
+  note: 'Barras = % obtenido en cada examen estándar. Ninguno gana en todo: la «mejor IA» depende de la tarea.',
+  data: {
+    unit: '%', vmax: 100,
+    groups: ['GPT-5.x', 'Claude', 'Gemini'],
+    colors: ['indigo', 'green', 'purple'],
+    categories: [
+      { label: 'Razonamiento\n(GPQA)', values: [88, 87, 86] },
+      { label: 'Código\n(SWE-bench)', values: [74, 78, 70] },
+      { label: 'Matemática\n(AIME)', values: [94, 90, 92] },
+      { label: 'Multimodal\n(MMMU)', values: [84, 80, 88] },
+    ],
+  },
+}
 function ModelsSlide() {
   return (
     <>
-      <Head num="12" eyebrow="La frontera" title={W.models.title}
-        lead="No hay un único «mejor modelo»: GPT, Claude y Gemini lideran ejes distintos. La elección correcta depende de la tarea, no de la marca." />
-      <div className="up" style={st(1)}><Figure fig={W.models as Fig} height={400} /></div>
+      <Head num="12" eyebrow="La frontera" title="La batalla de los modelos frontera"
+        lead="No hay un único «mejor modelo»: GPT, Claude y Gemini se turnan la punta según el examen. La elección correcta depende de la tarea, no de la marca." />
+      <div className="up" style={st(1)}><Figure fig={MODELS_BENCH} height={360} /></div>
     </>
   )
 }
@@ -303,17 +314,16 @@ function JobsSlide() {
   return (
     <>
       <Head num="17" eyebrow="Tu trabajo" title={W.jobsBalance.title}
-        lead="La pregunta del millón. El Foro Económico Mundial proyecta más empleos creados que destruidos al 2030 — pero los nuevos piden otras habilidades." />
+        lead="La pregunta que todos se hacen. El Foro Económico Mundial proyecta, al 2030, más empleos creados que destruidos. La gráfica lo lee de izquierda a derecha: se suman los nuevos, se restan los que se transforman y queda el saldo." />
       <div className="slide-two up" style={st(1)}>
         <Figure fig={W.jobsBalance as Fig} height={300} />
         <Insights items={[
-          '<b>170 M</b> de empleos nuevos al 2030 (WEF).',
-          '<b>92 M</b> desplazados: el 22 % del empleo mundial se transforma.',
-          'Saldo neto: <b>+78 M</b>. No faltan empleos; faltan skills.',
-          '«La IA no te reemplaza: te reemplaza quien sepa usarla».',
+          '<b>+170 M</b> de empleos nuevos al 2030 (WEF).',
+          '<b>−92 M</b> desplazados: el 22 % del empleo mundial se transforma.',
+          'Saldo neto: <b>+78 M</b>. El problema no es que falten empleos: es que los nuevos piden otras habilidades.',
+          'En una frase: <b>la IA no te reemplaza; te reemplaza quien sepa usarla</b>.',
         ]} />
       </div>
-      <Plain text={W.jobsBalance.plain} i={2} />
     </>
   )
 }
@@ -338,7 +348,7 @@ function MarketSlide() {
   return (
     <>
       <Head num="19" eyebrow="Economía" title={W.market.title}
-        lead="Las estimaciones varían según la definición de mercado, pero todas apuntan en la misma dirección: la IA se multiplica ~10× en una década. Solo en 2025 se invirtieron US$581,7 B (+130 %)." />
+        lead="El dinero que mueve la IA se multiplica ~10× en una década: de unos US$300 mil millones hoy a más de US$2,4 billones en 2034. La banda gris muestra que, aunque las fuentes no coinciden en el número exacto, todas apuntan en la misma dirección: hacia arriba." />
       <div className="up" style={st(1)}><Figure fig={W.market as Fig} height={340} /></div>
     </>
   )
@@ -642,9 +652,10 @@ export const slides: SlideDef[] = [
   { id: 'cover', num: '', title: 'Portada', node: <Cover /> },
   /* Acto I — La velocidad */
   { id: 'paradoja', num: '00', title: 'La paradoja del gigante dormido', node: <ParadoxSlide /> },
-  { id: 'tesis', num: '·', title: 'La tesis', node: <ThesisSlide /> },
+  { id: 'surprise', num: '✦', title: 'Un dato que nadie espera: 52% mujeres', node: <SurpriseSlide /> },
+  { id: 'tesis', num: '·', title: 'La brecha que define la década', node: <ThesisSlide /> },
   { id: 'adopcion', num: '01', title: 'La adopción más rápida de la historia', node: <AdoptionSpeedSlide /> },
-  { id: 'frontera', num: '02', title: 'La frontera en vivo: Claude Fable 5', node: <FrontierSlide /> },
+  { id: 'frontera', num: '✦', title: 'La frontera en vivo: Claude Fable 5', node: <FrontierSlide /> },
   { id: 'historia', num: '03', title: 'Historia de la IA', node: <HistorySlide /> },
   /* ░░ Cápsula · Fundamentos de IA en simple — módulo didáctico interactivo ░░ */
   { id: 'cap-intro', num: '✦', title: 'Cápsula · Fundamentos de IA', node: <CapIntro /> },
@@ -664,7 +675,6 @@ export const slides: SlideDef[] = [
   { id: 'estado', num: '08', title: 'Estado de la IA en 2025', node: <StateSlide /> },
   { id: 'benchmarks', num: '09', title: 'Benchmarks: la IA alcanza al humano', node: <BenchmarksSlide /> },
   { id: 'hle', num: '10', title: 'El examen más difícil del mundo', node: <HleSlide /> },
-  { id: 'breakthroughs', num: '11', title: 'Ya no es teoría: hitos 2025–2026', node: <BreakthroughsSlide /> },
   { id: 'modelos', num: '12', title: 'La batalla de los modelos frontera', node: <ModelsSlide /> },
   /* Acto IV — Cómo se usa / trabajo */
   { id: 'poblacion', num: '13', title: 'La IA generativa más usada', node: <PopulationSlide /> },
@@ -672,27 +682,17 @@ export const slides: SlideDef[] = [
   { id: 'tablero', num: '15', title: 'Tablero de herramientas de IA', node: <ToolboardSlide /> },
   { id: 'productividad-personal', num: '16', title: 'Cuánto tiempo te ahorra la IA', node: <ProductivityPersonalSlide /> },
   { id: 'empleos', num: '17', title: '¿La IA destruye empleos?', node: <JobsSlide /> },
-  { id: 'anthropic', num: '18', title: 'Adopción real (Anthropic)', node: <AnthropicSlide /> },
   /* Acto V — La economía */
   { id: 'mercado', num: '19', title: 'Tamaño del mercado de la IA', node: <MarketSlide /> },
-  { id: 'difusion', num: '20', title: 'Velocidad de adopción ~10×', node: <DiffusionSlide /> },
-  { id: 'capex', num: '21', title: 'Capex de las big tech', node: <CapexSlide /> },
-  { id: 'capital', num: '22', title: 'Levantamiento de capital', node: <FundingSlide /> },
-  { id: 'nvidia', num: '23', title: 'El punto clave: NVIDIA', node: <NvidiaSlide /> },
   { id: 'regiones', num: '24', title: 'Inversión por región', node: <RegionsSlide /> },
   { id: 'agentes', num: '25', title: 'Lo que viene: los agentes', node: <AgentsSlide /> },
   /* Acto VI — La brecha AEC */
   { id: 'brecha-aec', num: '26', title: 'La paradoja AEC: potencial vs. uso', node: <AecGapSlide /> },
   { id: 'productividad', num: '27', title: 'Productividad en construcción', node: <ProductivitySlide /> },
-  { id: 'estado-aec', num: '28', title: 'Estado y madurez del AEC', node: <AecStateSlide /> },
-  { id: 'aec-labor', num: '29', title: 'Por qué la IA en obra es urgente', node: <AecLaborSlide /> },
-  { id: 'emergentes', num: '30', title: 'Tecnologías emergentes en construcción', node: <EmergingSlide /> },
   { id: 'datos', num: '31', title: 'Datos: el cuello de botella', node: <DataSlide /> },
   { id: 'skills', num: '32', title: 'Skills clave: hacia el AI-first', node: <SkillsSlide /> },
-  /* Acto VII — Qué hacer + separación */
+  /* Acto VII — El freno y el cierre */
   { id: 'barreras', num: '33', title: 'La barrera principal', node: <BarriersSlide /> },
-  { id: 'conclusiones', num: '34', title: 'Conclusiones y ruta de acción', node: <ConclusionsSlide /> },
-  { id: 'proxima-fase', num: '35', title: 'Próxima fase: investigación +1.000 AEC LATAM', node: <NextPhaseSlide /> },
   { id: 'cierre', num: '', title: 'Cierre', node: <ClosingSlide /> },
   { id: 'referencias', num: '36', title: 'Referencias', node: <ReferencesSlide /> },
 ]

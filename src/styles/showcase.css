@@ -1,0 +1,102 @@
+/* =========================================================================
+   SHOWCASE — slides rediseñados (AECODE Light · teal). Máxima interactividad.
+   ========================================================================= */
+
+/* ===================== SURPRISE · «un dato que nadie espera» =========== */
+.surprise { display: flex; flex-direction: column; gap: clamp(16px, 2.4vh, 26px); }
+.surprise-hero { position: relative; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: linear-gradient(150deg, color-mix(in oklch, var(--accent) 6%, var(--surface)), var(--surface));
+  box-shadow: var(--shadow); padding: clamp(20px, 3vw, 34px); overflow: hidden; }
+.surprise-hero::after { content: ''; position: absolute; right: -10%; top: -40%; width: 46%; height: 180%;
+  background: radial-gradient(circle, var(--glow-a), transparent 70%); pointer-events: none; }
+.surprise-emoji { font-size: clamp(1.8rem, 4vw, 2.6rem); display: block; }
+.surprise-big { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin: 6px 0 4px; line-height: 0.9; }
+.surprise-num { font-family: var(--font-display); font-weight: 700; font-size: clamp(3.4rem, 3rem + 6vw, 6.6rem);
+  letter-spacing: -0.03em; background: linear-gradient(120deg, var(--accent), var(--accent-bright));
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+.surprise-word { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 1.5rem + 3vw, 3.4rem); color: var(--ink); letter-spacing: -0.02em; }
+.surprise-lead { color: var(--ink-soft); font-size: var(--step-1); max-width: 70ch; line-height: 1.55; }
+.surprise-lead b { color: var(--ink); }
+
+/* barra de reparto por género (interactiva 2022 / 2026) */
+.split { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; max-width: 640px; }
+.split-toggle { align-self: flex-start; display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); cursor: pointer; }
+.split-toggle span { font-family: var(--font-display); font-weight: 700; font-size: 0.78rem; color: var(--muted); padding: 4px 14px; border-radius: 999px; transition: color var(--dur-2), background var(--dur-2); }
+.split-toggle span[data-on] { color: var(--accent-ink); background: var(--accent); }
+.split-bar { display: flex; height: 46px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.split-women, .split-men { display: flex; align-items: center; padding: 0 12px; transition: width 0.7s var(--ease-out); overflow: hidden; white-space: nowrap; }
+.split-women { background: linear-gradient(90deg, var(--accent), var(--accent-bright)); color: var(--accent-ink); }
+.split-men { background: color-mix(in oklch, var(--d-blue) 22%, var(--surface)); color: var(--ink-soft); justify-content: flex-end; }
+.split-tag { font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; }
+
+.surprise-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.surprise-card { position: relative; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); overflow: hidden; transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2); }
+.surprise-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.sc-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--ac, var(--accent)); }
+.sc-v { display: block; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 1.4rem + 1.8vw, 2.6rem); color: var(--ac, var(--accent)); line-height: 1; }
+.sc-l { display: block; color: var(--ink-soft); font-size: var(--step--1); margin-top: 10px; line-height: 1.45; }
+.sc-s { display: block; color: var(--muted); font-size: 0.68rem; margin-top: 10px; }
+@media (max-width: 820px) { .surprise-cards { grid-template-columns: 1fr; } }
+
+/* ===================== FABLE · la frontera en vivo ==================== */
+.fable { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(18px, 3vw, 40px); align-items: center; }
+.fable-flag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-family: var(--font-display);
+  font-weight: 700; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent-ink);
+  background: var(--accent); padding: 5px 12px; border-radius: 999px; }
+.fable-flag .pulse { width: 8px; height: 8px; border-radius: 50%; background: currentColor; animation: pulse 1.8s var(--ease-out) infinite; }
+.fable-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 1.8rem + 4vw, 4.4rem); line-height: 1; letter-spacing: -0.03em; margin: 14px 0 0; }
+.fable-title .grad { background: linear-gradient(110deg, var(--accent), var(--accent-bright)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.fable-lead { color: var(--ink-soft); font-size: var(--step-1); max-width: 52ch; margin-top: 14px; line-height: 1.5; }
+.fable-price { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; }
+.fp-up, .fp-down { font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; padding: 7px 13px; border-radius: 999px; }
+.fp-up { color: var(--accent); background: color-mix(in oklch, var(--accent) 12%, transparent); border: 1px solid color-mix(in oklch, var(--accent) 32%, transparent); }
+.fp-down { color: var(--ink); background: color-mix(in oklch, var(--d-blue) 14%, var(--surface)); border: 1px solid var(--border-strong); }
+.fp-up b, .fp-down b { font-size: 1.05rem; }
+.fp-note { color: var(--muted); font-size: 0.78rem; }
+.fable-results { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.fable-chip { font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; color: var(--ink-soft); padding: 8px 15px;
+  border-radius: 12px; border: 1px solid var(--border); background: var(--surface); cursor: pointer;
+  transition: transform var(--dur-1) var(--ease-out), border-color var(--dur-2), background var(--dur-2), color var(--dur-2); }
+.fable-chip:hover { transform: translateY(-2px); border-color: var(--border-strong); }
+.fable-chip[data-on] { color: var(--accent-ink); background: var(--accent); border-color: transparent; box-shadow: 0 10px 24px -12px color-mix(in oklch, var(--accent) 70%, transparent); }
+.fable-detail { margin-top: 16px; padding: 18px 20px; border-radius: var(--radius); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent); background: color-mix(in oklch, var(--accent) 6%, var(--surface));
+  display: flex; flex-direction: column; gap: 6px; animation: partin 0.4s var(--ease-out) backwards; }
+.fd-v { font-family: var(--font-display); font-weight: 700; font-size: var(--step-2); color: var(--accent); line-height: 1; }
+.fd-l { color: var(--ink); font-size: var(--step-0); line-height: 1.5; }
+.fd-s { color: var(--muted); font-size: 0.72rem; }
+.fable-viz { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.frontier-svg { width: 100%; max-width: 380px; height: auto; }
+.fv-area { opacity: 0; transition: opacity 0.8s var(--ease-out) 0.3s; }
+.frontier-svg[data-on] .fv-area { opacity: 1; }
+.fv-line { stroke-dasharray: 720; stroke-dashoffset: 720; filter: drop-shadow(0 6px 12px color-mix(in oklch, var(--accent) 40%, transparent)); transition: stroke-dashoffset 1.4s var(--ease-out); }
+.frontier-svg[data-on] .fv-line { stroke-dashoffset: 0; }
+.fv-dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; opacity: 0; transform: scale(0); transform-origin: center; transform-box: fill-box;
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out); transition-delay: calc(0.4s + var(--i, 0) * 130ms); }
+.frontier-svg[data-on] .fv-dot { opacity: 1; transform: scale(1); }
+.fable-viz-cap { font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
+@media (max-width: 860px) { .fable { grid-template-columns: 1fr; } .fable-viz { order: -1; } }
+@media (prefers-reduced-motion: reduce) {
+  .fv-line { stroke-dashoffset: 0; transition: none; } .fv-area, .fv-dot { opacity: 1; transform: none; transition: none; }
+  .split-women, .split-men { transition: none; }
+}
+
+/* ===================== PARADOX GAP (interactivo) ===================== */
+.pgap { display: flex; flex-direction: column; gap: 20px; max-width: 1040px; }
+.pgap-bars { display: flex; flex-direction: column; gap: 14px; }
+.pgap-row { display: grid; grid-template-columns: 110px 1fr; grid-template-areas: 'v track' 'v label' 'v src'; gap: 2px 18px;
+  align-items: center; text-align: left; padding: 14px 18px; border: 1px solid var(--border); border-left: 3px solid var(--ac, var(--accent));
+  border-radius: var(--radius); background: var(--surface); cursor: pointer;
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2), box-shadow var(--dur-2); }
+.pgap-row:hover { transform: translateY(-2px); }
+.pgap-row[data-sel] { box-shadow: 0 16px 36px -22px color-mix(in oklch, var(--ac, var(--accent)) 70%, transparent); border-color: var(--ac, var(--accent)); }
+.pgap-v { grid-area: v; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 1.3rem + 2.4vw, 3rem); color: var(--ac, var(--accent)); line-height: 1; }
+.pgap-track { grid-area: track; height: 12px; border-radius: 999px; background: var(--surface-2); overflow: hidden; border: 1px solid var(--border); }
+.pgap-fill { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--ac, var(--accent)), color-mix(in oklch, var(--ac, var(--accent)) 60%, var(--accent-bright))); transition: width 0.9s var(--ease-out); }
+.pgap-l { grid-area: label; color: var(--ink-soft); font-size: var(--step-0); margin-top: 4px; }
+.pgap-s { grid-area: src; color: var(--muted); font-size: 0.7rem; }
+.pgap-foot { color: var(--ink-soft); font-size: var(--step-1); line-height: 1.55; max-width: 70ch; }
+.pgap-foot b { color: var(--accent); }
+@media (max-width: 640px) { .pgap-row { grid-template-columns: 1fr; grid-template-areas: 'v' 'track' 'label' 'src'; } }
+@media (prefers-reduced-motion: reduce) { .pgap-fill { transition: none; } }
