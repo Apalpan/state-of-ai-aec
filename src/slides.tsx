@@ -168,11 +168,17 @@ function ComputeSlide() {
 /* ============================ SINGULARIDAD ========================== */
 function SingularitySlide() {
   const s = W.singularity
+  const fig: Fig = {
+    id: 'singularity', type: 'growth', status: 'projection',
+    title: 'Capacidad de la IA en el tiempo (índice ilustrativo)',
+    source: s.source, data: s.data,
+  }
   return (
     <>
-      <Head eyebrow="La evolución" title="De la IA estrecha a la IA agéntica" lead={s.note} />
+      <Head eyebrow="La evolución" title="De la IA estrecha a la IA agéntica"
+        lead="Hablamos de capacidades crecientes y exposición por tarea, no de fechas de «AGI». La curva es ilustrativa." />
       <div className="slide-two up" style={st(1)}>
-        <Figure fig={s as Fig} height={320} />
+        <Figure fig={fig} height={320} />
         <div className="stack">
           {s.milestones.map((m: any, i: number) => (
             <div className="ms-row" key={i} style={st(i + 1)}>

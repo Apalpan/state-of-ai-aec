@@ -59,7 +59,7 @@ export function SurpriseStat() {
         </h2>
         <p className="surprise-lead">
           Cuando ChatGPT lanzó, el <b>80% de usuarios eran hombres</b>. Hoy, en 2026, el <b>52% son mujeres</b>.
-          Dejó de ser una herramienta «de tecnólogos»: es de todos. Tu mamá, tu hermana, tu colega — probablemente ya la usan.
+          Dejó de ser una herramienta «de tecnólogos»: hoy es de uso general.
         </p>
 
         <div className="split" role="group" aria-label="Reparto de usuarios por género">
