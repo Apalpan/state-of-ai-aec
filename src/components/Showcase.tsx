@@ -13,6 +13,23 @@ const W: any = worldRaw
 const st = (i: number): CSSProperties => ({ ['--i' as any]: i })
 
 /* ===================================================================== *
+ *  Cap1Divider — portada de la Cápsula 1                                 *
+ * ===================================================================== */
+const CAP1_ITEMS = ['Mercado e inversión', 'Capacidades 2026', 'Adopción y costos', 'Herramientas', 'Productividad', 'IA en el sector AEC']
+export function Cap1Divider() {
+  return (
+    <div className="part-div">
+      <p className="cap-kicker up" style={st(0)}><span className="cap-badge solid">Cápsula 1</span> de 2</p>
+      <h2 className="cap-bigtitle up" style={st(1)}>Estado, mercado e <span className="grad">impacto</span> de la IA</h2>
+      <p className="cap-biglead up" style={st(2)}>Qué tan grande es, qué tan rápido crece y qué puede hacer hoy — del mundo a la obra.</p>
+      <div className="part-chips up" style={st(3)}>
+        {CAP1_ITEMS.map((t, i) => <span className="part-chip" key={t} style={st(i + 1)}>{t}</span>)}
+      </div>
+    </div>
+  )
+}
+
+/* ===================================================================== *
  *  SurpriseStat — «Un dato que nadie espera»                             *
  * ===================================================================== */
 const SURPRISE_SUPPORT = [

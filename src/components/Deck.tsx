@@ -1,6 +1,7 @@
 import { createContext, useCallback, useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { useTheme } from '../lib/theme'
+import AecodeLogo from './AecodeLogo'
 
 export interface SlideDef { id: string; num: string; title: string; node: ReactNode }
 
@@ -113,9 +114,8 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
       <div className="deck-progress" aria-hidden="true"><span style={{ width: `${((cur + 1) / total) * 100}%` }} /></div>
 
       <header className="deck-bar">
-        <button className="deck-brand" onClick={() => go(0)} aria-label="Ir a la portada">
-          <span className="brand-dot" aria-hidden="true" />
-          <span>GEN<span className="plus">+</span></span>
+        <button className="deck-brand" onClick={() => go(0)} aria-label="AECODE · ir a la portada">
+          <AecodeLogo className="deck-logo" />
           <span className="deck-brand-sub">State of AI in AEC</span>
         </button>
         <div className="deck-actions">

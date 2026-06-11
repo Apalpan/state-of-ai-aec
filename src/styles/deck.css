@@ -16,6 +16,7 @@ body { overflow: hidden; }
   background: color-mix(in oklch, var(--bg) 82%, transparent); backdrop-filter: blur(12px) saturate(1.1); }
 .deck-brand { display: inline-flex; align-items: center; gap: 10px; background: none; border: 0; cursor: pointer;
   font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--ink); }
+.deck-logo { height: 18px; width: auto; display: block; color: var(--ink); }
 .deck-brand-sub { font-weight: 500; font-size: 0.8rem; color: var(--muted); border-left: 1px solid var(--border); padding-left: 10px; }
 .deck-actions { display: flex; align-items: center; gap: 9px; }
 .deck-dl { padding: 8px 14px; font-size: 0.86rem; }

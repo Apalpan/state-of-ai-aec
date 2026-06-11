@@ -8,7 +8,7 @@ import { Timeline, GenAIProcess, ConceptLadder, ToolBoard, PricingTiers, Breakth
 import {
   CapIntro, CapCimientos, CapLenguaje, CapTokens, CapHoy, CapExpertos, CapColaborador, CapImporta,
 } from './components/Capsule'
-import { SurpriseStat, FableShowcase, ParadoxGap } from './components/Showcase'
+import { SurpriseStat, FableShowcase, ParadoxGap, Cap1Divider } from './components/Showcase'
 import type { SlideDef } from './components/Deck'
 import type { Figure as Fig } from './lib/chartOptions'
 import global from '../data/global.json'
@@ -170,7 +170,7 @@ function SingularitySlide() {
   const s = W.singularity
   return (
     <>
-      <Head num="07" eyebrow="El debate" title={s.title} lead={s.note} />
+      <Head eyebrow="La evolución" title="De la IA estrecha a la IA agéntica" lead={s.note} />
       <div className="slide-two up" style={st(1)}>
         <Figure fig={s as Fig} height={320} />
         <div className="stack">
@@ -622,7 +622,7 @@ function ClosingSlide() {
         <a className="btn btn-cta" href={PDF} target="_blank" rel="noopener" download><span aria-hidden="true">↓</span> Descargar informe (PDF)</a>
         <a className="btn" href="mailto:apalpan@genplusdesign.com">apalpan@genplusdesign.com</a>
       </div>
-      <div className="closing-brand up" style={st(3)}>GEN<span className="plus">+</span> · AECODE</div>
+      <div className="closing-brand up" style={st(3)}>AECODE</div>
     </div>
   )
 }
@@ -650,49 +650,45 @@ function ReferencesSlide() {
 /* ============================ ORDEN DEL DECK ===================== */
 export const slides: SlideDef[] = [
   { id: 'cover', num: '', title: 'Portada', node: <Cover /> },
-  /* Acto I — La velocidad */
+
+  /* ═══════════ CÁPSULA 1 · Estado, mercado e impacto de la IA ═══════════ */
+  { id: 'div-cap1', num: '✦', title: 'Cápsula 1 · Estado, mercado e impacto', node: <Cap1Divider /> },
   { id: 'paradoja', num: '00', title: 'La paradoja del gigante dormido', node: <ParadoxSlide /> },
   { id: 'surprise', num: '✦', title: 'Un dato que nadie espera: 52% mujeres', node: <SurpriseSlide /> },
   { id: 'tesis', num: '·', title: 'La brecha que define la década', node: <ThesisSlide /> },
-  { id: 'adopcion', num: '01', title: 'La adopción más rápida de la historia', node: <AdoptionSpeedSlide /> },
+  { id: 'adopcion', num: '00', title: 'La adopción más rápida de la historia', node: <AdoptionSpeedSlide /> },
   { id: 'frontera', num: '✦', title: 'La frontera en vivo: Claude Fable 5', node: <FrontierSlide /> },
-  { id: 'historia', num: '03', title: 'Historia de la IA', node: <HistorySlide /> },
-  /* ░░ Cápsula · Fundamentos de IA en simple — módulo didáctico interactivo ░░ */
-  { id: 'cap-intro', num: '✦', title: 'Cápsula · Fundamentos de IA', node: <CapIntro /> },
+  { id: 'historia', num: '00', title: 'Historia de la IA', node: <HistorySlide /> },
+  { id: 'singularidad', num: '00', title: 'Evolución: estrecha → generativa → agéntica', node: <SingularitySlide /> },
+  { id: 'estado', num: '00', title: 'Estado de la IA en 2025', node: <StateSlide /> },
+  { id: 'benchmarks', num: '00', title: 'Benchmarks: la IA alcanza al humano', node: <BenchmarksSlide /> },
+  { id: 'hle', num: '00', title: 'El examen más difícil del mundo', node: <HleSlide /> },
+  { id: 'modelos', num: '00', title: 'La batalla de los modelos frontera', node: <ModelsSlide /> },
+  { id: 'poblacion', num: '00', title: 'La IA generativa más usada', node: <PopulationSlide /> },
+  { id: 'pago', num: '00', title: 'Cuánto cuesta usar la IA', node: <PricingSlide /> },
+  { id: 'tablero', num: '00', title: 'Tablero de herramientas de IA', node: <ToolboardSlide /> },
+  { id: 'productividad-personal', num: '00', title: 'Cuánto tiempo te ahorra la IA', node: <ProductivityPersonalSlide /> },
+  { id: 'empleos', num: '00', title: '¿La IA destruye empleos?', node: <JobsSlide /> },
+  { id: 'mercado', num: '00', title: 'Tamaño del mercado de la IA', node: <MarketSlide /> },
+  { id: 'regiones', num: '00', title: 'Inversión por región', node: <RegionsSlide /> },
+  { id: 'agentes', num: '00', title: 'Lo que viene: los agentes', node: <AgentsSlide /> },
+  { id: 'brecha-aec', num: '00', title: 'La paradoja AEC: potencial vs. uso', node: <AecGapSlide /> },
+  { id: 'productividad', num: '00', title: 'Productividad en construcción', node: <ProductivitySlide /> },
+  { id: 'datos', num: '00', title: 'Datos: el cuello de botella', node: <DataSlide /> },
+  { id: 'skills', num: '00', title: 'Skills clave: hacia el AI-first', node: <SkillsSlide /> },
+  { id: 'barreras', num: '00', title: 'La barrera principal', node: <BarriersSlide /> },
+
+  /* ═══════════ CÁPSULA 2 · Conceptos clave para dominar la IA ═══════════ */
+  { id: 'cap-intro', num: '✦', title: 'Cápsula 2 · Conceptos clave', node: <CapIntro /> },
   { id: 'cap-cimientos', num: 'F1', title: 'Los cimientos: IA · ML · DL · Modelo', node: <CapCimientos /> },
   { id: 'cap-lenguaje', num: 'F2', title: 'Cómo hablan los modelos: LLM · Prompt · Contexto', node: <CapLenguaje /> },
   { id: 'cap-tokens', num: 'F3', title: 'Tokens y ventana de contexto', node: <CapTokens /> },
   { id: 'cap-hoy', num: 'F4', title: 'Lo que pueden hacer hoy', node: <CapHoy /> },
   { id: 'cap-expertos', num: 'F5', title: 'Expertos en lo tuyo: fine-tuning vs. RAG', node: <CapExpertos /> },
   { id: 'cap-colaborador', num: 'F6', title: 'De herramienta a colaborador: agentes', node: <CapColaborador /> },
-  { id: 'cap-importa', num: '✦', title: 'Cápsula · Lo que de verdad importa', node: <CapImporta /> },
-  /* Acto II — Cómo funciona */
-  { id: 'genai', num: '04', title: 'Cómo funciona la IA generativa', node: <GenAISlide /> },
-  { id: 'conceptos', num: '05', title: 'Chatbot · Asistente · Agente · Workflow', node: <ConceptsSlide /> },
-  { id: 'computo', num: '06', title: 'Crecimiento exponencial del cómputo', node: <ComputeSlide /> },
-  { id: 'singularidad', num: '07', title: 'El debate de la singularidad', node: <SingularitySlide /> },
-  /* Acto III — Qué puede hacer */
-  { id: 'estado', num: '08', title: 'Estado de la IA en 2025', node: <StateSlide /> },
-  { id: 'benchmarks', num: '09', title: 'Benchmarks: la IA alcanza al humano', node: <BenchmarksSlide /> },
-  { id: 'hle', num: '10', title: 'El examen más difícil del mundo', node: <HleSlide /> },
-  { id: 'modelos', num: '12', title: 'La batalla de los modelos frontera', node: <ModelsSlide /> },
-  /* Acto IV — Cómo se usa / trabajo */
-  { id: 'poblacion', num: '13', title: 'La IA generativa más usada', node: <PopulationSlide /> },
-  { id: 'pago', num: '14', title: 'Cómo se paga por la IA', node: <PricingSlide /> },
-  { id: 'tablero', num: '15', title: 'Tablero de herramientas de IA', node: <ToolboardSlide /> },
-  { id: 'productividad-personal', num: '16', title: 'Cuánto tiempo te ahorra la IA', node: <ProductivityPersonalSlide /> },
-  { id: 'empleos', num: '17', title: '¿La IA destruye empleos?', node: <JobsSlide /> },
-  /* Acto V — La economía */
-  { id: 'mercado', num: '19', title: 'Tamaño del mercado de la IA', node: <MarketSlide /> },
-  { id: 'regiones', num: '24', title: 'Inversión por región', node: <RegionsSlide /> },
-  { id: 'agentes', num: '25', title: 'Lo que viene: los agentes', node: <AgentsSlide /> },
-  /* Acto VI — La brecha AEC */
-  { id: 'brecha-aec', num: '26', title: 'La paradoja AEC: potencial vs. uso', node: <AecGapSlide /> },
-  { id: 'productividad', num: '27', title: 'Productividad en construcción', node: <ProductivitySlide /> },
-  { id: 'datos', num: '31', title: 'Datos: el cuello de botella', node: <DataSlide /> },
-  { id: 'skills', num: '32', title: 'Skills clave: hacia el AI-first', node: <SkillsSlide /> },
-  /* Acto VII — El freno y el cierre */
-  { id: 'barreras', num: '33', title: 'La barrera principal', node: <BarriersSlide /> },
+  { id: 'cap-importa', num: '✦', title: 'Lo que de verdad importa', node: <CapImporta /> },
+
+  /* ═══════════ CIERRE ═══════════ */
   { id: 'cierre', num: '', title: 'Cierre', node: <ClosingSlide /> },
-  { id: 'referencias', num: '36', title: 'Referencias', node: <ReferencesSlide /> },
+  { id: 'referencias', num: '00', title: 'Referencias', node: <ReferencesSlide /> },
 ]

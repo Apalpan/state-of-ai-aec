@@ -2,6 +2,15 @@
    SHOWCASE — slides rediseñados (AECODE Light · teal). Máxima interactividad.
    ========================================================================= */
 
+/* ===================== PART DIVIDER (portada de cápsula) ============== */
+.part-div { display: flex; flex-direction: column; gap: clamp(14px, 2.6vh, 26px); max-width: 1000px; }
+.part-div .cap-bigtitle { font-size: var(--step-5); max-width: 18ch; }
+.part-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 6px; }
+.part-chip { font-family: var(--font-display); font-weight: 600; font-size: 0.86rem; color: var(--ink-soft);
+  padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border);
+  background: color-mix(in oklch, var(--accent) 6%, var(--surface));
+  animation: partin 0.5s var(--ease-out) backwards; animation-delay: calc(var(--i, 0) * 70ms); }
+
 /* ===================== SURPRISE · «un dato que nadie espera» =========== */
 .surprise { display: flex; flex-direction: column; gap: clamp(16px, 2.4vh, 26px); }
 .surprise-hero { position: relative; border: 1px solid var(--border); border-radius: var(--radius-lg);

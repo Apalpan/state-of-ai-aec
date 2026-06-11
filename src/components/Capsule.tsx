@@ -89,13 +89,13 @@ function ConceptChips({ items, start = 0 }: { items: Concept[]; start?: number }
 export function CapIntro() {
   return (
     <div className="cap-intro">
-      <p className="cap-kicker up" style={st(0)}><span className="cap-badge solid">Cápsula</span> Fundamentos de IA</p>
+      <p className="cap-kicker up" style={st(0)}><span className="cap-badge solid">Cápsula 2</span> de 2 · Conceptos clave</p>
       <h2 className="cap-bigtitle up" style={st(1)}>
-        Entiende la IA <span className="grad">por dentro</span>,<br />no solo cómo apretar botones
+        Domina la IA <span className="grad">como habilidad</span>,<br />no como un montón de apps
       </h2>
       <p className="cap-biglead up" style={st(2)}>
-        Seis paradas para dominar el lenguaje de la IA con ejemplos del día a día. Las apps cambian cada
-        pocos meses; los <b>fundamentos</b>, no.
+        Dominar IA no es memorizar herramientas: es entender modelos, datos, contexto, instrucciones,
+        límites, validación y criterio. Seis paradas con ejemplos del día a día.
       </p>
       <div className="method up" style={st(3)}>
         <span className="method-label">Cada concepto, en 4 partes</span>
