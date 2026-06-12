@@ -1,9 +1,9 @@
-import { createContext, useCallback, useEffect, useRef, useState } from 'react'
+import { createContext, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { useTheme } from '../lib/theme'
 import AecodeLogo from './AecodeLogo'
 
-export interface SlideDef { id: string; num: string; title: string; node: ReactNode }
+export interface SlideDef { id: string; num: string; title: string; node: ReactNode; section?: string }
 
 /** True sólo cuando la diapositiva es la actual: dispara count-up y re-anima gráficas. */
 export const SlideActiveContext = createContext(false)
@@ -63,9 +63,30 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
   const nums = computeNums(slides)
   const [cur, setCur] = useState(() => readHash(total))
   const [overview, setOverview] = useState(false)
+  const [query, setQuery] = useState('')
   const [theme, toggleTheme] = useTheme()
   const curRef = useRef(cur); curRef.current = cur
   const touch = useRef<{ x: number; y: number } | null>(null)
+  const sections = useMemo(() => {
+    const seen = new Set<string>()
+    return slides.reduce<Array<{ name: string; index: number }>>((acc, s, i) => {
+      const name = s.section || 'Inicio'
+      if (!seen.has(name)) { seen.add(name); acc.push({ name, index: i }) }
+      return acc
+    }, [])
+  }, [slides])
+  const curSectionIndex = useMemo(() => {
+    let sectionIndex = sections[0]?.index ?? 0
+    for (const s of sections) if (s.index <= cur) sectionIndex = s.index
+    return sectionIndex
+  }, [cur, sections])
+  const visibleSlides = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return slides.map((s, i) => ({ s, i }))
+    return slides.map((s, i) => ({ s, i })).filter(({ s }) => (
+      `${s.title} ${s.id} ${s.section ?? ''}`.toLowerCase().includes(q)
+    ))
+  }, [query, slides])
 
   const go = useCallback((i: number) => setCur(Math.max(0, Math.min(total - 1, i))), [total])
   const next = useCallback(() => go(curRef.current + 1), [go])
@@ -126,10 +147,14 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
           <span className="deck-brand-sub">State of AI in AEC</span>
         </button>
         <div className="deck-actions">
+          <select className="block-jump" value={curSectionIndex} onChange={(e) => go(Number(e.target.value))} aria-label="Ir a bloque">
+            {sections.map((s) => <option key={s.name} value={s.index}>{s.name}</option>)}
+          </select>
           <button className="icon-btn" onClick={() => setOverview((v) => !v)} aria-label="Índice de diapositivas" title="Índice (G)">▦</button>
           <button className="icon-btn" onClick={toggleTheme} aria-label={`Cambiar a tema ${theme === 'dark' ? 'claro' : 'oscuro'}`} title="Tema">{theme === 'dark' ? '☀' : '☾'}</button>
           <button className="icon-btn show-md" onClick={toggleFs} aria-label="Pantalla completa" title="Pantalla completa (F)">⤢</button>
           <a className="btn btn-cta deck-dl" href={PDF} target="_blank" rel="noopener" download><span aria-hidden="true">↓</span> PDF</a>
+          <a className="btn deck-html" href={`${import.meta.env.BASE_URL}index.html`} download="state-of-ai-aec.html">HTML</a>
         </div>
       </header>
 
@@ -161,18 +186,24 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
           <div className="overview-inner" onClick={(e) => e.stopPropagation()}>
             <div className="overview-head">
               <h2>Índice · {total} diapositivas</h2>
+              <label className="overview-search">
+                <span>Buscar</span>
+                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="concepto, modulo, RAG, BIM..." autoFocus />
+              </label>
               <button className="icon-btn" onClick={() => setOverview(false)} aria-label="Cerrar índice">✕</button>
             </div>
             <ol className="overview-grid">
-              {slides.map((s, i) => (
+              {visibleSlides.map(({ s, i }) => (
                 <li key={s.id}>
                   <button className={`ov-card ${i === cur ? 'active' : ''}`} onClick={() => { go(i); setOverview(false) }}>
                     <span className="ov-num tnum">{nums[i] || String(i + 1).padStart(2, '0')}</span>
+                    {s.section && <span className="ov-section">{s.section}</span>}
                     <span className="ov-title">{s.title}</span>
                   </button>
                 </li>
               ))}
             </ol>
+            {visibleSlides.length === 0 && <p className="overview-empty">No se encontraron slides para esa búsqueda.</p>}
           </div>
         </div>
       )}

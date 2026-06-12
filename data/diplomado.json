@@ -1,0 +1,544 @@
+[
+  {
+    "code": "M01",
+    "title": "Fundamentos Estratégicos de IA para el Sector AEC",
+    "question": "¿Cómo entender la IA con criterio técnico y detectar oportunidades reales en arquitectura, ingeniería y construcción?",
+    "objective": "Construir una base clara sobre IA, ML, Deep Learning, IA generativa, IA predictiva, multimodalidad y agentes aplicados al sector AEC.",
+    "deliverable": "Mapa de oportunidades de IA: listado priorizado de procesos AEC que pueden mejorarse, con problema, dato necesario, herramienta sugerida e impacto esperado.",
+    "hours": "8",
+    "tools": [
+      "ChatGPT",
+      "Claude",
+      "Gemini",
+      "NotebookLM"
+    ],
+    "units": [
+      {
+        "title": "Qué es IA y qué no es IA",
+        "hours": "3 h",
+        "capsules": [
+          "Definición formal de IA aplicada a problemas profesionales.",
+          "Diferencia entre software tradicional, automatización, analítica e IA.",
+          "IA débil, IA fuerte, IA generativa, IA predictiva e IA agéntica.",
+          "Casos simples para diferenciar IA real de automatización maquillada.",
+          "Errores comunes al vender o implementar IA en empresas AEC."
+        ],
+        "workshop": "Diagnóstico AI-AEC: el participante identifica 10 tareas de su entorno y decide cuáles sí conviene mejorar con IA, cuáles son solo automatización y cuáles no deberían tocarse todavía."
+      },
+      {
+        "title": "Evolución y conceptos técnicos esenciales",
+        "hours": "3 h",
+        "capsules": [
+          "De Turing, sistemas expertos y Machine Learning al boom de los LLM.",
+          "Diferencia entre IA, Machine Learning, Deep Learning y redes neuronales.",
+          "Modelos, datos, parámetros, tokens, embeddings y transformers.",
+          "Modelos multimodales y cambio del trabajo técnico.",
+          "Riesgos: alucinaciones, sesgos, dependencia, privacidad y mala interpretación."
+        ],
+        "workshop": "Glosario aplicado AECODE: traducir 20 conceptos técnicos de IA a ejemplos de obra, diseño, BIM, gestión o documentación."
+      },
+      {
+        "title": "Subcampos de IA aplicados a AEC",
+        "hours": "2 h",
+        "capsules": [
+          "NLP para documentos, normas, contratos, actas y expedientes.",
+          "Computer Vision para inspección, seguridad, avance y calidad de obra.",
+          "Machine Learning para predicción, clasificación, riesgos y productividad.",
+          "IA generativa para texto, imagen, video, diseño conceptual y comunicación.",
+          "Agentes de IA para ejecutar procesos conectados a herramientas."
+        ],
+        "workshop": "Matriz IA-AEC: cada participante conecta un problema real con el subcampo correcto, el tipo de dato, la herramienta y el valor esperado."
+      }
+    ]
+  },
+  {
+    "code": "M02",
+    "title": "Prompt Engineering, Asistentes y Productividad Profesional",
+    "question": "¿Cómo usar asistentes de IA con criterio profesional para aumentar productividad, calidad y velocidad?",
+    "objective": "Dominar prompts estructurados, comparación de modelos y flujos de productividad aplicados a tareas técnicas, comerciales, académicas y operativas.",
+    "deliverable": "Banco personal de prompts AEC + flujo diario de trabajo con IA para correos, informes, análisis, reuniones y coordinación.",
+    "hours": "8",
+    "tools": [
+      "ChatGPT",
+      "Claude",
+      "Gemini",
+      "Perplexity",
+      "DeepSeek"
+    ],
+    "units": [
+      {
+        "title": "Prompt Engineering aplicado a AEC",
+        "hours": "3 h",
+        "capsules": [
+          "Anatomía: rol, contexto, tarea, formato, restricciones y validación.",
+          "Prompt simple vs prompt profesional vs prompt para sistemas.",
+          "Técnicas: role prompting, critic prompting, refinamiento y verificación.",
+          "Prompts para ingeniería, obra, BIM, costos, informes y coordinación.",
+          "Cómo evitar respuestas genéricas, inventadas o poco accionables."
+        ],
+        "workshop": "Prompt Clinic AECODE: transformar prompts débiles en prompts profesionales reutilizables para informes, BIM, obra, costos y coordinación."
+      },
+      {
+        "title": "Batalla de asistentes",
+        "hours": "3 h",
+        "capsules": [
+          "ChatGPT, Claude, Gemini, Perplexity, DeepSeek y modelos especializados.",
+          "Criterios: razonamiento, contexto largo, documentos, código, búsqueda y multimodalidad.",
+          "Comparación por casos reales, no por opiniones.",
+          "Flujo recomendado: idear, contrastar, validar, documentar y ejecutar.",
+          "Criterio personal para seleccionar herramientas."
+        ],
+        "workshop": "Reto comparativo: resolver una misma tarea AEC con ChatGPT, Claude y Gemini, evaluando precisión, claridad, profundidad y utilidad real."
+      },
+      {
+        "title": "Productividad multimodal",
+        "hours": "2 h",
+        "capsules": [
+          "Correos, mensajes, actas, minutas, posts y propuestas.",
+          "Generación de imágenes, renders conceptuales y piezas visuales.",
+          "Producción audiovisual con IA para educación y comunicación técnica.",
+          "Asistentes de reuniones: transcripción, resumen, acuerdos y seguimiento.",
+          "Diseño de flujo diario AI-first."
+        ],
+        "workshop": "Kit de productividad AECODE: creación de prompts por rol para reuniones, correos, contenidos, minutas, propuestas y análisis técnico."
+      }
+    ]
+  },
+  {
+    "code": "M03",
+    "title": "Gestión Documental, Investigación e Informes Técnicos con IA",
+    "question": "¿Cómo convertir documentos técnicos en conocimiento útil, consultable y transformable en informes?",
+    "objective": "Procesar PDFs, normas, expedientes, contratos, papers, hojas de cálculo y fuentes web con trazabilidad.",
+    "deliverable": "Informe técnico o propuesta profesional generada con IA, con estructura, fuentes, hallazgos, validación y recomendaciones.",
+    "hours": "10",
+    "tools": [
+      "Claude",
+      "ChatGPT",
+      "Gemini",
+      "NotebookLM",
+      "Elicit",
+      "Zotero",
+      "Microsoft Copilot"
+    ],
+    "units": [
+      {
+        "title": "Lectura y extracción documental",
+        "hours": "4 h",
+        "capsules": [
+          "Carga y análisis de PDFs, normas, expedientes, bases, contratos y actas.",
+          "Extracción de requisitos, cantidades, riesgos, responsables y fechas.",
+          "Comparación entre documentos y detección de contradicciones.",
+          "Validación técnica contra criterios, normas o checklists.",
+          "Control de alucinaciones y trazabilidad de fuentes."
+        ],
+        "workshop": "Despiece documental: extraer requisitos, riesgos, cantidades, responsables, fechas y observaciones de un expediente o documento técnico real."
+      },
+      {
+        "title": "Hub de conocimiento",
+        "hours": "3 h",
+        "capsules": [
+          "Organización en Drive, Gmail, Notion, Obsidian o carpetas estructuradas.",
+          "NotebookLM para consultar documentos propios.",
+          "Zotero, Notero y gestores de referencias.",
+          "Sheets como base tabular para análisis y seguimiento.",
+          "Mención puntual: Microsoft Copilot para productividad documental en entornos Microsoft 365."
+        ],
+        "workshop": "Construcción de un hub documental consultable para un proyecto, curso o área, usando fuentes organizadas y preguntas guía."
+      },
+      {
+        "title": "Investigación e informes",
+        "hours": "3 h",
+        "capsules": [
+          "Deep Research, Perplexity, Gemini y ChatGPT para investigación.",
+          "Búsqueda de normativa, referencias, benchmarks y antecedentes.",
+          "Elicit y exploración de literatura académica.",
+          "Estructura de informes técnicos, propuestas y reportes ejecutivos.",
+          "Revisión final: evidencia, lenguaje técnico y formato."
+        ],
+        "workshop": "Informe asistido: convertir documentos, fuentes y hallazgos en una propuesta o reporte técnico claro para cliente, comité o equipo interno."
+      }
+    ]
+  },
+  {
+    "code": "M04",
+    "title": "Desarrollo de Aplicaciones, Webs y Dashboards AEC con IA",
+    "question": "¿Cómo crear prototipos funcionales, dashboards o aplicaciones AEC con IA?",
+    "objective": "Desarrollar soluciones digitales usando IA como copiloto de diseño, programación, depuración, publicación y mejora continua.",
+    "deliverable": "App, web o dashboard AEC publicado con URL compartible y documentación básica para mejorarlo después.",
+    "hours": "12",
+    "tools": [
+      "Streamlit",
+      "Replit",
+      "Lovable",
+      "Vercel",
+      "GitHub Pages",
+      "Python"
+    ],
+    "units": [
+      {
+        "title": "Dev, No-Code, Low-Code y Vibe Coding",
+        "hours": "4 h",
+        "capsules": [
+          "Diferencia entre desarrollo tradicional, no-code, low-code y vibe coding.",
+          "Construir software describiendo intención y contexto.",
+          "Estructura básica: interfaz, lógica, datos, estado y despliegue.",
+          "GitHub y control de versiones para no programadores.",
+          "Riesgos de crear apps sin arquitectura mínima."
+        ],
+        "workshop": "Prototipo rápido: crear una landing, miniapp o dashboard simple para explicar una solución AEC sin partir de una pantalla en blanco."
+      },
+      {
+        "title": "Programación funcional asistida",
+        "hours": "4 h",
+        "capsules": [
+          "Python mínimo para AEC: variables, datos, funciones, archivos y librerías.",
+          "Automatización de tareas técnicas con scripts generados por IA.",
+          "Debugging, explicación de código y refactorización.",
+          "Librerías: pandas, openpyxl, matplotlib, scikit-learn y Streamlit.",
+          "Buenas prácticas: carpetas, requirements y documentación."
+        ],
+        "workshop": "Script útil para AEC: procesar datos de obra, costos, metrados, planificación o reportes usando IA como copiloto técnico."
+      },
+      {
+        "title": "Apps, dashboards y despliegue",
+        "hours": "4 h",
+        "capsules": [
+          "Streamlit, Replit, Lovable, Vercel y GitHub Pages.",
+          "Pasar de un Excel a un dashboard interactivo.",
+          "Interfaz simple para usuarios técnicos.",
+          "Publicación, dominio, URL compartible y mejora continua.",
+          "Documentar el producto para futuras iteraciones con IA."
+        ],
+        "workshop": "Dashboard publicado: pasar de datos en Excel o CSV a una vista web interactiva que pueda compartirse con un equipo o cliente."
+      }
+    ]
+  },
+  {
+    "code": "M05",
+    "title": "Automatización de Procesos con Make, n8n, Power Automate e IA",
+    "question": "¿Cómo automatizar procesos reales conectando apps, datos, documentos y modelos de IA?",
+    "objective": "Diseñar workflows que reduzcan tareas repetitivas y automaticen entregables mediante lógica, integraciones y modelos de IA.",
+    "deliverable": "Workflow claro y replicable para automatizar una tarea real con Make, n8n o Power Automate, incluyendo entrada, lógica, salida y mantenimiento.",
+    "hours": "10",
+    "tools": [
+      "Make",
+      "n8n",
+      "Power Automate",
+      "Microsoft Copilot",
+      "Sheets",
+      "Gmail",
+      "Drive",
+      "Webhooks"
+    ],
+    "units": [
+      {
+        "title": "Fundamentos de automatización",
+        "hours": "3 h",
+        "capsules": [
+          "Trigger, acción, condición, dato y salida.",
+          "Automatización simple, RPA, workflow y agente.",
+          "Make vs n8n vs Power Automate: facilidad, control, ecosistema y escalabilidad.",
+          "Casos AEC: formularios, Gmail, Sheets, Drive, WhatsApp, Teams, SharePoint y reportes.",
+          "Microsoft Copilot como apoyo puntual para crear o ajustar flujos en entornos Microsoft 365."
+        ],
+        "workshop": "Mapa de automatización: elegir una tarea repetitiva y decidir si conviene resolverla con Make, n8n o Power Automate."
+      },
+      {
+        "title": "Automatización con Make",
+        "hours": "4 h",
+        "capsules": [
+          "Escenarios, módulos, conexiones y credenciales.",
+          "Formularios, correos, Google Sheets y notificaciones.",
+          "Automatización de registro, clasificación y respuesta.",
+          "Integración básica con asistentes de IA.",
+          "Errores comunes: duplicados, permisos, formatos y loops infinitos."
+        ],
+        "workshop": "Flujo operativo en Make: registrar solicitudes, clasificar información, actualizar una hoja y emitir una respuesta o notificación automática."
+      },
+      {
+        "title": "Introducción práctica a n8n",
+        "hours": "3 h",
+        "capsules": [
+          "Qué es n8n y cuándo usarlo frente a Make o Power Automate.",
+          "Nodos, conexiones, credenciales y ejecución paso a paso.",
+          "Webhook simple, lectura de datos y envío de resultado.",
+          "Uso básico de IA para resumir, clasificar o redactar dentro del flujo.",
+          "Cómo probar, documentar y dejar el workflow listo para mejora posterior."
+        ],
+        "workshop": "Primer workflow n8n: construir un flujo simple con entrada, condición, procesamiento con IA y salida visible para el usuario final."
+      }
+    ]
+  },
+  {
+    "code": "M06",
+    "title": "IA Aplicada al Negocio AEC: Marketing, Ventas y Marca Profesional",
+    "question": "¿Cómo usar IA para mejorar posicionamiento, prospección, ventas y marca profesional?",
+    "objective": "Aplicar IA al crecimiento comercial de empresas, estudios, consultores y profesionales AEC.",
+    "deliverable": "Sistema comercial o marca profesional potenciada con IA: contenido, propuesta de valor, activos visuales y flujo de seguimiento.",
+    "hours": "8",
+    "tools": [
+      "ChatGPT",
+      "Claude",
+      "Canva",
+      "Firefly",
+      "LinkedIn",
+      "Sheets",
+      "GPT Image 2"
+    ],
+    "units": [
+      {
+        "title": "IA para marketing y contenido AEC",
+        "hours": "3 h",
+        "capsules": [
+          "Estrategia de contenidos técnicos para arquitectura, ingeniería y construcción.",
+          "Posts, carruseles, newsletters, guiones y videos para autoridad comercial.",
+          "GPT Image 2 para piezas visuales, conceptos gráficos y campañas publicitarias AEC.",
+          "Renders conceptuales, piezas gráficas y variaciones creativas con IA.",
+          "Calendario editorial asistido por IA y métricas: alcance, conversión, autoridad y confianza."
+        ],
+        "workshop": "Campaña base AEC: crear un plan de contenidos mensual, una línea visual inicial y piezas listas para publicación o iteración."
+      },
+      {
+        "title": "IA para prospección, ventas y propuestas",
+        "hours": "3 h",
+        "capsules": [
+          "Identificación y clasificación de clientes potenciales.",
+          "Dolores del cliente y propuesta de valor.",
+          "Cotizaciones, propuestas técnicas y comerciales asistidas.",
+          "Seguimiento automatizado de correos y mensajes.",
+          "Lead, diagnóstico, propuesta, cierre y postventa."
+        ],
+        "workshop": "Sistema comercial AI-first: diseñar el flujo desde lead hasta cierre, incluyendo mensajes, propuesta, seguimiento y matriz de objeciones."
+      },
+      {
+        "title": "Marca profesional y empleabilidad",
+        "hours": "2 h",
+        "capsules": [
+          "Optimización de CV, LinkedIn y portafolio.",
+          "Storytelling técnico de proyectos y resultados.",
+          "Contenido para posicionarse como referente.",
+          "Preparación de entrevistas, postulaciones y networking.",
+          "Identidad profesional AI-enhanced."
+        ],
+        "workshop": "Rebranding profesional: reconstruir CV, LinkedIn y portafolio técnico con narrativa clara de especialización y resultados."
+      }
+    ]
+  },
+  {
+    "code": "M07",
+    "title": "IA Aplicada a Proyectos AEC: BIM, Lean, VDC, PMI y Obra",
+    "question": "¿Cómo aplicar IA en procesos técnicos y de gestión, desde BIM hasta obra y control de avance?",
+    "objective": "Conectar IA con procesos AEC de alto impacto: BIM, Lean, VDC, PMI, planificación, reportes, licitaciones y obra.",
+    "deliverable": "Caso AEC potenciado con IA: flujo, asistente, reporte, dashboard o automatización aplicada a BIM, obra o gestión.",
+    "hours": "12",
+    "tools": [
+      "Revit",
+      "Claude MCP",
+      "Nonica",
+      "PMI Infinity",
+      "MS Project",
+      "Excel"
+    ],
+    "units": [
+      {
+        "title": "IA para BIM, modelos y validación técnica",
+        "hours": "4 h",
+        "capsules": [
+          "IA + BIM: consulta, validación, extracción y revisión de modelos.",
+          "MCP y conexión de asistentes con herramientas técnicas.",
+          "Automatización en Revit: cantidades, parámetros y elementos.",
+          "Nonica e interfaces no-code para procesos BIM.",
+          "QA/QC asistido: reglas, checklists y validación normativa."
+        ],
+        "workshop": "Asistente BIM conceptual: diseñar un flujo para consultar, extraer, revisar o validar información de un modelo o documentación BIM."
+      },
+      {
+        "title": "IA para obra, planificación y control",
+        "hours": "4 h",
+        "capsules": [
+          "Cronogramas de obra asistidos por IA.",
+          "Curva S, valorizaciones, metrados y reportes mensuales.",
+          "Informes fotográficos y reportes de avance.",
+          "Análisis de licitaciones, bases y consultas.",
+          "Control documentario de obra con IA."
+        ],
+        "workshop": "Frente de obra automatizado: elegir cronograma, valorización, reporte fotográfico o licitación y convertirlo en flujo asistido por IA."
+      },
+      {
+        "title": "IA para gestión PMI, Lean y VDC",
+        "hours": "4 h",
+        "capsules": [
+          "Prompts para alcance, cronograma, costos, riesgos y comunicaciones.",
+          "IA bajo enfoque PMI: planificación, seguimiento y control.",
+          "Lean/VDC: restricciones, producción, coordinación y decisiones.",
+          "Creación de GPT o asistente gestor de proyectos.",
+          "Tablero de control AI-first para proyectos AEC."
+        ],
+        "workshop": "Gestor IA de proyectos: crear un asistente base para alcance, cronograma, costos, riesgos, restricciones y comunicaciones."
+      }
+    ]
+  },
+  {
+    "code": "M08",
+    "title": "Machine Learning Aplicado a Datos de Proyectos AEC",
+    "question": "¿Cómo entrenar y supervisar modelos de ML para problemas técnicos de predicción o clasificación?",
+    "objective": "Comprender el ciclo completo de ML desde problema y datos hasta modelo, evaluación y despliegue funcional.",
+    "deliverable": "Modelo ML funcional desplegado como prototipo de decisión para clasificar, predecir o priorizar una situación de proyecto.",
+    "hours": "10",
+    "tools": [
+      "Python",
+      "Scikit-Learn",
+      "XGBoost",
+      "Streamlit",
+      "Colab"
+    ],
+    "units": [
+      {
+        "title": "Fundamentos de Machine Learning para AEC",
+        "hours": "3 h",
+        "capsules": [
+          "Qué es Machine Learning y qué problemas resuelve.",
+          "Aprendizaje supervisado, no supervisado y por refuerzo.",
+          "Clasificación, regresión, clustering y anomalías.",
+          "Variables, etiquetas, features y objetivo del modelo.",
+          "Flujo ML aplicado a proyectos reales."
+        ],
+        "workshop": "Diseño de caso ML: definir problema, datos disponibles, variable objetivo, métrica y decisión que el modelo debe apoyar."
+      },
+      {
+        "title": "Preparación y análisis de datos",
+        "hours": "3 h",
+        "capsules": [
+          "Datos de obra, planificación, costos, calidad, sensores o reportes.",
+          "Datos crudos, limpieza, normalización y vacíos.",
+          "Análisis exploratorio con gráficos.",
+          "Feature engineering aplicado a avance de obra.",
+          "Separación de datos: entrenamiento, validación y prueba."
+        ],
+        "workshop": "Laboratorio de datos: limpiar y explorar un dataset de avance de obra para encontrar patrones antes de entrenar el modelo."
+      },
+      {
+        "title": "Entrenamiento, evaluación y despliegue",
+        "hours": "4 h",
+        "capsules": [
+          "Algoritmo vs modelo entrenado.",
+          "Árboles, SVM, Random Forest, XGBoost y redes simples.",
+          "Accuracy, precision, recall, F1 y matriz de confusión.",
+          "Overfitting, underfitting y validación cruzada.",
+          "Despliegue del modelo en una interfaz funcional."
+        ],
+        "workshop": "Modelo publicado: entrenar y desplegar un clasificador de avance de obra como normal, retrasado o adelantado."
+      }
+    ]
+  },
+  {
+    "code": "M09",
+    "title": "Visión por Computador Aplicada a Seguridad, Avance y Calidad de Obra",
+    "question": "¿Cómo usar imágenes y videos para automatizar inspección, seguimiento y evaluación visual?",
+    "objective": "Aplicar visión computacional para clasificación, detección, segmentación e inspección en imágenes o videos de obra.",
+    "deliverable": "Modelo de visión computacional aplicado a seguridad, calidad o avance de obra, probado en imágenes o video.",
+    "hours": "12",
+    "tools": [
+      "Python",
+      "YOLO",
+      "Google Colab",
+      "VSCode",
+      "Roboflow"
+    ],
+    "units": [
+      {
+        "title": "Fundamentos de Computer Vision para AEC",
+        "hours": "4 h",
+        "capsules": [
+          "Qué es visión por computador y por qué es clave en construcción.",
+          "Clasificación, detección, segmentación semántica y de instancias.",
+          "CNN explicadas con analogías visuales.",
+          "Casos: EPP, grietas, maquinaria, avance, calidad y daños.",
+          "Métricas: precisión, recall, mAP e IoU."
+        ],
+        "workshop": "Mapa visual de oportunidades: seleccionar casos donde imágenes o videos pueden reducir inspección manual, errores o tiempo de reporte."
+      },
+      {
+        "title": "Dataset, etiquetado y preparación",
+        "hours": "4 h",
+        "capsules": [
+          "Qué es un dataset de visión y cómo se estructura.",
+          "Fuentes: obra, cámaras, drones, inspecciones y bancos públicos.",
+          "Etiquetado: clases, bounding boxes, segmentación y control de calidad.",
+          "Data augmentation y balance de clases.",
+          "Introducción a YOLO como modelo de detección."
+        ],
+        "workshop": "Dataset EPP: organizar, etiquetar y preparar imágenes para detectar casco, chaleco u otros elementos de seguridad."
+      },
+      {
+        "title": "Entrenamiento y despliegue",
+        "hours": "4 h",
+        "capsules": [
+          "Flujo de entrenamiento en Google Colab o entorno local.",
+          "Configuración del modelo, dataset y parámetros.",
+          "Interpretación de resultados y métricas.",
+          "Prueba en imágenes, videos grabados y cámara en tiempo real.",
+          "Limitaciones: iluminación, ángulos, sesgos y falsos positivos."
+        ],
+        "workshop": "Detector funcional: entrenar y probar un modelo de detección en imágenes, video grabado o cámara en tiempo real."
+      }
+    ]
+  },
+  {
+    "code": "M10",
+    "title": "Asistentes, Agentes y Estrategia AI-First para el Futuro AEC",
+    "question": "¿Cómo diseñar asistentes, agentes y sistemas AI-first para empresas y proyectos AEC?",
+    "objective": "Construir visión moderna de asistentes, agentes, RAG, APIs, MCP, gobierno de IA y adopción empresarial.",
+    "deliverable": "Proyecto integrador AI-AEC: solución funcional o semi-funcional para un problema real, con alcance, flujo, herramientas, riesgos y plan de mejora.",
+    "hours": "10",
+    "tools": [
+      "ChatGPT",
+      "Claude",
+      "Gemini",
+      "Google AI Studio",
+      "MCP",
+      "Codex",
+      "Claude Code",
+      "Claude Cowork",
+      "Gemini Spark"
+    ],
+    "units": [
+      {
+        "title": "Chatbot, asistente y agente",
+        "hours": "3 h",
+        "capsules": [
+          "Chatbot: responde.",
+          "Asistente: responde con contexto y usa herramientas.",
+          "Agente: planifica, ejecuta, verifica y aprende.",
+          "Arquitectura: modelo, instrucciones, memoria, herramientas, datos y permisos.",
+          "Riesgos: autonomía mal definida, errores, seguridad y costo."
+        ],
+        "workshop": "Arquitectura de asistente AEC: definir rol, fuentes, herramientas, límites, permisos, memoria y criterios de validación."
+      },
+      {
+        "title": "RAG, APIs, MCP y herramientas conectadas",
+        "hours": "3 h",
+        "capsules": [
+          "Qué es RAG y cuándo usarlo en documentos técnicos.",
+          "Bases vectoriales, embeddings y búsqueda semántica.",
+          "APIs para conectar asistentes con sistemas externos.",
+          "MCP como estándar emergente para conectar agentes con herramientas.",
+          "Casos: Revit, Drive, Gmail, Sheets, bases documentales y dashboards."
+        ],
+        "workshop": "Asistente conectado: diseñar un sistema que consulte documentos y ejecute una acción controlada sobre una herramienta externa."
+      },
+      {
+        "title": "Agentes de código, cowork y futuro AI-first",
+        "hours": "4 h",
+        "capsules": [
+          "Claude Code, Codex y agentes de desarrollo asistido para construir, depurar y desplegar software.",
+          "Claude Cowork como referencia de trabajo asistido sobre archivos, proyectos y tareas de conocimiento.",
+          "De prompt engineering a context engineering y loop engineering.",
+          "Gobierno de IA: privacidad, roles, permisos, validación, trazabilidad y límites de autonomía.",
+          "Cierre de frontera: Gemini Spark y nuevos agentes personales como señales del futuro AI-first."
+        ],
+        "workshop": "Roadmap AI-first: priorizar quick wins, agentes futuros, riesgos, datos requeridos y próximos experimentos para empresa, área o proyecto."
+      }
+    ]
+  }
+]

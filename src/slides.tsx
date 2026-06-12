@@ -15,9 +15,13 @@ import type { Figure as Fig } from './lib/chartOptions'
 import global from '../data/global.json'
 import sources from '../data/sources.json'
 import survey from '../data/survey.json'
+import diplomadoRaw from '../data/diplomado.json'
 import worldRaw from '../data/world.json'
 
 const W: any = worldRaw
+type DiplomaUnit = { title: string; hours: string; capsules: string[]; workshop: string }
+type DiplomaModule = { code: string; title: string; question: string; objective: string; deliverable: string; hours: string; tools: string[]; units: DiplomaUnit[] }
+const DIPLOMADO = diplomadoRaw as DiplomaModule[]
 const PDF = `${import.meta.env.BASE_URL}Informe-IA-AEC-2026.pdf`
 const st = (i: number): CSSProperties => ({ ['--i' as any]: i })
 
@@ -115,7 +119,7 @@ function Cover() {
         Estado actual de la <span className="grad">Inteligencia Artificial</span><br />y oportunidad en AEC
       </h1>
       <p className="cover-lead up" style={st(3)}>
-        Una masterclass para entender qué cambió en la IA, qué significan los modelos actuales y cómo convertirla en habilidad, workflow y evidencia para arquitectura, ingeniería y construcción.
+        100 slides para entender qué cambió en la IA, qué significan los modelos actuales y cómo convertirla en habilidad, workflow y evidencia para arquitectura, ingeniería y construcción.
       </p>
       <div className="cover-meta up" style={st(4)}>
         <span className="chip">AI Construction Summit</span>
@@ -918,6 +922,76 @@ function TakeawaysSlide() {
   )
 }
 
+function DiplomaModuleSlide({ module }: { module: DiplomaModule }) {
+  return (
+    <>
+      <Head eyebrow={`Diplomado AI AEC · ${module.code}`} title={module.title}
+        lead={module.question || 'Modulo del diplomado orientado a llevar IA desde concepto a evidencia aplicable en el sector AEC.'} />
+      <div className="diploma-overview up" style={st(1)}>
+        <article className="diploma-hero">
+          <span>{module.code}</span>
+          <h3>{module.hours} horas</h3>
+          <p>{module.objective}</p>
+        </article>
+        <article className="diploma-deliverable">
+          <b>Entregable</b>
+          <p>{module.deliverable}</p>
+        </article>
+        <div className="diploma-units">
+          {module.units.map((u, i) => (
+            <article key={u.title} style={st(i + 2)}>
+              <span>{String(i + 1).padStart(2, '0')}</span>
+              <h3>{u.title}</h3>
+              <p>{u.hours} · {u.capsules.length} capsulas</p>
+            </article>
+          ))}
+        </div>
+        <div className="diploma-tools">
+          {module.tools.slice(0, 9).map((tool) => <span key={tool}>{tool}</span>)}
+        </div>
+      </div>
+    </>
+  )
+}
+
+function DiplomaUnitSlide({ module, unit, index }: { module: DiplomaModule; unit: DiplomaUnit; index: number }) {
+  return (
+    <>
+      <Head eyebrow={`${module.code} · Unidad ${index + 1}`} title={unit.title}
+        lead={`Modulo: ${module.title}. Esta unidad convierte el concepto en capsulas concretas, taller y evidencia accionable.`} />
+      <div className="diploma-unit up" style={st(1)}>
+        <div className="unit-workshop">
+          <span>Taller aplicado</span>
+          <h3>{unit.hours}</h3>
+          <p>{unit.workshop}</p>
+        </div>
+        <ol className="unit-capsules">
+          {unit.capsules.map((c, i) => (
+            <li key={c} style={st(i + 1)}>
+              <span>{String(i + 1).padStart(2, '0')}</span>
+              <p>{c}</p>
+            </li>
+          ))}
+        </ol>
+        <PresenterNote>
+          <b>Lectura AECODE:</b> explicar el concepto, mostrar una demo corta y cerrar con una pregunta de aplicacion: que dato, documento o proceso real usarian para evidenciar esta skill.
+        </PresenterNote>
+      </div>
+    </>
+  )
+}
+
+const diplomaSlides: SlideDef[] = DIPLOMADO.flatMap((module) => [
+  { id: `diploma-${module.code.toLowerCase()}`, num: '00', title: `${module.code} · ${module.title}`, section: '07 Diplomado AI F2-F3', node: <DiplomaModuleSlide module={module} /> },
+  ...module.units.map((unit, index) => ({
+    id: `diploma-${module.code.toLowerCase()}-u${index + 1}`,
+    num: '00',
+    title: `${module.code}.${index + 1} · ${unit.title}`,
+    section: '07 Diplomado AI F2-F3',
+    node: <DiplomaUnitSlide module={module} unit={unit} index={index} />,
+  })),
+])
+
 function ClosingSlide() {
   return (
     <div className="closing">
@@ -953,58 +1027,45 @@ function ReferencesSlide() {
   )
 }
 
-export const slides: SlideDef[] = [
+const baseSlides: SlideDef[] = [
   { id: 'cover', num: '', title: 'Portada', node: <Cover /> },
   { id: 'narrativa', num: '00', title: 'Hilo conductor', node: <NarrativeMapSlide /> },
-  { id: 'promesa', num: '00', title: 'Que vas a entender', node: <WhatYouWillUnderstandSlide /> },
   { id: 'paradoja', num: '00', title: 'La paradoja del AEC', node: <ParadoxSlide /> },
   { id: 'momento-2026', num: '00', title: '2026: IA como capa operativa', node: <CurrentMomentSlide /> },
   { id: 'adopcion', num: '00', title: 'Adopcion mas rapida de la historia', node: <AdoptionSpeedSlide /> },
-  { id: 'poblacion', num: '00', title: 'Uso masivo de IA generativa', node: <PopulationSlide /> },
   { id: 'estado', num: '00', title: 'Estado de la IA en empresas', node: <StateSlide /> },
   { id: 'fx-escala', num: '⚡', title: 'Flash · ¿Usar es escalar?', node: <FlashSlide item={FLASH.escala} /> },
   { id: 'modelos-actuales', num: '00', title: 'Mapa de modelos actuales', node: <ModelLandscapeSlide /> },
   { id: 'razonamiento', num: '00', title: 'IA rapida vs IA que piensa mas', node: <ReasoningFastSlide /> },
   { id: 'benchmarks', num: '00', title: 'Benchmarks: capacidad medida', node: <BenchmarksSlide /> },
   { id: 'hle', num: '00', title: 'Humanitys Last Exam', node: <HleSlide /> },
-  { id: 'fx-hle', num: '⚡', title: 'Dato clave · 44,7%', node: <FlashSlide item={FLASH.hle} /> },
-  { id: 'frontera', num: '00', title: 'La frontera cambia cada semana', node: <FrontierSlide /> },
   { id: 'breakthroughs', num: '00', title: 'Anecdotas cientificas y tecnicas', node: <BreakthroughsSlide /> },
   { id: 'historia', num: '00', title: 'Historia de la IA', node: <HistorySlide /> },
   { id: 'compute', num: '00', title: 'Computo: motor de la curva', node: <ComputeSlide /> },
-  { id: 'fx-computo', num: '⚡', title: 'Flash · La exponencial', node: <FlashSlide item={FLASH.computo} /> },
   { id: 'genai', num: '00', title: 'Como funciona la IA generativa', node: <GenAISlide /> },
   { id: 'conceptos', num: '00', title: 'Chatbot, asistente, agente y workflow', node: <ConceptsSlide /> },
   { id: 'fx-alucinacion', num: '⚡', title: 'Flash · El artículo 47', node: <FlashSlide item={FLASH.alucinacion} /> },
   { id: 'cap-cimientos', num: '00', title: 'IA, ML, deep learning y modelo', node: <CapCimientos /> },
   { id: 'cap-lenguaje', num: '00', title: 'LLM, prompt y contexto', node: <CapLenguaje /> },
   { id: 'cap-tokens', num: '00', title: 'Tokens y ventana de contexto', node: <CapTokens /> },
-  { id: 'fx-ventana', num: '⚡', title: 'Flash · Las 800 páginas', node: <FlashSlide item={FLASH.ventana} /> },
   { id: 'prompt-profesional', num: '00', title: 'Prompt profesional', node: <PromptProfessionalSlide /> },
   { id: 'rag-aec', num: '00', title: 'RAG para documentos AEC', node: <RagAecSlide /> },
   { id: 'cap-expertos', num: '00', title: 'Fine-tuning vs RAG', node: <CapExpertos /> },
   { id: 'fx-ragft', num: '⚡', title: 'Flash · Postura A o B', node: <FlashSlide item={FLASH.ragft} /> },
   { id: 'cap-colaborador', num: '00', title: 'De herramienta a agente', node: <CapColaborador /> },
-  { id: 'microvideos', num: '00', title: 'Loops conceptuales', node: <ConceptVideoLabSlide /> },
   { id: 'herramientas', num: '00', title: 'Tablero de herramientas IA', node: <ToolboardSlide /> },
   { id: 'seleccion-modelo', num: '00', title: 'Como elegir herramienta', node: <ModelSelectionSlide /> },
   { id: 'pago', num: '00', title: 'Cuanto cuesta usar IA', node: <PricingSlide /> },
-  { id: 'fx-precio', num: '⚡', title: 'Dato clave · −50%', node: <FlashSlide item={FLASH.precio} /> },
-  { id: 'productividad-personal', num: '00', title: 'Productividad personal', node: <ProductivityPersonalSlide /> },
   { id: 'empleos', num: '00', title: 'Empleo y nuevas habilidades', node: <JobsSlide /> },
-  { id: 'fx-empleos', num: '⚡', title: 'Flash · ¿Destruye empleos?', node: <FlashSlide item={FLASH.empleos} /> },
   { id: 'mercado', num: '00', title: 'Tamaño de mercado IA', node: <MarketSlide /> },
-  { id: 'capital-signal', num: '00', title: 'La ultima milla AEC', node: <CapitalSignalSlide /> },
   { id: 'enia', num: '00', title: 'ENIA 2026-2030', node: <EniaSlide /> },
   { id: 'latam', num: '00', title: 'Oportunidad LATAM', node: <LatamOpportunitySlide /> },
   { id: 'fx-latam', num: '⚡', title: 'Para la sala · ¿Creadores o consumidores?', node: <FlashSlide item={FLASH.latam} /> },
   { id: 'aec-section', num: '', title: 'AEC: punto de inflexion', node: <AecSectionSlide /> },
   { id: 'brecha-aec', num: '00', title: 'Potencial vs uso real en AEC', node: <AecGapSlide /> },
   { id: 'productividad', num: '00', title: 'Productividad en construccion', node: <ProductivitySlide /> },
-  { id: 'fx-productividad', num: '⚡', title: 'Flash · 0,7%', node: <FlashSlide item={FLASH.productividad} /> },
   { id: 'aec-state', num: '00', title: 'Madurez AEC', node: <AecStateSlide /> },
   { id: 'aec-labor', num: '00', title: 'Urgencia laboral AEC', node: <AecLaborSlide /> },
-  { id: 'emerging', num: '00', title: 'Stack tecnologico AEC', node: <EmergingSlide /> },
   { id: 'data-journey', num: '00', title: 'Datos AEC', node: <DataJourneySlide /> },
   { id: 'fx-data', num: '⚡', title: 'Dato clave · 96%', node: <FlashSlide item={FLASH.data} /> },
   { id: 'usecase-map', num: '00', title: 'Mapa de casos de uso AEC', node: <AecUseCaseMapSlide /> },
@@ -1018,14 +1079,31 @@ export const slides: SlideDef[] = [
   { id: 'barreras', num: '00', title: 'Barreras de adopcion', node: <BarriersSlide /> },
   { id: 'fx-barrera', num: '⚡', title: 'Síntesis · La barrera real', node: <FlashSlide item={FLASH.barrera} /> },
   { id: 'skills', num: '00', title: 'IA como habilidad', node: <SkillsSlide /> },
-  { id: 'maturity', num: '00', title: 'Madurez IA AECODE', node: <MaturityModelSlide /> },
   { id: 'skill-passport', num: '00', title: 'Skill Passport IA', node: <SkillPassportSlide /> },
   { id: 'fx-workflow', num: '⚡', title: 'Síntesis · Validación', node: <FlashSlide item={FLASH.workflow} /> },
   { id: 'survey-radar', num: '00', title: 'Radar AECODE 2026', node: <SurveyRadarSlide /> },
   { id: 'research-questions', num: '00', title: 'Preguntas de investigacion', node: <ResearchQuestionsSlide /> },
   { id: 'acciones', num: '00', title: 'Jugada por actor', node: <ActionSlide /> },
   { id: 'summit-bridge', num: '00', title: 'Puente al AI Construction Summit', node: <SummitBridgeSlide /> },
+  ...diplomaSlides,
   { id: 'takeaways', num: '00', title: 'Diez ideas clave', node: <TakeawaysSlide /> },
   { id: 'cierre', num: '', title: 'Cierre', node: <ClosingSlide /> },
   { id: 'referencias', num: '00', title: 'Referencias', node: <ReferencesSlide /> },
 ]
+
+function sectionForSlide(slide: SlideDef, index: number) {
+  if (slide.section) return slide.section
+  const n = index + 1
+  if (n <= 5) return '01 Apertura'
+  if (n <= 18) return '02 Estado IA 2026'
+  if (n <= 29) return '03 Fundamentos IA'
+  if (n <= 35) return '04 Mercado y ENIA'
+  if (n <= 50) return '05 AEC y workflows'
+  if (n <= 57) return '06 Radar y Summit'
+  return '08 Cierre y fuentes'
+}
+
+export const slides: SlideDef[] = baseSlides.map((slide, index) => ({
+  ...slide,
+  section: sectionForSlide(slide, index),
+}))
