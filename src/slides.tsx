@@ -15,14 +15,9 @@ import type { Figure as Fig } from './lib/chartOptions'
 import global from '../data/global.json'
 import sources from '../data/sources.json'
 import survey from '../data/survey.json'
-import diplomadoRaw from '../data/diplomado.json'
 import worldRaw from '../data/world.json'
 
 const W: any = worldRaw
-type DiplomaUnit = { title: string; hours: string; capsules: string[]; workshop: string }
-type DiplomaModule = { code: string; title: string; question: string; objective: string; deliverable: string; hours: string; tools: string[]; units: DiplomaUnit[] }
-const DIPLOMADO = diplomadoRaw as DiplomaModule[]
-const PDF = `${import.meta.env.BASE_URL}Informe-IA-AEC-2026.pdf`
 const st = (i: number): CSSProperties => ({ ['--i' as any]: i })
 
 function Head({ eyebrow, title, lead }: { eyebrow: string; title: ReactNode; lead?: ReactNode }) {
@@ -922,75 +917,540 @@ function TakeawaysSlide() {
   )
 }
 
-function DiplomaModuleSlide({ module }: { module: DiplomaModule }) {
+type KnowledgeCard = {
+  id: string
+  group: string
+  title: string
+  lead: string
+  concept: string
+  compare: string
+  aec: string
+  tip: string
+  tags: string[]
+  mode?: 'map' | 'compare' | 'lab' | 'risk'
+}
+
+const KNOWLEDGE: KnowledgeCard[] = [
+  {
+    id: 'capas-ia',
+    group: 'Fundamentos',
+    title: 'Capas de la inteligencia artificial',
+    lead: 'IA no es una sola tecnología: es una familia de métodos que aprenden, predicen, generan y ejecutan tareas.',
+    concept: 'IA es el paraguas. Machine learning aprende patrones desde datos. Deep learning usa redes neuronales profundas. IA generativa produce texto, imagen, audio, código o video a partir de patrones aprendidos.',
+    compare: 'Regla simple: si el sistema sigue reglas fijas, es automatización clásica; si aprende de datos, entra en ML; si crea contenido nuevo, hablamos de IA generativa.',
+    aec: 'En AEC, estas capas aparecen en estimación de costos, revisión documental, detección visual en obra, generación de informes, planificación y asistentes técnicos.',
+    tip: 'Antes de elegir herramienta, nombra la tarea: clasificar, predecir, generar, buscar, comparar o ejecutar. Esa palabra define el tipo de IA que necesitas.',
+    tags: ['IA', 'ML', 'Deep Learning', 'GenAI'],
+    mode: 'map',
+  },
+  {
+    id: 'generativa-predictiva-agentica',
+    group: 'Fundamentos',
+    title: 'IA generativa, predictiva y agéntica',
+    lead: 'Tres usos distintos que suelen mezclarse en conversaciones comerciales, pero resuelven problemas diferentes.',
+    concept: 'La IA generativa crea contenido; la predictiva estima probabilidades o resultados futuros; la agéntica coordina pasos, herramientas y decisiones para completar un flujo.',
+    compare: 'Generativa: redacta un informe. Predictiva: estima riesgo de retraso. Agéntica: revisa documentos, consulta datos, genera hallazgos y prepara una respuesta trazable.',
+    aec: 'Un proyecto maduro puede usar las tres: generar actas, predecir desviaciones y automatizar seguimiento de RFIs o restricciones.',
+    tip: 'No vendas todo como “agente”. Si solo responde texto, es asistente; si toma pasos con herramientas y control, empieza a ser agente.',
+    tags: ['Generativa', 'Predictiva', 'Agentes', 'Workflow'],
+    mode: 'compare',
+  },
+  {
+    id: 'modelo',
+    group: 'Fundamentos',
+    title: 'Qué es un modelo de IA',
+    lead: 'Un modelo no es una base de datos ni una persona: es un sistema estadístico entrenado para transformar entradas en salidas útiles.',
+    concept: 'Durante el entrenamiento, el modelo ajusta millones o billones de parámetros para reconocer patrones. En uso, recibe una entrada y genera una salida probable según contexto, instrucciones y datos disponibles.',
+    compare: 'Un buscador recupera páginas existentes. Un modelo generativo compone una respuesta nueva. Por eso puede sonar convincente incluso cuando se equivoca.',
+    aec: 'Cuando pides revisar una especificación técnica, el modelo no “sabe” tu contrato completo salvo que le entregues contexto verificable.',
+    tip: 'Trata al modelo como analista junior muy rápido: útil para acelerar, pero siempre necesita contexto, criterios y revisión profesional.',
+    tags: ['Modelo', 'Parámetros', 'Inferencia', 'Contexto'],
+    mode: 'map',
+  },
+  {
+    id: 'tokens-contexto',
+    group: 'Fundamentos',
+    title: 'Tokens y ventana de contexto',
+    lead: 'La IA no lee como una persona: divide el contenido en fragmentos llamados tokens y trabaja dentro de una ventana limitada.',
+    concept: 'Un token puede ser una palabra corta, parte de una palabra o signo. La ventana de contexto define cuánto texto puede considerar el modelo en una conversación o tarea.',
+    compare: 'Más ventana permite cargar más información, pero no garantiza mejor razonamiento. Documentos largos mal organizados producen respuestas largas y poco confiables.',
+    aec: 'Para contratos, expedientes o memorias BIM, conviene separar por secciones, fechas, disciplina, versión y objetivo de revisión.',
+    tip: 'Cuando cargues documentos extensos, pide primero índice, supuestos y zonas de incertidumbre. Luego recién pide conclusiones.',
+    tags: ['Tokens', 'Contexto', 'Documentos', 'Precisión'],
+    mode: 'lab',
+  },
+  {
+    id: 'embeddings',
+    group: 'Fundamentos',
+    title: 'Embeddings: convertir significado en coordenadas',
+    lead: 'Los embeddings permiten que la IA compare ideas por significado, no solo por palabras exactas.',
+    concept: 'Un embedding transforma texto, imágenes o datos en vectores numéricos. Si dos fragmentos tienen significado parecido, quedan cerca en ese espacio.',
+    compare: 'Búsqueda tradicional: encuentra “concreto”. Búsqueda semántica: también encuentra “hormigón”, “resistencia f’c” o “mezcla estructural” si el contexto coincide.',
+    aec: 'Sirve para encontrar cláusulas similares, detalles técnicos repetidos, riesgos en memorias o consultas históricas de proyectos.',
+    tip: 'La búsqueda semántica mejora si el documento está limpio, con títulos claros, unidades, metadatos y secciones bien separadas.',
+    tags: ['Embeddings', 'Búsqueda semántica', 'Vector', 'RAG'],
+    mode: 'map',
+  },
+  {
+    id: 'rag',
+    group: 'Documentos',
+    title: 'RAG: responder con documentos propios',
+    lead: 'RAG conecta un modelo generativo con fuentes internas para reducir respuestas inventadas y mejorar trazabilidad.',
+    concept: 'El sistema busca fragmentos relevantes en una base documental y se los entrega al modelo como contexto para responder.',
+    compare: 'Chat libre: responde desde entrenamiento general. RAG: responde con base en tus expedientes, normas, actas, contratos o lecciones aprendidas.',
+    aec: 'Permite asistentes para especificaciones, RFIs, submittals, contratos, procedimientos de calidad y manuales internos.',
+    tip: 'Un buen RAG depende más de curaduría documental que de magia del modelo: naming, versión, fuente, fecha y permisos importan.',
+    tags: ['RAG', 'Fuentes', 'Trazabilidad', 'Contratos'],
+    mode: 'lab',
+  },
+  {
+    id: 'fine-tuning',
+    group: 'Documentos',
+    title: 'Fine-tuning: ajustar comportamiento, no memorizar todo',
+    lead: 'El fine-tuning sirve para especializar estilo, formato o patrones de respuesta, pero no reemplaza una base documental viva.',
+    concept: 'Consiste en entrenar adicionalmente un modelo con ejemplos para que responda de una forma más consistente.',
+    compare: 'RAG es mejor para conocimiento cambiante. Fine-tuning es mejor para tono, clasificación, formato repetible o decisiones con ejemplos estables.',
+    aec: 'Puede ayudar a clasificar incidencias, etiquetar riesgos, normalizar reportes o producir formatos internos con consistencia.',
+    tip: 'Si la información cambia cada semana, usa RAG. Si el patrón de respuesta es estable y repetitivo, evalúa fine-tuning.',
+    tags: ['Fine-tuning', 'RAG', 'Clasificación', 'Formato'],
+    mode: 'compare',
+  },
+  {
+    id: 'prompt-spec',
+    group: 'Prompting',
+    title: 'El prompt profesional es una especificación de trabajo',
+    lead: 'Prompting no es escribir bonito: es definir una tarea con contexto, criterio, formato y límites.',
+    concept: 'Un buen prompt alinea rol, objetivo, insumos, pasos, restricciones, formato de salida y criterio de calidad.',
+    compare: 'Prompt débil: “haz un informe”. Prompt fuerte: “actúa como coordinador BIM, revisa estas observaciones, clasifica por disciplina, riesgo y acción sugerida”.',
+    aec: 'Funciona para actas, minutas, matrices de riesgos, comparativos de propuestas, revisión de especificaciones y resúmenes ejecutivos.',
+    tip: 'Usa esta fórmula: rol + contexto + tarea + datos + formato + criterio + validación.',
+    tags: ['Prompt', 'Especificación', 'Formato', 'Criterio'],
+    mode: 'lab',
+  },
+  {
+    id: 'contexto',
+    group: 'Prompting',
+    title: 'Contexto útil: lo que la IA necesita para no adivinar',
+    lead: 'La mayoría de errores no vienen de “mala IA”, sino de instrucciones incompletas y datos ambiguos.',
+    concept: 'Contexto útil incluye propósito, audiencia, etapa del proyecto, disciplina, restricciones, fuentes, unidades y qué no debe asumir.',
+    compare: 'Sin contexto, la IA optimiza una respuesta genérica. Con contexto, puede adaptar nivel técnico, formato, tono y prioridades.',
+    aec: 'No es lo mismo un resumen para gerencia, una respuesta a supervisión, una matriz para obra o una revisión contractual.',
+    tip: 'Agrega siempre: “si falta información, lista supuestos y preguntas antes de concluir”.',
+    tags: ['Contexto', 'Supuestos', 'Audiencia', 'AEC'],
+    mode: 'risk',
+  },
+  {
+    id: 'salida-estructurada',
+    group: 'Prompting',
+    title: 'Salidas estructuradas: tablas, matrices y JSON',
+    lead: 'La IA se vuelve más útil cuando produce resultados que pueden revisarse, copiarse, filtrarse o automatizarse.',
+    concept: 'Una salida estructurada obliga al modelo a organizar hallazgos en campos: categoría, prioridad, evidencia, responsable, acción y fecha.',
+    compare: 'Texto largo sirve para explicar. Tabla sirve para decidir. JSON sirve para integrar con sistemas o automatizaciones.',
+    aec: 'Una revisión de planos puede salir como matriz de interferencias, matriz de riesgos o backlog de acciones por disciplina.',
+    tip: 'Pide columnas exactas y ejemplos de una fila ideal. Eso reduce ambigüedad y acelera revisión.',
+    tags: ['Tablas', 'JSON', 'Matriz', 'Automatización'],
+    mode: 'lab',
+  },
+  {
+    id: 'razonamiento',
+    group: 'Razonamiento',
+    title: 'IA rápida vs IA que razona más',
+    lead: 'Algunas tareas necesitan velocidad; otras requieren análisis, comparación y verificación por pasos.',
+    concept: 'Modelos de razonamiento dedican más cómputo a evaluar rutas antes de responder. Son útiles para problemas con restricciones o varias variables.',
+    compare: 'Respuesta rápida: redactar un correo. Razonamiento más profundo: comparar alternativas contractuales, planificar un flujo o revisar riesgos.',
+    aec: 'Úsalo para decisiones de coordinación, análisis de costos, claims, seguridad, planificación o revisión de supuestos técnicos.',
+    tip: 'No pidas “piensa más” para todo. Pídelo cuando haya costo de error, múltiples criterios o decisión técnica.',
+    tags: ['Razonamiento', 'Criterio', 'Decisión', 'Validación'],
+    mode: 'compare',
+  },
+  {
+    id: 'validacion',
+    group: 'Razonamiento',
+    title: 'Más razonamiento no significa más verdad',
+    lead: 'Una respuesta larga y segura puede seguir siendo incorrecta si las fuentes, supuestos o cálculos están mal.',
+    concept: 'La IA optimiza plausibilidad. La verdad técnica exige evidencia, contraste, cálculo, norma, fuente o revisión humana.',
+    compare: 'El modelo puede explicar muy bien una premisa falsa. Por eso conviene pedir “qué evidencia usarías para verificar esto”.',
+    aec: 'En contratos, estructuras, seguridad o costos, la responsabilidad no se delega al modelo.',
+    tip: 'Checklist mínimo: fuente, versión, cálculo, norma, responsable y nivel de confianza.',
+    tags: ['Verificación', 'Riesgo', 'Confianza', 'Human-in-the-loop'],
+    mode: 'risk',
+  },
+  {
+    id: 'chatgpt-claude-gemini',
+    group: 'Herramientas',
+    title: 'ChatGPT, Claude y Gemini: cuándo usar cada uno',
+    lead: 'No existe una herramienta universal. La elección depende de documento, razonamiento, integración, multimedia y ecosistema.',
+    concept: 'ChatGPT destaca por ecosistema, herramientas y amplitud. Claude suele ser fuerte en lectura larga y redacción. Gemini se integra muy bien con Google y capacidades multimodales.',
+    compare: 'La pregunta correcta no es “cuál es mejor”, sino “cuál funciona mejor para esta tarea, con estos datos y este formato”.',
+    aec: 'Prueba el mismo caso: acta, especificación, imagen, matriz de riesgos o resumen de reunión. Compara exactitud, estructura y utilidad.',
+    tip: 'Crea una tabla de benchmark interna con 5 tareas reales y puntúa calidad, velocidad, costo, privacidad y facilidad de uso.',
+    tags: ['ChatGPT', 'Claude', 'Gemini', 'Benchmark'],
+    mode: 'compare',
+  },
+  {
+    id: 'copilot-asistente-agente',
+    group: 'Herramientas',
+    title: 'Copiloto, asistente y agente',
+    lead: 'Son niveles de autonomía diferentes; confundirlos lleva a expectativas falsas.',
+    concept: 'Un copiloto ayuda mientras tú conduces. Un asistente responde o prepara insumos. Un agente ejecuta pasos con herramientas bajo reglas y supervisión.',
+    compare: 'Copiloto: “ayúdame a redactar”. Asistente: “consulta estos documentos”. Agente: “monitorea carpetas, detecta cambios, crea resumen y pide aprobación”.',
+    aec: 'La evolución natural es pasar de prompts aislados a asistentes documentales y luego a workflows con aprobación humana.',
+    tip: 'Diseña primero el proceso. Luego decide qué parte es copiloto, qué parte asistente y qué parte puede automatizarse.',
+    tags: ['Copiloto', 'Asistente', 'Agente', 'Autonomía'],
+    mode: 'map',
+  },
+  {
+    id: 'gpts-gems-projects',
+    group: 'Herramientas',
+    title: 'Asistentes personalizados: GPTs, Gems y proyectos',
+    lead: 'La personalización convierte instrucciones repetidas en sistemas reutilizables.',
+    concept: 'Un asistente personalizado combina instrucciones, archivos, tono, criterios y herramientas para una familia de tareas.',
+    compare: 'Prompt suelto: útil una vez. Asistente: útil cada semana. Workflow: útil cuando conecta datos y acciones.',
+    aec: 'Puedes crear asistentes para revisión de actas, respuestas RFI, checklists de calidad, control documental o preparación de clases.',
+    tip: 'Documenta para cada asistente: propósito, usuarios, fuentes permitidas, límites, formato de salida y criterios de validación.',
+    tags: ['GPTs', 'Gems', 'Projects', 'Reusable'],
+    mode: 'lab',
+  },
+  {
+    id: 'documentos-largos',
+    group: 'Documentos',
+    title: 'Cómo trabajar con documentos largos',
+    lead: 'Cargar un PDF de 200 páginas no equivale a entenderlo. La estrategia documental importa.',
+    concept: 'Divide por objetivo: índice, extracción, comparación, riesgos, resumen ejecutivo y preguntas pendientes.',
+    compare: 'Mal uso: pedir “resúmelo todo”. Buen uso: pedir “extrae obligaciones, plazos, penalidades, dependencias y puntos ambiguos”.',
+    aec: 'Aplica a contratos, expedientes técnicos, memorias descriptivas, especificaciones, bases de licitación y reportes de avance.',
+    tip: 'Trabaja en rondas: mapa del documento, extracción por secciones, matriz, verificación y síntesis ejecutiva.',
+    tags: ['PDF', 'Contratos', 'Extracción', 'Matriz'],
+    mode: 'lab',
+  },
+  {
+    id: 'actas-reuniones',
+    group: 'Productividad',
+    title: 'Actas de reunión aumentadas con IA',
+    lead: 'La IA puede convertir conversaciones dispersas en decisiones, acuerdos, riesgos y próximos pasos.',
+    concept: 'El valor no está en transcribir, sino en transformar la reunión en estructura accionable.',
+    compare: 'Transcripción: dice lo que pasó. Acta inteligente: identifica decisiones, responsables, fechas, bloqueos y temas abiertos.',
+    aec: 'Sirve para ICE sessions, coordinación BIM, reuniones de obra, comités técnicos y seguimiento de restricciones.',
+    tip: 'Pide siempre cuatro salidas: acuerdos, pendientes, riesgos y preguntas para la siguiente reunión.',
+    tags: ['Actas', 'Reuniones', 'Decisiones', 'Seguimiento'],
+    mode: 'lab',
+  },
+  {
+    id: 'imagenes-video',
+    group: 'Multimodal',
+    title: 'IA con imágenes, video y voz',
+    lead: 'La IA ya no trabaja solo con texto: puede interpretar imágenes, escuchar audio y generar piezas multimedia.',
+    concept: 'Los modelos multimodales conectan información visual, textual y sonora para describir, comparar o producir contenido.',
+    compare: 'Texto: explica una observación. Imagen: muestra evidencia. Video: captura secuencia. Voz: acelera captura en campo.',
+    aec: 'Puede apoyar reportes fotográficos, inspecciones preliminares, clips de avance, materiales de capacitación y documentación de obra.',
+    tip: 'No uses una imagen como prueba final sin contexto: agrega fecha, ubicación, disciplina, responsable y criterio de revisión.',
+    tags: ['Imagen', 'Video', 'Voz', 'Evidencia'],
+    mode: 'map',
+  },
+  {
+    id: 'datos-calidad',
+    group: 'Datos',
+    title: 'La IA escala cuando los datos tienen calidad',
+    lead: 'La barrera no es solo saber usar prompts; es tener datos ordenados, confiables y accionables.',
+    concept: 'Calidad de datos significa consistencia, completitud, trazabilidad, permisos, formato y actualización.',
+    compare: 'Datos sucios producen automatizaciones frágiles. Datos bien gobernados producen asistentes útiles y reportes confiables.',
+    aec: 'Nombres de archivos, versiones, códigos de partida, disciplinas, ubicaciones y responsables son la base de cualquier IA operativa.',
+    tip: 'Empieza con una taxonomía mínima: proyecto, disciplina, fase, fecha, versión, tipo de documento y responsable.',
+    tags: ['Datos', 'Gobernanza', 'Metadata', 'Escala'],
+    mode: 'risk',
+  },
+  {
+    id: 'privacidad',
+    group: 'Datos',
+    title: 'Privacidad y clasificación de información',
+    lead: 'No todo documento debe entrar a cualquier modelo. La seguridad se diseña antes del entusiasmo.',
+    concept: 'Clasifica información por sensibilidad: pública, interna, confidencial, contractual, personal o crítica.',
+    compare: 'Un caso de marketing puede usar herramientas públicas. Un contrato sensible o datos personales requieren políticas y controles.',
+    aec: 'Planos, metrados, propuestas, costos, reclamos, contratos y datos de trabajadores pueden tener restricciones legales o comerciales.',
+    tip: 'Antes de usar IA, pregunta: ¿quién es dueño del dato?, ¿se puede compartir?, ¿queda registro?, ¿hay alternativa privada?',
+    tags: ['Privacidad', 'Seguridad', 'Permisos', 'Compliance'],
+    mode: 'risk',
+  },
+  {
+    id: 'alucinaciones',
+    group: 'Riesgo',
+    title: 'Alucinaciones: cuando la IA inventa con seguridad',
+    lead: 'Una alucinación no siempre suena absurda; muchas veces suena profesional.',
+    concept: 'El modelo puede generar datos, citas, normas o conclusiones que parecen válidas pero no están sustentadas.',
+    compare: 'El riesgo aumenta cuando falta contexto, se piden referencias exactas, se fuerza una respuesta o se trabaja con temas muy especializados.',
+    aec: 'Una norma mal citada, una recomendación técnica inventada o una interpretación contractual falsa puede generar decisiones costosas.',
+    tip: 'Pide: “marca cada afirmación como verificada, inferida o pendiente de fuente”.',
+    tags: ['Alucinación', 'Fuentes', 'Normas', 'Riesgo'],
+    mode: 'risk',
+  },
+  {
+    id: 'rubrica-ia',
+    group: 'Riesgo',
+    title: 'Rúbrica rápida para evaluar una respuesta IA',
+    lead: 'La calidad se puede evaluar con criterios simples antes de usar una respuesta en trabajo real.',
+    concept: 'Evalúa precisión, trazabilidad, completitud, utilidad, formato, sesgos, riesgos y próximos pasos.',
+    compare: 'Una respuesta bonita pero sin fuentes no es evidencia. Una respuesta breve con fuentes, supuestos y acciones puede ser más valiosa.',
+    aec: 'Úsala para informes, actas, revisiones documentales, propuestas, comunicaciones y análisis de riesgos.',
+    tip: 'Puntúa cada salida de 1 a 5 y agrega una columna: “qué debe validar un humano antes de enviar”.',
+    tags: ['Rúbrica', 'Calidad', 'Validación', 'Evidencia'],
+    mode: 'lab',
+  },
+  {
+    id: 'human-loop',
+    group: 'Riesgo',
+    title: 'Human-in-the-loop: el humano como control de calidad',
+    lead: 'La IA acelera, pero el criterio profesional define qué se acepta, corrige o descarta.',
+    concept: 'Human-in-the-loop significa que una persona revisa decisiones, valida evidencia y asume responsabilidad antes de actuar.',
+    compare: 'Automatizar sin control puede amplificar errores. Automatizar con revisión reduce tiempo sin perder responsabilidad técnica.',
+    aec: 'En seguridad, costos, contratos, diseño y obra, la aprobación humana es parte del sistema, no un trámite.',
+    tip: 'Define umbrales: qué puede salir automático, qué requiere revisión y qué nunca debe decidir la IA sola.',
+    tags: ['Control', 'Responsabilidad', 'Aprobación', 'Criterio'],
+    mode: 'risk',
+  },
+  {
+    id: 'coste-latencia',
+    group: 'Operación',
+    title: 'Costo, latencia y calidad: el triángulo operativo',
+    lead: 'El mejor sistema no siempre usa el modelo más caro ni el más avanzado.',
+    concept: 'Cada tarea tiene un balance entre costo por uso, velocidad de respuesta, precisión necesaria y riesgo de error.',
+    compare: 'Modelo pequeño: barato y rápido. Modelo avanzado: mejor para tareas complejas. Pipeline híbrido: clasifica barato y razona solo cuando importa.',
+    aec: 'Un asistente para miles de consultas internas debe optimizar costo; un análisis contractual crítico puede justificar mayor cómputo.',
+    tip: 'Diseña niveles: rápido para borradores, avanzado para análisis, humano para aprobación.',
+    tags: ['Costo', 'Latencia', 'Calidad', 'Escalabilidad'],
+    mode: 'compare',
+  },
+  {
+    id: 'automatizacion',
+    group: 'Automatización',
+    title: 'Automatización con IA: de tarea a flujo',
+    lead: 'El salto real ocurre cuando la IA deja de ser conversación y se integra al proceso.',
+    concept: 'Un workflow conecta disparadores, datos, modelo, validación, salida y registro.',
+    compare: 'Prompt manual: una persona copia y pega. Automatización: llega un documento, se analiza, se clasifica y se envía a revisión.',
+    aec: 'Casos típicos: resumen de actas, clasificación de RFIs, alertas de avance, seguimiento de restricciones o reportes semanales.',
+    tip: 'Dibuja el proceso antes de automatizar: entrada, responsable, regla, excepción, salida y evidencia.',
+    tags: ['Workflow', 'n8n', 'Make', 'Power Automate'],
+    mode: 'map',
+  },
+  {
+    id: 'agentes',
+    group: 'Automatización',
+    title: 'Agentes IA: autonomía con límites',
+    lead: 'Un agente no es una IA “libre”: es un sistema con objetivo, herramientas, memoria y reglas.',
+    concept: 'Los agentes pueden planificar pasos, usar APIs, consultar documentos y pedir aprobación cuando corresponde.',
+    compare: 'Asistente: responde. Agente: ejecuta. Sistema agéntico serio: ejecuta con permisos, logs, límites y fallback.',
+    aec: 'Un agente puede revisar una carpeta de proyecto, detectar documentos nuevos, generar resumen y preparar tareas para el equipo.',
+    tip: 'Nunca empieces con agente autónomo total. Empieza con agente asistido y aprobación humana.',
+    tags: ['Agentes', 'Herramientas', 'Memoria', 'Aprobación'],
+    mode: 'risk',
+  },
+  {
+    id: 'mcp-api',
+    group: 'Automatización',
+    title: 'APIs, conectores y MCP',
+    lead: 'La IA se vuelve poderosa cuando puede conectarse a sistemas, no solo responder en una ventana de chat.',
+    concept: 'APIs y conectores permiten leer, escribir o consultar herramientas externas. MCP estandariza la conexión entre modelos y herramientas/contextos.',
+    compare: 'Chat aislado: no ve tus sistemas. IA conectada: consulta Drive, calendario, base documental, CRM o dashboard bajo permisos.',
+    aec: 'Permite asistentes que lean documentos, actualicen listas, generen reportes, creen tareas o consulten métricas de proyecto.',
+    tip: 'La pregunta clave: ¿qué herramienta necesita usar la IA y qué permiso exacto debe tener?',
+    tags: ['API', 'MCP', 'Conectores', 'Permisos'],
+    mode: 'map',
+  },
+  {
+    id: 'dashboards',
+    group: 'Operación',
+    title: 'Dashboards con IA: de reporte a decisión',
+    lead: 'Un dashboard con IA no solo muestra gráficos: explica qué cambió, qué importa y qué acción tomar.',
+    concept: 'La IA puede resumir variaciones, detectar patrones, priorizar alertas y generar narrativas ejecutivas.',
+    compare: 'Dashboard clásico: “aquí están los datos”. Dashboard aumentado: “este indicador cayó, estas son posibles causas y estas acciones convienen”.',
+    aec: 'Aplica a productividad, avance, costos, seguridad, calidad, aprendizaje, adopción IA y seguimiento comercial.',
+    tip: 'Cada dashboard debe responder: qué pasa, qué importa, qué riesgo hay y qué hago ahora.',
+    tags: ['Dashboard', 'KPI', 'Decisión', 'Narrativa'],
+    mode: 'lab',
+  },
+  {
+    id: 'bim-ia',
+    group: 'AEC',
+    title: 'BIM + IA: modelos como fuente de conocimiento',
+    lead: 'BIM no es solo geometría; contiene información estructurada que puede alimentar análisis y automatización.',
+    concept: 'La IA puede apoyar clasificación, revisión, consulta, extracción de datos, generación de reportes y coordinación basada en información del modelo.',
+    compare: 'BIM sin datos consistentes limita la IA. BIM con parámetros limpios permite consultas, validaciones y dashboards más útiles.',
+    aec: 'Casos: revisión de parámetros, consultas por elemento, estimación preliminar, matrices de interferencias y reportes de coordinación.',
+    tip: 'Antes de IA, define estándares mínimos de parámetros, codificación, niveles, fases y responsabilidades.',
+    tags: ['BIM', 'Datos', 'Coordinación', 'Modelo'],
+    mode: 'map',
+  },
+  {
+    id: 'planificacion-costos',
+    group: 'AEC',
+    title: 'IA para planificación y costos',
+    lead: 'La IA no reemplaza al planner ni al cost engineer, pero puede acelerar análisis comparativos y escenarios.',
+    concept: 'Puede resumir restricciones, comparar cronogramas, detectar inconsistencias, explicar variaciones y proponer escenarios.',
+    compare: 'La predicción depende de datos históricos. La generación ayuda a explicar, estructurar y comunicar.',
+    aec: 'Útil para lookahead, restricciones, reportes de avance, análisis de desviaciones, metrados preliminares y narrativas de costo.',
+    tip: 'No pidas un número final sin fuente. Pide supuestos, drivers, sensibilidad y qué dato falta para mejorar el cálculo.',
+    tags: ['Planificación', 'Costos', 'Escenarios', 'Riesgo'],
+    mode: 'compare',
+  },
+  {
+    id: 'vision-computador',
+    group: 'AEC',
+    title: 'Visión por computador en obra',
+    lead: 'La cámara puede convertirse en sensor operativo si existe criterio de captura, etiquetado y validación.',
+    concept: 'Computer vision detecta objetos, personas, avance, condiciones inseguras o cambios visuales en imágenes y video.',
+    compare: 'Una foto aislada informa poco. Una secuencia con ubicación, fecha y criterio permite medir tendencias.',
+    aec: 'Casos: seguridad, avance físico, control de calidad, evidencia de campo, productividad y comparación contra plan.',
+    tip: 'Define clases, ángulos, frecuencia, iluminación y responsable antes de prometer “IA visual”.',
+    tags: ['Computer Vision', 'Obra', 'Seguridad', 'Avance'],
+    mode: 'lab',
+  },
+  {
+    id: 'productividad-personal',
+    group: 'Productividad',
+    title: 'Productividad personal: el primer retorno de IA',
+    lead: 'El uso individual bien entrenado puede ahorrar horas antes de cualquier implementación empresarial compleja.',
+    concept: 'La IA ayuda a redactar, resumir, comparar, aprender, preparar reuniones, crear borradores y organizar ideas.',
+    compare: 'El usuario casual pide respuestas. El usuario experto construye plantillas, asistentes, bibliotecas de prompts y criterios de revisión.',
+    aec: 'Cada profesional puede crear su kit: actas, correos técnicos, informes, aprendizaje, revisión de documentos y preparación comercial.',
+    tip: 'Empieza con 5 tareas repetitivas semanales. Si una se repite, conviértela en prompt plantilla.',
+    tags: ['Productividad', 'Plantillas', 'Rutina', 'Skills'],
+    mode: 'lab',
+  },
+  {
+    id: 'productividad-empresa',
+    group: 'Productividad',
+    title: 'Productividad empresarial: del uso individual al sistema',
+    lead: 'El valor organizacional aparece cuando el aprendizaje individual se transforma en procesos compartidos.',
+    concept: 'Una empresa necesita casos priorizados, datos, responsables, métricas, gobernanza y capacitación.',
+    compare: 'Adopción informal: cada uno usa lo que quiere. Adopción operativa: casos, políticas, herramientas y medición de impacto.',
+    aec: 'Los mejores casos combinan dolor frecuente, datos disponibles, bajo riesgo inicial y beneficio medible.',
+    tip: 'Prioriza con matriz impacto/esfuerzo/riesgo. No empieces por el caso más espectacular; empieza por el más repetible.',
+    tags: ['Adopción', 'Proceso', 'Métrica', 'Escala'],
+    mode: 'map',
+  },
+  {
+    id: 'gestion-cambio',
+    group: 'Adopción',
+    title: 'Gestión del cambio: la tecnología no adopta sola',
+    lead: 'La adopción de IA depende de hábitos, confianza, formación, incentivos y liderazgo.',
+    concept: 'Las personas adoptan cuando entienden para qué sirve, cómo usarla, qué está permitido y cómo se mide el beneficio.',
+    compare: 'Capacitación aislada genera entusiasmo temporal. Comunidad, práctica y evidencia generan cambio sostenido.',
+    aec: 'El reto es convertir curiosidad en habilidad verificable y habilidad en mejora operativa.',
+    tip: 'Mide tres señales: uso semanal, evidencia producida y proceso mejorado.',
+    tags: ['Cambio', 'Confianza', 'Formación', 'Evidencia'],
+    mode: 'risk',
+  },
+  {
+    id: 'mitos-realidades',
+    group: 'Criterio',
+    title: 'Mitos y realidades de la IA',
+    lead: 'Separar narrativa de realidad evita compras impulsivas y proyectos fallidos.',
+    concept: 'Mito: la IA reemplaza todo. Realidad: automatiza partes, aumenta capacidades y exige rediseñar trabajo.',
+    compare: 'Mito: basta con pagar una herramienta. Realidad: necesitas casos, datos, entrenamiento, seguridad y medición.',
+    aec: 'La ventaja no está en “tener IA”, sino en resolver mejor documentación, coordinación, productividad, seguridad o ventas.',
+    tip: 'Cada promesa de IA debe traducirse a una tarea concreta, una métrica y una evidencia de mejora.',
+    tags: ['Mito', 'Realidad', 'Criterio', 'ROI'],
+    mode: 'compare',
+  },
+  {
+    id: 'prompt-aec',
+    group: 'Criterio',
+    title: 'Prompt AEC: plantilla base para trabajo técnico',
+    lead: 'Una plantilla común mejora calidad y reduce variabilidad entre equipos.',
+    concept: 'Estructura: rol técnico, tipo de proyecto, disciplina, documento, objetivo, restricciones, formato, criterios y validación.',
+    compare: 'No pidas “analiza este archivo”. Pide “extrae riesgos técnicos, contractuales y operativos con fuente, impacto y acción sugerida”.',
+    aec: 'Sirve como base para arquitectura, ingeniería, construcción, BIM, costos, planificación, seguridad y gestión comercial.',
+    tip: 'Cierra con: “si una conclusión depende de información ausente, indícalo como pendiente y no la inventes”.',
+    tags: ['Prompt AEC', 'Técnico', 'Formato', 'Validación'],
+    mode: 'lab',
+  },
+  {
+    id: 'aprendizaje-ia',
+    group: 'Criterio',
+    title: 'Cómo aprender IA sin perderse en herramientas',
+    lead: 'Las herramientas cambian; los principios permanecen más tiempo.',
+    concept: 'Aprende por capas: fundamentos, prompting, documentos, datos, automatización, agentes, seguridad y casos AEC.',
+    compare: 'Aprender botones envejece rápido. Aprender criterios permite cambiar de herramienta sin empezar de cero.',
+    aec: 'La habilidad central es convertir problemas del sector en flujos asistidos por IA con evidencia y control humano.',
+    tip: 'Por cada herramienta nueva, pregunta: qué tarea mejora, qué dato necesita, qué riesgo introduce y cómo se valida.',
+    tags: ['Aprendizaje', 'Criterio', 'Herramientas', 'Skill'],
+    mode: 'map',
+  },
+  {
+    id: 'ai-first',
+    group: 'Futuro',
+    title: 'AI-first: rediseñar el trabajo desde la IA',
+    lead: 'AI-first no significa reemplazar todo por IA; significa rediseñar procesos considerando IA desde el inicio.',
+    concept: 'Un proceso AI-first define qué datos entran, qué analiza la IA, dónde decide el humano, qué se registra y cómo mejora con uso.',
+    compare: 'Digitalizar un proceso viejo no siempre mejora. Rediseñarlo con IA puede reducir pasos, errores y tiempos muertos.',
+    aec: 'Aplica a control documental, reportes, onboarding técnico, seguimiento de obra, preventa, capacitación y gestión de conocimiento.',
+    tip: 'Dibuja el flujo ideal sin copiar el proceso actual. Luego agrega controles para hacerlo viable.',
+    tags: ['AI-first', 'Rediseño', 'Proceso', 'Escala'],
+    mode: 'map',
+  },
+  {
+    id: 'habilidad-verificable',
+    group: 'Futuro',
+    title: 'IA como habilidad verificable',
+    lead: 'No basta decir “sé usar IA”. Hay que demostrar qué problema resuelves y con qué evidencia.',
+    concept: 'Una habilidad verificable combina conocimiento, práctica, entregable, criterio de calidad y validación.',
+    compare: 'Uso superficial: prompts sueltos. Skill real: producir un entregable aplicable, revisable y mejor que el flujo anterior.',
+    aec: 'Ejemplos: matriz de riesgos, asistente documental, dashboard, acta inteligente, automatización o reporte visual de obra.',
+    tip: 'Cada aprendizaje debe cerrar con evidencia: archivo, matriz, flujo, prompt, demo, caso o mejora medida.',
+    tags: ['Skill', 'Evidencia', 'Certificación', 'AECODE'],
+    mode: 'lab',
+  },
+  {
+    id: 'cierre-conocimiento',
+    group: 'Síntesis',
+    title: 'De usuario de IA a arquitecto de workflows',
+    lead: 'El salto profesional es pasar de pedir respuestas a diseñar sistemas de trabajo aumentados por IA.',
+    concept: 'Dominar IA implica entender modelos, datos, documentos, herramientas, automatización, riesgos y adopción.',
+    compare: 'Usuario: usa una herramienta. Arquitecto de workflows: diseña cómo la herramienta entra al proceso, genera evidencia y se valida.',
+    aec: 'Ese perfil puede liderar transformación en diseño, ingeniería, obra, formación, ventas, operaciones y dirección.',
+    tip: 'Tu siguiente paso: toma un proceso real, mapea dolor, datos, IA, control humano, salida y métrica de mejora.',
+    tags: ['Workflow', 'Liderazgo', 'Transformación', 'AEC'],
+    mode: 'map',
+  },
+]
+
+function KnowledgeSlide({ item, index }: { item: KnowledgeCard; index: number }) {
+  const code = String(index + 1).padStart(2, '0')
   return (
     <>
-      <Head eyebrow={`Diplomado AI AEC · ${module.code}`} title={module.title}
-        lead={module.question || 'Modulo del diplomado orientado a llevar IA desde concepto a evidencia aplicable en el sector AEC.'} />
-      <div className="diploma-overview up" style={st(1)}>
-        <article className="diploma-hero">
-          <span>{module.code}</span>
-          <h3>{module.hours} horas</h3>
-          <p>{module.objective}</p>
+      <Head eyebrow={`${item.group} · Concepto ${code}`} title={item.title} lead={item.lead} />
+      <div className={`knowledge-board knowledge-${item.mode ?? 'map'} up`} style={st(1)}>
+        <article className="knowledge-hero">
+          <span>{code}</span>
+          <h3>Idea central</h3>
+          <p>{item.concept}</p>
         </article>
-        <article className="diploma-deliverable">
-          <b>Entregable</b>
-          <p>{module.deliverable}</p>
+        <article className="knowledge-card strong">
+          <b>Comparación</b>
+          <p>{item.compare}</p>
         </article>
-        <div className="diploma-units">
-          {module.units.map((u, i) => (
-            <article key={u.title} style={st(i + 2)}>
-              <span>{String(i + 1).padStart(2, '0')}</span>
-              <h3>{u.title}</h3>
-              <p>{u.hours} · {u.capsules.length} capsulas</p>
-            </article>
-          ))}
-        </div>
-        <div className="diploma-tools">
-          {module.tools.slice(0, 9).map((tool) => <span key={tool}>{tool}</span>)}
+        <article className="knowledge-card">
+          <b>Aplicación AEC</b>
+          <p>{item.aec}</p>
+        </article>
+        <article className="knowledge-card tip">
+          <b>Tip práctico</b>
+          <p>{item.tip}</p>
+        </article>
+        <div className="knowledge-tags">
+          {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
         </div>
       </div>
     </>
   )
 }
 
-function DiplomaUnitSlide({ module, unit, index }: { module: DiplomaModule; unit: DiplomaUnit; index: number }) {
-  return (
-    <>
-      <Head eyebrow={`${module.code} · Unidad ${index + 1}`} title={unit.title}
-        lead={`Modulo: ${module.title}. Esta unidad convierte el concepto en capsulas concretas, taller y evidencia accionable.`} />
-      <div className="diploma-unit up" style={st(1)}>
-        <div className="unit-workshop">
-          <span>Taller aplicado</span>
-          <h3>{unit.hours}</h3>
-          <p>{unit.workshop}</p>
-        </div>
-        <ol className="unit-capsules">
-          {unit.capsules.map((c, i) => (
-            <li key={c} style={st(i + 1)}>
-              <span>{String(i + 1).padStart(2, '0')}</span>
-              <p>{c}</p>
-            </li>
-          ))}
-        </ol>
-        <PresenterNote>
-          <b>Lectura AECODE:</b> explicar el concepto, mostrar una demo corta y cerrar con una pregunta de aplicacion: que dato, documento o proceso real usarian para evidenciar esta skill.
-        </PresenterNote>
-      </div>
-    </>
-  )
-}
-
-const diplomaSlides: SlideDef[] = DIPLOMADO.flatMap((module) => [
-  { id: `diploma-${module.code.toLowerCase()}`, num: '00', title: `${module.code} · ${module.title}`, section: '07 Diplomado AI F2-F3', node: <DiplomaModuleSlide module={module} /> },
-  ...module.units.map((unit, index) => ({
-    id: `diploma-${module.code.toLowerCase()}-u${index + 1}`,
+const knowledgeSlides: SlideDef[] = KNOWLEDGE.map((item, index) => ({
+    id: `knowledge-${item.id}`,
     num: '00',
-    title: `${module.code}.${index + 1} · ${unit.title}`,
-    section: '07 Diplomado AI F2-F3',
-    node: <DiplomaUnitSlide module={module} unit={unit} index={index} />,
-  })),
-])
+    title: item.title,
+    section: '07 Biblioteca de conceptos IA',
+    node: <KnowledgeSlide item={item} index={index} />,
+}))
 
 function ClosingSlide() {
   return (
@@ -1001,7 +1461,6 @@ function ClosingSlide() {
         No gana quien abre ChatGPT. <span className="hl">Gana quien convierte la IA en sistema de trabajo verificable.</span>
       </p>
       <div className="closing-cta up" style={st(3)}>
-        <a className="btn btn-cta" href={PDF} target="_blank" rel="noopener" download><span aria-hidden="true">↓</span> Descargar informe</a>
         <a className="btn" href="mailto:apalpan@genplusdesign.com">apalpan@genplusdesign.com</a>
       </div>
     </div>
@@ -1085,7 +1544,7 @@ const baseSlides: SlideDef[] = [
   { id: 'research-questions', num: '00', title: 'Preguntas de investigacion', node: <ResearchQuestionsSlide /> },
   { id: 'acciones', num: '00', title: 'Jugada por actor', node: <ActionSlide /> },
   { id: 'summit-bridge', num: '00', title: 'Puente al AI Construction Summit', node: <SummitBridgeSlide /> },
-  ...diplomaSlides,
+  ...knowledgeSlides,
   { id: 'takeaways', num: '00', title: 'Diez ideas clave', node: <TakeawaysSlide /> },
   { id: 'cierre', num: '', title: 'Cierre', node: <ClosingSlide /> },
   { id: 'referencias', num: '00', title: 'Referencias', node: <ReferencesSlide /> },

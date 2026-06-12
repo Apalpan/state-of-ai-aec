@@ -21,8 +21,6 @@ function computeNums(slides: SlideDef[]): string[] {
   })
 }
 
-const PDF = `${import.meta.env.BASE_URL}Informe-IA-AEC-2026.pdf`
-
 function readHash(total: number): number {
   const m = /^#(\d+)/.exec(location.hash)
   if (m) { const n = parseInt(m[1], 10) - 1; if (n >= 0 && n < total) return n }
@@ -153,8 +151,6 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
           <button className="icon-btn" onClick={() => setOverview((v) => !v)} aria-label="Índice de diapositivas" title="Índice (G)">▦</button>
           <button className="icon-btn" onClick={toggleTheme} aria-label={`Cambiar a tema ${theme === 'dark' ? 'claro' : 'oscuro'}`} title="Tema">{theme === 'dark' ? '☀' : '☾'}</button>
           <button className="icon-btn show-md" onClick={toggleFs} aria-label="Pantalla completa" title="Pantalla completa (F)">⤢</button>
-          <a className="btn btn-cta deck-dl" href={PDF} target="_blank" rel="noopener" download><span aria-hidden="true">↓</span> PDF</a>
-          <a className="btn deck-html" href={`${import.meta.env.BASE_URL}index.html`} download="state-of-ai-aec.html">HTML</a>
         </div>
       </header>
 
