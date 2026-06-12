@@ -4,22 +4,22 @@ import type { EChartsOption } from 'echarts'
 /** Paleta de datos — AECODE: TEAL + GRAFITO (concreta para canvas, alineada
  *  con los tokens --d-* OKLCH). El teal es el acento; el resto, grafito/gris frío. */
 export const PALETTE: Record<string, string> = {
-  green: '#0e9d88',
-  teal: '#1ac2a3',
-  blue: '#333b44',
-  indigo: '#525c66',
-  purple: '#7c858e',
-  orange: '#9aa2aa',
-  amber: '#c0c6cc',
-  pink: '#69727b',
-  red: '#14171b',
+  green: '#0aa06b',
+  teal: '#19c985',
+  blue: '#2f3a3a',
+  indigo: '#4e5b59',
+  purple: '#78847f',
+  orange: '#97a19c',
+  amber: '#bec6c1',
+  pink: '#65716c',
+  red: '#121715',
 }
 
-/** Acento teal de marca + helpers de transparencia. */
-const GREEN = '#0e9d88'
-const ga = (a: number) => `rgba(14,157,136,${a})`
-/** Rampa teal (oscuro→claro) para treemap/funnel/heatmap monocromos. */
-const GREEN_RAMP = ['#064a40', '#076a5b', '#0e9d88', '#16b89f', '#2fcfb2', '#5fd9c4', '#92e6d6', '#c2f1e9']
+/** Acento verde Jarvis de marca + helpers de transparencia. */
+const GREEN = '#0aa06b'
+const ga = (a: number) => `rgba(10,160,107,${a})`
+/** Rampa verde (oscuro→claro) para treemap/funnel/heatmap monocromos. */
+const GREEN_RAMP = ['#054b32', '#076b47', '#0aa06b', '#13ba7e', '#2bd194', '#5cdcab', '#90e9c6', '#c2f4e0']
 
 export interface ThemeColors {
   ink: string; muted: string; grid: string; axis: string; bg: string; tooltipBg: string; border: string
@@ -245,7 +245,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         grid: { left: 6, right: 10, top: 8, bottom: 40, containLabel: true },
         xAxis: { type: 'category', data: d.x, axisLabel: { color: C.muted, fontSize: 9.5, rotate: 26 }, axisLine: { show: false }, axisTick: { show: false }, splitArea: { show: false } },
         yAxis: { type: 'category', data: d.y, axisLabel: { color: C.ink, fontSize: 10 }, axisLine: { show: false }, axisTick: { show: false }, splitArea: { show: false } },
-        visualMap: { min: 0, max: d.max, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, itemWidth: 11, itemHeight: 80, textStyle: { color: C.muted, fontSize: 9 }, inRange: { color: [isDark ? 'rgba(255,255,255,0.06)' : '#eef3f2', '#bfe9dd', '#4fd0b4', '#0e9d88', '#064a40'] } },
+        visualMap: { min: 0, max: d.max, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, itemWidth: 11, itemHeight: 80, textStyle: { color: C.muted, fontSize: 9 }, inRange: { color: [isDark ? 'rgba(255,255,255,0.06)' : '#eef3f0', '#bfe9d6', '#4fd0a0', '#0aa06b', '#054b32'] } },
         series: [{ type: 'heatmap', data: d.cells, itemStyle: { borderColor: C.bg, borderWidth: 3, borderRadius: 4 }, label: { show: false } }],
       }
     }
@@ -317,7 +317,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
           indicator: d.indicators,
           axisName: { color: C.ink, fontSize: 11, fontFamily: 'Space Grotesk Variable, sans-serif' },
           splitLine: { lineStyle: { color: C.grid } },
-          splitArea: { areaStyle: { color: [isDark ? 'rgba(14,157,136,0.05)' : 'rgba(14,157,136,0.06)', 'transparent'] } },
+          splitArea: { areaStyle: { color: [isDark ? 'rgba(10,160,107,0.05)' : 'rgba(10,160,107,0.06)', 'transparent'] } },
           axisLine: { lineStyle: { color: C.axis } },
         },
         series: [{

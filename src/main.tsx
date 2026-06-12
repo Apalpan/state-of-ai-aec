@@ -8,6 +8,7 @@ import './styles/components.css'
 import './styles/deck.css'
 import './styles/capsule.css'
 import './styles/showcase.css'
+import './styles/hud.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(

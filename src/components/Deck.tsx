@@ -116,6 +116,12 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
     <div className="deck" data-overview={overview ? 'on' : undefined}>
       <div className="deck-progress" aria-hidden="true"><span style={{ width: `${((cur + 1) / total) * 100}%` }} /></div>
 
+      {/* Marco HUD decorativo: brackets de esquina + telemetría mono */}
+      <span className="hud-c tl" aria-hidden="true" /><span className="hud-c tr" aria-hidden="true" />
+      <span className="hud-c bl" aria-hidden="true" /><span className="hud-c br" aria-hidden="true" />
+      <span className="hud-read left" aria-hidden="true">AECODE · STATE OF AI · 2026</span>
+      <span className="hud-read right" aria-hidden="true">{cs.id.replace(/-/g, '_')} · {String(cur + 1).padStart(2, '0')}/{total}</span>
+
       <header className="deck-bar">
         <button className="deck-brand" onClick={() => go(0)} aria-label="AECODE · ir a la portada">
           <AecodeLogo className="deck-logo" />

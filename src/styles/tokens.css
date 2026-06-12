@@ -1,14 +1,14 @@
 /* =========================================================================
    AECODE · State of AI — Design tokens (OKLCH)
-   Estética AECODE versión LIGHT: lienzo casi blanco (gris muy frío) + un único
-   acento TEAL (hue 165, ≈ #00e5a0) usado con avaricia. Grafito para estructura.
+   Estética AECODE «Jarvis-light»: lienzo casi blanco + un único acento VERDE
+   tecnológico (hue 152) usado con avaricia, capa HUD y grafito para estructura.
    Una sola perilla (--hue) re-tematiza todo.
    ========================================================================= */
 
 :root {
   color-scheme: light;
-  --hue: 165;     /* teal AECODE */
-  --chroma: 0.13;
+  --hue: 152;     /* verde Jarvis — tecnológico, ligeramente más cálido que el teal */
+  --chroma: 0.15;
 
   /* Tipografía */
   --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
@@ -38,18 +38,18 @@
   --dur-2: 220ms;
   --dur-3: 320ms;
 
-  /* -------- Paleta de DATOS: teal + grafito (compartida por ambos temas) ----
-     El teal es el acento; el resto es una rampa grafito→gris fría que da
-     variedad a las gráficas sin salir de la identidad AECODE. */
-  --d-green:  #0e9d88;   /* teal primario (acento) */
-  --d-teal:   #1ac2a3;   /* teal vivo (highlight) */
-  --d-blue:   #333b44;   /* grafito (estructura) */
-  --d-indigo: #525c66;   /* gris-azulado medio */
-  --d-purple: #7c858e;   /* gris frío */
-  --d-orange: #9aa2aa;   /* gris claro */
-  --d-amber:  #c0c6cc;   /* gris más claro */
-  --d-pink:   #69727b;   /* gris frío */
-  --d-red:    #14171b;   /* casi negro (énfasis) */
+  /* -------- Paleta de DATOS: verde Jarvis + grafito (ambos temas) ----------
+     El verde es el acento; el resto es una rampa grafito→gris fría que da
+     variedad a las gráficas sin salir de la identidad AECODE/Jarvis. */
+  --d-green:  #0aa06b;   /* verde primario (acento) */
+  --d-teal:   #19c985;   /* verde vivo (highlight) */
+  --d-blue:   #2f3a3a;   /* grafito verdoso (estructura) */
+  --d-indigo: #4e5b59;   /* gris-verde medio */
+  --d-purple: #78847f;   /* gris frío */
+  --d-orange: #97a19c;   /* gris claro */
+  --d-amber:  #bec6c1;   /* gris más claro */
+  --d-pink:   #65716c;   /* gris frío */
+  --d-red:    #121715;   /* casi negro (énfasis) */
 }
 
 /* sRGB fallback primero; upgrade a OKLCH bajo @supports (abajo en cada bloque). */
@@ -57,61 +57,66 @@
 /* ----------------------------- LIGHT (default) ------------------------ */
 :root, [data-theme='light'] {
   color-scheme: light;
-  --bg:        oklch(0.985 0.004 165);
-  --bg-deep:   oklch(0.958 0.006 165);
+  --bg:        oklch(0.986 0.006 152);
+  --bg-deep:   oklch(0.958 0.009 152);
   --surface:   oklch(1 0 0);
-  --surface-2: oklch(0.975 0.006 165);
+  --surface-2: oklch(0.974 0.008 152);
   --panel:     color-mix(in oklch, white 80%, transparent);
-  --border:    color-mix(in oklch, oklch(0.30 0.03 165) 13%, transparent);
-  --border-strong: color-mix(in oklch, oklch(0.30 0.03 165) 22%, transparent);
+  --border:    color-mix(in oklch, oklch(0.32 0.05 152) 14%, transparent);
+  --border-strong: color-mix(in oklch, oklch(0.32 0.05 152) 24%, transparent);
 
-  --ink:       oklch(0.24 0.02 200);
-  --ink-soft:  oklch(0.37 0.018 195);
-  --muted:     oklch(0.52 0.016 190);
-  --faint:     oklch(0.66 0.014 180);
+  --ink:       oklch(0.23 0.02 185);
+  --ink-soft:  oklch(0.36 0.02 180);
+  --muted:     oklch(0.51 0.018 175);
+  --faint:     oklch(0.65 0.016 165);
 
-  --blue:      oklch(0.40 0.025 215);   /* grafito = estructura/texto base */
-  --blue-deep: oklch(0.32 0.025 220);
-  --accent:    oklch(0.58 0.13 165);    /* TEAL = único call-to-action (texto+fill) */
-  --accent-bright: oklch(0.82 0.16 165);/* teal neón = glows / charts / decorativo */
-  --accent-ink: oklch(0.99 0.02 165);
+  --blue:      oklch(0.39 0.03 190);    /* grafito = estructura/texto base */
+  --blue-deep: oklch(0.31 0.03 195);
+  --accent:    oklch(0.56 0.15 152);    /* VERDE Jarvis = único acento (texto+fill) */
+  --accent-bright: oklch(0.86 0.21 152);/* verde neón = glows / HUD / decorativo */
+  --accent-ink: oklch(0.99 0.02 152);
 
-  --ok:        oklch(0.58 0.13 165);    /* teal verificado */
-  --warn:      oklch(0.55 0.01 190);    /* gris proyección */
+  --ok:        oklch(0.56 0.15 152);    /* verde verificado */
+  --warn:      oklch(0.55 0.012 175);   /* gris proyección */
   --grid:      color-mix(in oklch, black 7%, transparent);
 
-  --glow-a: oklch(0.82 0.14 165 / 0.13);
-  --glow-b: oklch(0.62 0.03 200 / 0.05);
-  --shadow: 0 22px 54px -32px oklch(0.30 0.04 200 / 0.34);
+  /* HUD (capa técnica Jarvis-light) */
+  --hud-line:  oklch(0.56 0.15 152 / 0.30);
+  --hud-grid:  oklch(0.50 0.10 152 / 0.055);
+  --glow-a: oklch(0.86 0.19 152 / 0.16);
+  --glow-b: oklch(0.62 0.05 180 / 0.06);
+  --shadow: 0 22px 54px -32px oklch(0.32 0.06 175 / 0.34);
 }
 
 /* ------------------------------- DARK --------------------------------- */
 [data-theme='dark'] {
   color-scheme: dark;
-  --bg:        oklch(0.16 0.012 200);
-  --bg-deep:   oklch(0.12 0.012 200);
-  --surface:   oklch(0.20 0.014 200);
-  --surface-2: oklch(0.24 0.016 200);
+  --bg:        oklch(0.16 0.014 180);
+  --bg-deep:   oklch(0.12 0.014 180);
+  --surface:   oklch(0.20 0.016 180);
+  --surface-2: oklch(0.24 0.018 180);
   --panel:     color-mix(in oklch, var(--surface) 72%, transparent);
   --border:    color-mix(in oklch, white 11%, transparent);
   --border-strong: color-mix(in oklch, white 18%, transparent);
 
-  --ink:       oklch(0.96 0.008 180);
-  --ink-soft:  oklch(0.85 0.014 180);
-  --muted:     oklch(0.68 0.016 185);
-  --faint:     oklch(0.55 0.016 190);
+  --ink:       oklch(0.96 0.010 165);
+  --ink-soft:  oklch(0.85 0.016 165);
+  --muted:     oklch(0.68 0.018 170);
+  --faint:     oklch(0.55 0.018 175);
 
-  --blue:      oklch(0.80 0.03 200);
-  --blue-deep: oklch(0.62 0.05 205);
-  --accent:    oklch(0.80 0.15 165);
-  --accent-bright: oklch(0.86 0.16 165);
-  --accent-ink: oklch(0.16 0.03 165);
+  --blue:      oklch(0.80 0.03 185);
+  --blue-deep: oklch(0.62 0.05 190);
+  --accent:    oklch(0.80 0.17 152);
+  --accent-bright: oklch(0.87 0.21 152);
+  --accent-ink: oklch(0.15 0.04 152);
 
-  --ok:        oklch(0.80 0.15 165);
-  --warn:      oklch(0.70 0.012 190);
+  --ok:        oklch(0.80 0.17 152);
+  --warn:      oklch(0.70 0.014 175);
   --grid:      color-mix(in oklch, white 8%, transparent);
 
-  --glow-a: oklch(0.70 0.13 165 / 0.16);
-  --glow-b: oklch(0.50 0.03 200 / 0.10);
+  --hud-line:  oklch(0.80 0.17 152 / 0.35);
+  --hud-grid:  oklch(0.80 0.15 152 / 0.06);
+  --glow-a: oklch(0.75 0.17 152 / 0.18);
+  --glow-b: oklch(0.50 0.04 185 / 0.10);
   --shadow: 0 18px 50px -28px oklch(0 0 0 / 0.7);
 }

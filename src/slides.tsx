@@ -114,13 +114,22 @@ function Cover() {
         Estado actual de la <span className="grad">Inteligencia Artificial</span><br />y oportunidad en AEC
       </h1>
       <p className="cover-lead up" style={st(3)}>
-        60 slides para entender que cambio en la IA, que significan los modelos actuales y como convertirla en habilidad, workflow y evidencia para arquitectura, ingenieria y construccion.
+        Una masterclass para entender qué cambió en la IA, qué significan los modelos actuales y cómo convertirla en habilidad, workflow y evidencia para arquitectura, ingeniería y construcción.
       </p>
       <div className="cover-meta up" style={st(4)}>
         <span className="chip">AI Construction Summit</span>
         <span className="chip">Radar AECODE 2026</span>
         <span className="chip">ENIA 2026-2030</span>
         <span className="chip">IA como skill verificable</span>
+      </div>
+      <div className="cover-hud up" style={st(5)} aria-hidden="true">
+        <span className="ch-item"><b className="tnum">2×</b> cómputo cada 6 meses</span>
+        <span className="ch-sep" />
+        <span className="ch-item"><b className="tnum">1000 M</b> usuarios de ChatGPT</span>
+        <span className="ch-sep" />
+        <span className="ch-item"><b className="tnum">84,8%</b> exposición en Arq./Ing.</span>
+        <span className="ch-sep" />
+        <span className="ch-item live"><span className="ch-dot" /> datos verificados 2026</span>
       </div>
     </div>
   )

@@ -1,0 +1,93 @@
+/* =========================================================================
+   HUD — capa técnica «Jarvis-light». Detalles tecnológicos sobre lienzo claro:
+   grid de planos, brackets de esquina, barrido de escaneo, telemetría mono.
+   Todo decorativo (aria-hidden), GPU-only, con ruta reduced-motion.
+   ========================================================================= */
+
+/* ------------------------ grid de planos (fondo) ----------------------- */
+.deck::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(var(--hud-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hud-grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(120% 90% at 50% 40%, black 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 40%, black 30%, transparent 78%);
+}
+
+/* ------------------- brackets de esquina (marco HUD) ------------------- */
+.hud-c { position: absolute; z-index: 15; width: 20px; height: 20px; pointer-events: none;
+  border: 2px solid var(--hud-line); }
+.hud-c.tl { top: 70px; left: 14px; border-right: 0; border-bottom: 0; border-radius: 4px 0 0 0; }
+.hud-c.tr { top: 70px; right: 14px; border-left: 0; border-bottom: 0; border-radius: 0 4px 0 0; }
+.hud-c.bl { bottom: 70px; left: 14px; border-right: 0; border-top: 0; border-radius: 0 0 0 4px; }
+.hud-c.br { bottom: 70px; right: 14px; border-left: 0; border-top: 0; border-radius: 0 0 4px 0; }
+
+/* --------------------- telemetría mono (esquinas) ---------------------- */
+.hud-read { position: absolute; z-index: 15; pointer-events: none; font-family: var(--font-mono);
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+.hud-read.left { left: 42px; bottom: 74px; }
+.hud-read.right { right: 42px; bottom: 74px; color: var(--accent); }
+@media (max-width: 960px) { .hud-c, .hud-read { display: none; } }
+
+/* ------------------ barrido de escaneo al activar slide ---------------- */
+.slide[data-state='current'] .slide-inner::before {
+  content: ''; position: absolute; left: 6%; right: 6%; top: 0; height: 2px; z-index: 6; pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--accent-bright), transparent);
+  opacity: 0; animation: hudsweep 0.85s var(--ease-out) 0.1s;
+}
+@keyframes hudsweep {
+  0% { opacity: 0; transform: translateY(4vh); }
+  18% { opacity: 0.75; }
+  100% { opacity: 0; transform: translateY(78vh); }
+}
+
+/* --------------------------- eyebrow técnico --------------------------- */
+.eyebrow { font-family: var(--font-mono); letter-spacing: 0.16em; }
+.eyebrow::before { content: '//'; color: var(--accent); font-weight: 700; opacity: 0.85; margin-right: 2px; }
+.kicker-line { background: linear-gradient(90deg, var(--accent), var(--accent-bright)); box-shadow: 0 0 12px -2px var(--accent-bright); }
+
+/* --------------------- figuras: marco de datos HUD --------------------- */
+.figure { position: relative; }
+.figure::before, .figure::after { content: ''; position: absolute; width: 15px; height: 15px; pointer-events: none;
+  border: 1.5px solid var(--hud-line); z-index: 2; }
+.figure::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; border-radius: 8px 0 0 0; }
+.figure::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; border-radius: 0 0 8px 0; }
+.figure-title::before { content: '▍'; color: var(--accent); margin-right: 6px; }
+.badge { font-family: var(--font-mono); letter-spacing: 0.08em; }
+.figure { transition: border-color var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out); }
+.figure:hover { border-color: color-mix(in oklch, var(--accent) 38%, var(--border));
+  box-shadow: 0 18px 44px -26px color-mix(in oklch, var(--accent) 55%, transparent); }
+
+/* panel de conceptos (Cápsula 2) con el mismo marco */
+.cpanel { position: relative; }
+.cpanel::before, .cpanel::after { content: ''; position: absolute; width: 15px; height: 15px; pointer-events: none;
+  border: 1.5px solid var(--hud-line); z-index: 2; }
+.cpanel::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; border-radius: 8px 0 0 0; }
+.cpanel::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; border-radius: 0 0 8px 0; }
+.cpanel-k::before { content: '▍'; color: var(--accent); margin-right: 8px; }
+.cpart dt { font-family: var(--font-mono); letter-spacing: 0.1em; }
+.cap-badge { font-family: var(--font-mono); }
+
+/* ------------------------- barra superior / nav ------------------------ */
+.deck-progress span { box-shadow: 0 0 14px -2px var(--accent-bright); background: linear-gradient(90deg, var(--accent), var(--accent-bright)); }
+.nav-count { font-variant-numeric: tabular-nums; }
+.nc-cur { text-shadow: 0 0 14px color-mix(in oklch, var(--accent-bright) 60%, transparent); }
+
+/* ----------------------- telemetría de la portada ---------------------- */
+.cover-hud { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 10px;
+  padding: 12px 16px; border: 1px dashed var(--border-strong); border-radius: var(--radius);
+  background: color-mix(in oklch, var(--accent) 5%, var(--surface));
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); }
+.cover-hud .ch-item b { color: var(--accent); font-weight: 700; margin-right: 5px; }
+.cover-hud .ch-sep { width: 1px; height: 14px; background: var(--border-strong); }
+.cover-hud .ch-item.live { display: inline-flex; align-items: center; gap: 7px; color: var(--accent); text-transform: uppercase; }
+.cover-hud .ch-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent); animation: pulse 1.8s var(--ease-out) infinite; }
+@media (max-width: 640px) { .cover-hud .ch-sep { display: none; } }
+
+/* ------------------------------ motion off ----------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .slide[data-state='current'] .slide-inner::before { animation: none; opacity: 0; }
+  .cover-hud .ch-dot { animation: none; }
+}
