@@ -76,11 +76,11 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         ...base,
         grid: { left: 4, right: 66, top: human != null ? 20 : 8, bottom: 4, containLabel: true },
         tooltip: { ...base.tooltip, trigger: 'item', axisPointer: { type: 'shadow' }, formatter: (p: any) => `${p.name}<br/><b style="font-size:15px;color:${GREEN}">${p.value}${unit}</b>` },
-        xAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: `{value}${unit === '%' ? '%' : ''}` }, axisLine: { show: false }, axisTick: { show: false } },
-        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, width: 260, overflow: 'break', lineHeight: 14 }, axisLine: { show: false }, axisTick: { show: false } },
+        xAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 11, formatter: `{value}${unit === '%' ? '%' : ''}` }, axisLine: { show: false }, axisTick: { show: false } },
+        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 12.5, width: 260, overflow: 'break', lineHeight: 14 }, axisLine: { show: false }, axisTick: { show: false } },
         series: [{
           type: 'bar', barWidth: '60%', cursor: 'default',
-          label: { show: true, position: 'right', color: C.ink, fontWeight: 700, fontSize: 12.5, formatter: (p: any) => `${p.value}${unit === '%' ? '%' : ''}` },
+          label: { show: true, position: 'right', color: C.ink, fontWeight: 700, fontSize: 13.5, formatter: (p: any) => `${p.value}${unit === '%' ? '%' : ''}` },
           emphasis: { focus: 'self', itemStyle: { shadowBlur: 16, shadowColor: ga(0.45) } },
           animationDelay: (i: number) => 70 + i * 90, animationDuration: 720, animationEasing: 'cubicOut',
           data: items.map((i) => {
@@ -91,7 +91,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
               itemStyle: { color: grad(i.from || 'green', i.to || 'teal', 'h'), borderRadius: [0, 7, 7, 0], ...(isHl ? { shadowBlur: 18, shadowColor: ga(0.5) } : {}) },
             }
           }),
-          ...(human != null ? { markLine: { silent: true, symbol: 'none', lineStyle: { color: C.muted, type: 'dashed', width: 1.6 }, label: { formatter: d.humanLabel || `humano ${human}${unit}`, color: C.muted, fontSize: 10.5, position: 'insideEndTop' }, data: [{ xAxis: human }] } } : {}),
+          ...(human != null ? { markLine: { silent: true, symbol: 'none', lineStyle: { color: C.muted, type: 'dashed', width: 1.6 }, label: { formatter: d.humanLabel || `humano ${human}${unit}`, color: C.muted, fontSize: 11.5, position: 'insideEndTop' }, data: [{ xAxis: human }] } } : {}),
         }],
       }
     }
@@ -106,10 +106,10 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         grid: { left: 4, right: 70, top: 8, bottom: 4, containLabel: true },
         tooltip: { ...base.tooltip, trigger: 'item', formatter: (p: any) => `${p.name}<br/><b style="font-size:15px">${p.value}${unit}</b>` },
         xAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10 }, axisLine: { show: false }, axisTick: { show: false } },
-        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, width: 260, overflow: 'break', lineHeight: 14 }, axisLine: { show: false }, axisTick: { show: false } },
+        yAxis: { type: 'category', inverse: true, data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 12.5, width: 260, overflow: 'break', lineHeight: 14 }, axisLine: { show: false }, axisTick: { show: false } },
         series: [{
           type: 'bar', barWidth: '56%', cursor: 'default',
-          label: { show: true, position: 'right', fontWeight: 700, fontSize: 12.5, formatter: (p: any) => `${p.value}${unit}` },
+          label: { show: true, position: 'right', fontWeight: 700, fontSize: 13.5, formatter: (p: any) => `${p.value}${unit}` },
           emphasis: { focus: 'self', itemStyle: { shadowBlur: 16, shadowColor: ga(0.4) } },
           animationDelay: (i: number) => 70 + i * 100, animationDuration: 720, animationEasing: 'cubicOut',
           data: items.map((i) => {
@@ -139,8 +139,8 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         ...base,
         grid: { left: 6, right: 12, top: 30, bottom: 4, containLabel: true },
         tooltip: { ...base.tooltip, trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps: any) => { const i = ps[0].dataIndex; const v = items[i].value; return `${items[i].label}<br/><b style="font-size:15px">${v > 0 ? '+' : ''}${v}${unit}</b>` } },
-        xAxis: { type: 'category', data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 10.5, interval: 0, lineHeight: 13 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
-        yAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: `{value}${unit}` } },
+        xAxis: { type: 'category', data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, interval: 0, lineHeight: 13 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
+        yAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 11, formatter: `{value}${unit}` } },
         series: [
           { type: 'bar', stack: 'wf', silent: true, itemStyle: { color: 'transparent' }, emphasis: { disabled: true }, tooltip: { show: false }, data: place },
           { type: 'bar', stack: 'wf', barWidth: '48%', cursor: 'default',
@@ -158,11 +158,11 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         ...base,
         grid: { left: 6, right: 12, top: 28, bottom: 4, containLabel: true },
         tooltip: { ...base.tooltip, trigger: 'item', formatter: (p: any) => `${p.name}<br/><b style="font-size:14px">${p.value}${unit}</b>` },
-        xAxis: { type: 'category', data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 10.5, interval: 0, lineHeight: 13 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
+        xAxis: { type: 'category', data: items.map((i) => i.label), axisLabel: { color: C.ink, fontSize: 11.5, interval: 0, lineHeight: 13 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
         yAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10 } },
         series: [{
           type: 'bar', barWidth: '46%', cursor: 'default',
-          label: { show: true, position: 'top', color: C.ink, fontWeight: 700, fontSize: 12.5, formatter: (p: any) => `${p.value}${unit}` },
+          label: { show: true, position: 'top', color: C.ink, fontWeight: 700, fontSize: 13.5, formatter: (p: any) => `${p.value}${unit}` },
           emphasis: { focus: 'self', itemStyle: { shadowBlur: 16, shadowColor: ga(0.42) } },
           animationDelay: (i: number) => 70 + i * 100, animationDuration: 740, animationEasing: 'cubicOut',
           data: items.map((i) => ({ value: i.value, itemStyle: { color: grad(i.from, i.to, 'v'), borderRadius: [6, 6, 0, 0] } })),
@@ -196,7 +196,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         grid: { left: 8, right: 18, top: 30, bottom: 4, containLabel: true },
         tooltip: { ...base.tooltip, trigger: 'axis', formatter: (ps: any) => { const p = ps.find((q: any) => q.seriesName === 'Mercado') || ps[0]; return `${p.axisValue}<br/><b style="font-size:14px">$${p.data}B</b>` } },
         xAxis: { type: 'category', boundaryGap: false, data: x, axisLabel: { color: C.ink, fontSize: 11 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
-        yAxis: { type: 'value', splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: '${value}B' } },
+        yAxis: { type: 'value', splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 11, formatter: '${value}B' } },
         series: [
           { name: 'low', type: 'line', data: low, stack: 'band', lineStyle: { opacity: 0 }, symbol: 'none', areaStyle: { color: 'transparent' }, silent: true },
           { name: 'band', type: 'line', data: diff, stack: 'band', lineStyle: { opacity: 0 }, symbol: 'none', areaStyle: { color: GREEN, opacity: 0.12 }, silent: true },
@@ -217,7 +217,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         series: [{
           type: 'pie', radius: ['16%', '80%'], center: ['50%', '52%'], roseType: 'area',
           itemStyle: { borderRadius: 6, borderColor: C.bg, borderWidth: 2 },
-          label: { color: C.muted, fontSize: 10.5, formatter: '{b}\n{c}%' }, labelLine: { lineStyle: { color: C.axis } },
+          label: { color: C.muted, fontSize: 11.5, formatter: '{b}\n{c}%' }, labelLine: { lineStyle: { color: C.axis } },
           data: items.map((i) => ({ value: i.value, name: i.name, itemStyle: { color: i.name === d.highlight ? GREEN : col(i.color), shadowBlur: i.name === d.highlight ? 18 : 0, shadowColor: i.name === d.highlight ? ga(0.6) : 'transparent' } })),
         }],
       }
@@ -243,9 +243,9 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         ...base,
         tooltip: { ...base.tooltip, position: 'top', formatter: (p: any) => `${d.x[p.data[0]]} · ${d.y[p.data[1]]}<br/><b>uso: ${p.data[2]}/${d.max}</b>` },
         grid: { left: 6, right: 10, top: 8, bottom: 40, containLabel: true },
-        xAxis: { type: 'category', data: d.x, axisLabel: { color: C.muted, fontSize: 9.5, rotate: 26 }, axisLine: { show: false }, axisTick: { show: false }, splitArea: { show: false } },
+        xAxis: { type: 'category', data: d.x, axisLabel: { color: C.muted, fontSize: 10.5, rotate: 26 }, axisLine: { show: false }, axisTick: { show: false }, splitArea: { show: false } },
         yAxis: { type: 'category', data: d.y, axisLabel: { color: C.ink, fontSize: 10 }, axisLine: { show: false }, axisTick: { show: false }, splitArea: { show: false } },
-        visualMap: { min: 0, max: d.max, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, itemWidth: 11, itemHeight: 80, textStyle: { color: C.muted, fontSize: 9 }, inRange: { color: [isDark ? 'rgba(255,255,255,0.06)' : '#eef3f0', '#bfe9d6', '#4fd0a0', '#0aa06b', '#054b32'] } },
+        visualMap: { min: 0, max: d.max, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, itemWidth: 11, itemHeight: 80, textStyle: { color: C.muted, fontSize: 10 }, inRange: { color: [isDark ? 'rgba(255,255,255,0.06)' : '#eef3f0', '#bfe9d6', '#4fd0a0', '#0aa06b', '#054b32'] } },
         series: [{ type: 'heatmap', data: d.cells, itemStyle: { borderColor: C.bg, borderWidth: 3, borderRadius: 4 }, label: { show: false } }],
       }
     }
@@ -300,10 +300,10 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
       return {
         ...base,
         grid: { left: 6, right: 14, top: 30, bottom: 4, containLabel: true },
-        legend: { top: 0, right: 0, textStyle: { color: C.muted, fontSize: 10.5 }, itemWidth: 14, itemHeight: 8, icon: 'roundRect' },
+        legend: { top: 0, right: 0, textStyle: { color: C.muted, fontSize: 11.5 }, itemWidth: 14, itemHeight: 8, icon: 'roundRect' },
         tooltip: { ...base.tooltip, trigger: 'axis', valueFormatter: (v: any) => `${v}%` },
-        xAxis: { type: 'category', data: x, name: d.xlabel, nameTextStyle: { color: C.muted, fontSize: 9 }, nameLocation: 'middle', nameGap: 24, axisLabel: { color: C.muted, fontSize: 10 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false }, boundaryGap: false },
-        yAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: '{value}%' } },
+        xAxis: { type: 'category', data: x, name: d.xlabel, nameTextStyle: { color: C.muted, fontSize: 10 }, nameLocation: 'middle', nameGap: 24, axisLabel: { color: C.muted, fontSize: 10 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false }, boundaryGap: false },
+        yAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 11, formatter: '{value}%' } },
         series,
       }
     }
@@ -349,12 +349,12 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
       return {
         ...base,
         grid: { left: 8, right: 16, top: 30, bottom: 4, containLabel: true },
-        legend: (d.series as any[]).length > 1 ? { top: 0, right: 0, textStyle: { color: C.muted, fontSize: 10.5 }, itemWidth: 16, itemHeight: 8, icon: 'roundRect' } : undefined,
+        legend: (d.series as any[]).length > 1 ? { top: 0, right: 0, textStyle: { color: C.muted, fontSize: 11.5 }, itemWidth: 16, itemHeight: 8, icon: 'roundRect' } : undefined,
         tooltip: { ...base.tooltip, trigger: 'axis', valueFormatter: (v: any) => (log ? `${sci(v)} ${unit}` : `${v}${unit}`) },
-        xAxis: { type: 'category', boundaryGap: false, data: d.x, axisLabel: { color: C.muted, fontSize: 10.5 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
+        xAxis: { type: 'category', boundaryGap: false, data: d.x, axisLabel: { color: C.muted, fontSize: 11.5 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
         yAxis: log
-          ? { type: 'log', min: d.ymin, max: d.ymax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: (v: number) => sci(v) } }
-          : { type: 'value', min: d.ymin, max: d.ymax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: `{value}${unit}` } },
+          ? { type: 'log', min: d.ymin, max: d.ymax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 11, formatter: (v: number) => sci(v) } }
+          : { type: 'value', min: d.ymin, max: d.ymax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 11, formatter: `{value}${unit}` } },
         series,
       }
     }
@@ -371,7 +371,7 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
         animationDelay: (i: number) => 80 + i * 70 + gi * 40, animationDuration: 720, animationEasing: 'cubicOut',
         data: cats.map((c) => c.values[gi]),
         ...(gi === groups.length - 1 && d.human
-          ? { markLine: { silent: true, symbol: 'none', lineStyle: { color: C.muted, type: 'dashed', width: 1.4 }, label: { formatter: 'referencia humana', color: C.muted, fontSize: 10, position: 'insideEndTop' }, data: [{ yAxis: d.human }] } }
+          ? { markLine: { silent: true, symbol: 'none', lineStyle: { color: C.muted, type: 'dashed', width: 1.4 }, label: { formatter: 'referencia humana', color: C.muted, fontSize: 11, position: 'insideEndTop' }, data: [{ yAxis: d.human }] } }
           : {}),
       }))
       // gradiente real por grupo
@@ -379,10 +379,10 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
       return {
         ...base,
         grid: { left: 6, right: 12, top: 34, bottom: 4, containLabel: true },
-        legend: { top: 0, left: 0, textStyle: { color: C.muted, fontSize: 10.5 }, itemWidth: 16, itemHeight: 8, icon: 'roundRect' },
+        legend: { top: 0, left: 0, textStyle: { color: C.muted, fontSize: 11.5 }, itemWidth: 16, itemHeight: 8, icon: 'roundRect' },
         tooltip: { ...base.tooltip, trigger: 'axis', axisPointer: { type: 'shadow' } },
-        xAxis: { type: 'category', data: cats.map((c) => c.label), axisLabel: { color: C.ink, fontSize: 10.5, interval: 0, lineHeight: 13 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
-        yAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 10, formatter: `{value}${unit}` } },
+        xAxis: { type: 'category', data: cats.map((c) => c.label), axisLabel: { color: C.ink, fontSize: 11.5, interval: 0, lineHeight: 13 }, axisLine: { lineStyle: { color: C.axis } }, axisTick: { show: false } },
+        yAxis: { type: 'value', max: d.vmax, splitLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.muted, fontSize: 11, formatter: `{value}${unit}` } },
         series,
       }
     }
@@ -391,11 +391,11 @@ export function buildOption(fig: Figure, isDark: boolean, reduce: boolean): ECha
       const ss = d.series as any[]
       return {
         ...base,
-        legend: { top: 0, right: 0, textStyle: { color: C.muted, fontSize: 10.5 }, itemWidth: 16, itemHeight: 8, icon: 'roundRect' },
+        legend: { top: 0, right: 0, textStyle: { color: C.muted, fontSize: 11.5 }, itemWidth: 16, itemHeight: 8, icon: 'roundRect' },
         tooltip: { ...base.tooltip, trigger: 'item' },
         radar: {
           center: ['50%', '56%'], radius: '64%', indicator: d.indicators,
-          axisName: { color: C.ink, fontSize: 10.5, fontFamily: 'Space Grotesk Variable, sans-serif' },
+          axisName: { color: C.ink, fontSize: 11.5, fontFamily: 'Space Grotesk Variable, sans-serif' },
           splitLine: { lineStyle: { color: C.grid } },
           splitArea: { areaStyle: { color: [isDark ? 'rgba(255,255,255,0.02)' : 'rgba(20,40,30,0.025)', 'transparent'] } },
           axisLine: { lineStyle: { color: C.axis } },

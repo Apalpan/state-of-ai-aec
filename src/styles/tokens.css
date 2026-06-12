@@ -65,10 +65,10 @@
   --border:    color-mix(in oklch, oklch(0.32 0.05 152) 14%, transparent);
   --border-strong: color-mix(in oklch, oklch(0.32 0.05 152) 24%, transparent);
 
-  --ink:       oklch(0.23 0.02 185);
-  --ink-soft:  oklch(0.36 0.02 180);
-  --muted:     oklch(0.51 0.018 175);
-  --faint:     oklch(0.65 0.016 165);
+  --ink:       oklch(0.21 0.02 185);
+  --ink-soft:  oklch(0.33 0.02 180);
+  --muted:     oklch(0.46 0.018 175);
+  --faint:     oklch(0.60 0.016 165);
 
   --blue:      oklch(0.39 0.03 190);    /* grafito = estructura/texto base */
   --blue-deep: oklch(0.31 0.03 195);
@@ -99,10 +99,10 @@
   --border:    color-mix(in oklch, white 11%, transparent);
   --border-strong: color-mix(in oklch, white 18%, transparent);
 
-  --ink:       oklch(0.96 0.010 165);
-  --ink-soft:  oklch(0.85 0.016 165);
-  --muted:     oklch(0.68 0.018 170);
-  --faint:     oklch(0.55 0.018 175);
+  --ink:       oklch(0.97 0.010 165);
+  --ink-soft:  oklch(0.87 0.016 165);
+  --muted:     oklch(0.72 0.018 170);
+  --faint:     oklch(0.58 0.018 175);
 
   --blue:      oklch(0.80 0.03 185);
   --blue-deep: oklch(0.62 0.05 190);

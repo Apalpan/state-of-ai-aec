@@ -9,6 +9,7 @@ import './styles/deck.css'
 import './styles/capsule.css'
 import './styles/showcase.css'
 import './styles/hud.css'
+import './styles/flash.css'
 import App from './App'
 
 createRoot(document.getElementById('root')!).render(

@@ -23,12 +23,7 @@
 .hud-c.bl { bottom: 70px; left: 14px; border-right: 0; border-top: 0; border-radius: 0 0 0 4px; }
 .hud-c.br { bottom: 70px; right: 14px; border-left: 0; border-top: 0; border-radius: 0 0 4px 0; }
 
-/* --------------------- telemetría mono (esquinas) ---------------------- */
-.hud-read { position: absolute; z-index: 15; pointer-events: none; font-family: var(--font-mono);
-  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
-.hud-read.left { left: 42px; bottom: 74px; }
-.hud-read.right { right: 42px; bottom: 74px; color: var(--accent); }
-@media (max-width: 960px) { .hud-c, .hud-read { display: none; } }
+@media (max-width: 960px) { .hud-c { display: none; } }
 
 /* ------------------ barrido de escaneo al activar slide ---------------- */
 .slide[data-state='current'] .slide-inner::before {
@@ -41,6 +36,10 @@
   18% { opacity: 0.75; }
   100% { opacity: 0; transform: translateY(78vh); }
 }
+
+/* ---------------- degradé verde sutil en títulos de sección ------------ */
+.s-title { background: linear-gradient(118deg, var(--ink) 62%, var(--accent) 135%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* --------------------------- eyebrow técnico --------------------------- */
 .eyebrow { font-family: var(--font-mono); letter-spacing: 0.16em; }
