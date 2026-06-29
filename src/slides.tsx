@@ -1491,10 +1491,12 @@ const baseSlides: SlideDef[] = [
   { id: 'narrativa', num: '00', title: 'Hilo conductor', node: <NarrativeMapSlide /> },
   { id: 'paradoja', num: '00', title: 'La paradoja del AEC', node: <ParadoxSlide /> },
   { id: 'momento-2026', num: '00', title: '2026: IA como capa operativa', node: <CurrentMomentSlide /> },
+  { id: 'ceo-vision', num: '00', section: '01 Apertura', title: 'Visión del sector · frases de CEOs', node: <CeoVisionSlide /> },
   { id: 'adopcion', num: '00', title: 'Adopcion mas rapida de la historia', node: <AdoptionSpeedSlide /> },
   { id: 'estado', num: '00', title: 'Estado de la IA en empresas', node: <StateSlide /> },
   { id: 'fx-escala', num: '⚡', title: 'Flash · ¿Usar es escalar?', node: <FlashSlide item={FLASH.escala} /> },
   { id: 'modelos-actuales', num: '00', title: 'Mapa de modelos actuales', node: <ModelLandscapeSlide /> },
+  { id: 'china-radar', num: '00', section: '02 Estado IA 2026', title: 'China AI Radar', node: <ChinaRadarSlide /> },
   { id: 'razonamiento', num: '00', title: 'IA rapida vs IA que piensa mas', node: <ReasoningFastSlide /> },
   { id: 'benchmarks', num: '00', title: 'Benchmarks: capacidad medida', node: <BenchmarksSlide /> },
   { id: 'hle', num: '00', title: 'Humanitys Last Exam', node: <HleSlide /> },
@@ -1512,9 +1514,10 @@ const baseSlides: SlideDef[] = [
   { id: 'cap-expertos', num: '00', title: 'Fine-tuning vs RAG', node: <CapExpertos /> },
   { id: 'fx-ragft', num: '⚡', title: 'Flash · Postura A o B', node: <FlashSlide item={FLASH.ragft} /> },
   { id: 'cap-colaborador', num: '00', title: 'De herramienta a agente', node: <CapColaborador /> },
+  { id: 'agentes-era', num: '00', section: '03 Fundamentos IA', title: 'La era agéntica · cuándo sí, cuándo no', node: <AgentsEraSlide /> },
   { id: 'herramientas', num: '00', title: 'Tablero de herramientas IA', node: <ToolboardSlide /> },
-  { id: 'seleccion-modelo', num: '00', title: 'Como elegir herramienta', node: <ModelSelectionSlide /> },
   { id: 'pago', num: '00', title: 'Cuanto cuesta usar IA', node: <PricingSlide /> },
+  { id: 'governance', num: '00', section: '04 Mercado y ENIA', title: 'Costo y gobernanza (EU AI Act)', node: <GovernanceSlide /> },
   { id: 'empleos', num: '00', title: 'Empleo y nuevas habilidades', node: <JobsSlide /> },
   { id: 'mercado', num: '00', title: 'Tamaño de mercado IA', node: <MarketSlide /> },
   { id: 'enia', num: '00', title: 'ENIA 2026-2030', node: <EniaSlide /> },
@@ -1532,6 +1535,7 @@ const baseSlides: SlideDef[] = [
   { id: 'workflow-costos', num: '00', title: 'Workflow de costos', node: <WorkflowCostsSlide /> },
   { id: 'workflow-bim', num: '00', title: 'Workflow BIM + IA', node: <WorkflowBimSlide /> },
   { id: 'workflow-obra', num: '00', title: 'Workflow de obra visual', node: <WorkflowSiteSlide /> },
+  { id: 'aec-research', num: '00', section: '05 AEC y workflows', title: 'Investigación aplicada en AEC', node: <AecResearchSlide /> },
   { id: 'fx-control', num: '⚡', title: 'Flash · ¿Dónde va el control?', node: <FlashSlide item={FLASH.control} /> },
   { id: 'human-loop', num: '00', title: 'Human-in-the-loop', node: <HumanInLoopSlide /> },
   { id: 'risk-rubric', num: '00', title: 'Rubrica de riesgo IA', node: <RiskRubricSlide /> },
@@ -1539,6 +1543,7 @@ const baseSlides: SlideDef[] = [
   { id: 'fx-barrera', num: '⚡', title: 'Síntesis · La barrera real', node: <FlashSlide item={FLASH.barrera} /> },
   { id: 'skills', num: '00', title: 'IA como habilidad', node: <SkillsSlide /> },
   { id: 'skill-passport', num: '00', title: 'Skill Passport IA', node: <SkillPassportSlide /> },
+  { id: 'skill-manifesto', num: '00', section: '06 Radar y Summit', title: 'IA como habilidad · manifiesto', node: <SkillManifestoSlide /> },
   { id: 'fx-workflow', num: '⚡', title: 'Síntesis · Validación', node: <FlashSlide item={FLASH.workflow} /> },
   { id: 'survey-radar', num: '00', title: 'Radar AECODE 2026', node: <SurveyRadarSlide /> },
   { id: 'research-questions', num: '00', title: 'Preguntas de investigacion', node: <ResearchQuestionsSlide /> },
@@ -1566,3 +1571,119 @@ export const slides: SlideDef[] = baseSlides.map((slide, index) => ({
   ...slide,
   section: sectionForSlide(slide, index),
 }))
+
+/* ===== Slides añadidas (storytelling +) — usan primitivas existentes ===== */
+function CeoVisionSlide() {
+  return (
+    <>
+      <Head eyebrow="Visión del sector" title="Cómo leen este momento quienes lo están construyendo"
+        lead="No es entusiasmo de marketing: los líderes de los principales laboratorios coinciden en que la IA pasó de herramienta a infraestructura de la economía." />
+      <QuoteRail quotes={[
+        { who: 'Andrew Ng', role: 'Stanford · DeepLearning.AI', text: 'La IA es la nueva electricidad: transformará todas las industrias, una por una.' },
+        { who: 'Sam Altman', role: 'OpenAI', text: 'Nos acercamos a una era de inteligencia casi demasiado barata para medir.' },
+        { who: 'Demis Hassabis', role: 'Google DeepMind', text: 'Nuestra misión es resolver la inteligencia y usarla para resolver todo lo demás.' },
+        { who: 'Dario Amodei', role: 'Anthropic', text: 'La IA poderosa podría comprimir décadas de progreso científico en pocos años.' },
+        { who: 'Satya Nadella', role: 'Microsoft', text: 'Pasamos de usar aplicaciones a delegar tareas a agentes gobernados.' },
+        { who: 'Fei-Fei Li', role: 'Stanford HAI', text: 'La IA cambiará el mundo; la verdadera pregunta es quién cambiará la IA.' },
+      ]} />
+      <SourceNote>Frases públicas ampliamente citadas, parafraseadas al español. Verificar cita textual antes de usarla en material formal.</SourceNote>
+    </>
+  )
+}
+
+function ChinaRadarSlide() {
+  return (
+    <>
+      <Head eyebrow="El otro polo" title="China ya no sigue: marca el ritmo del open-weight"
+        lead="La restricción de chips forzó eficiencia. El resultado: modelos abiertos, baratos y competitivos que se vuelven la base por defecto para pymes de todo el mundo." />
+      <SignalGrid items={[
+        { k: 'DeepSeek', t: 'Eficiencia extrema', d: 'Frontera mucho más barata de entrenar y servir; reescribió el “precio justo” de la inferencia.', tag: 'open-weight' },
+        { k: 'Qwen · Alibaba', t: 'Familia amplia', d: 'Dense + MoE, multimodal, de las más adoptadas y afinadas por la comunidad dev.', tag: 'open-weight' },
+        { k: 'GLM · Z.ai', t: 'Top open-weight 2026', d: 'Lidera el índice de modelos abiertos en razonamiento y coding de horizonte largo.', tag: 'verificar' },
+        { k: 'Kimi · Moonshot', t: 'Agentic + contexto', d: 'Primer abierto en retar a un GPT-5.x en tareas de software (SWE-bench Pro).', tag: 'verificar' },
+      ]} />
+      <Plain>Para LATAM y AEC: open-weight chino + self-host = costo bajo y privacidad de datos de proyecto. El criterio (qué dato entra, quién valida) sigue siendo tuyo.</Plain>
+      <SourceNote>Artificial Analysis · model cards (DeepSeek, Qwen, Z.ai/GLM, Moonshot/Kimi), jun-2026. Rankings volátiles: verificar a la fecha.</SourceNote>
+    </>
+  )
+}
+
+function AgentsEraSlide() {
+  return (
+    <>
+      <Head eyebrow="La era agéntica" title="De responder, a producir, a ejecutar — con criterio"
+        lead="El salto de 2026 no es que el modelo hable mejor: es que planifica, usa herramientas y completa tareas. El reto deja de ser capacidad y pasa a ser confiabilidad y gobierno." />
+      <div className="comparison up" style={st(1)}>
+        <article>
+          <span className="pill-mini">cuándo SÍ un agente</span>
+          <h3>Tarea repetible, informacional, con datos</h3>
+          <p>Actas, RFIs, clasificación de observaciones, seguimiento, reportes. Pasos claros y verificables.</p>
+          <b>Reemplaza diez tareas, no a la persona</b>
+        </article>
+        <article>
+          <span className="pill-mini">cuándo NO (todavía)</span>
+          <h3>Juicio técnico, datos sucios, alto riesgo</h3>
+          <p>Si no hay datos ordenados ni proceso, un agente solo automatiza el caos más rápido.</p>
+          <b>Primero ordena; luego automatiza</b>
+        </article>
+      </div>
+      <Plain><b>62%</b> de organizaciones experimenta con agentes; solo <b>~23%</b> los escala a producción. El bloqueador #1 no es el modelo: es la calidad, los datos y el control humano. <i>(McKinsey State of AI 2025 · verificar)</i></Plain>
+    </>
+  )
+}
+
+function GovernanceSlide() {
+  return (
+    <>
+      <Head eyebrow="Economía y reglas" title="El costo se desploma y la gobernanza se vuelve obligatoria"
+        lead="Dos fuerzas simultáneas: la inteligencia es cada vez más barata, y usarla con responsabilidad ya es requisito legal, no buena intención." />
+      <div className="slide-two up" style={st(1)}>
+        <div className="grid stat-col">
+          <StatCard value="−280×" label="cayó el costo de inferencia (nivel GPT-3.5) en ~2 años" />
+          <StatCard value="$0,07" label="por millón de tokens, desde US$20 en 2022 (MMLU-equiv.)" />
+          <StatCard value="84,8%" label="exposición a IA en arquitectura e ingeniería" />
+        </div>
+        <ProcessFlow items={[
+          { t: 'Feb 2025', d: 'EU AI Act: prácticas prohibidas + alfabetización en IA obligatoria.' },
+          { t: 'Ago 2025', d: 'Obligaciones para modelos de propósito general (GPAI) + AI Office.' },
+          { t: 'Ago 2026', d: 'Poderes de enforcement y aplicabilidad general (con multas).' },
+          { t: 'Ago 2027', d: 'Deadline para GPAI lanzados antes de ago-2025.' },
+        ]} />
+      </div>
+      <SourceNote>Stanford AI Index 2025 (costos) · Comisión Europea, EU AI Act (timeline). La gobernanza es ahora argumento de venta, no costo.</SourceNote>
+    </>
+  )
+}
+
+function AecResearchSlide() {
+  return (
+    <>
+      <Head eyebrow="Investigación aplicada" title="La evidencia académica ya respalda la IA en AEC"
+        lead="No es promesa: hay investigación revisada que documenta impacto real de IA y machine learning en ingeniería, costos y construcción." />
+      <SignalGrid items={[
+        { k: 'Costos · Lean 4.0', t: 'Predicción temprana de costos', d: 'ML + datos históricos para estimar costo en fase conceptual de puentes; menos tiempo y variabilidad vs. estimación manual.', tag: 'IGLC' },
+        { k: 'Computer Vision', t: 'Visión por computadora en obra', d: 'Detección de EPP, grietas y avance desde imágenes; control continuo y objetivo de seguridad y calidad.', tag: 'AEC' },
+        { k: 'BIM + ML', t: 'IA y machine learning para BIM', d: 'Clasificación, extracción y revisión sobre modelos y documentos: el modelo deja de ser archivo y pasa a interfaz de decisión.', tag: 'paper' },
+        { k: 'PM + IA', t: 'IA en gestión de proyectos', d: 'Apoyo a riesgos, cronograma y reportes; la IA acelera tareas informacionales que rodean al proyecto.', tag: 'paper' },
+      ]} />
+      <SourceNote>Palpan et al. — “Integration of Lean 4.0 and AI for cost prediction (conceptual phase, bridges)”, IGLC · AI applied in Civil Engineering · AI &amp; ML for BIM · AI in Project Management (papers del vault AECODE/GEN+).</SourceNote>
+    </>
+  )
+}
+
+function SkillManifestoSlide() {
+  return (
+    <>
+      <Head eyebrow="IA como habilidad" title="La IA no es una app que se usa: es una habilidad que se entrena"
+        lead="El profesional top no es quien sabe más nombres de herramientas. Es quien aprende, aplica, evidencia y mejora — y construye criterio que ninguna app reemplaza." />
+      <ProcessFlow items={[
+        { t: 'Aprende', d: 'Conceptos y criterio: qué es, qué puede, qué no debe hacer sola.' },
+        { t: 'Aplica', d: 'A un caso real propio: documento, costo, BIM, obra o reporte.' },
+        { t: 'Evidencia', d: 'Entregable verificable: matriz, asistente, dashboard o workflow.' },
+        { t: 'Valida', d: 'Rúbrica + feedback + fuente: la calidad se demuestra, no se declara.' },
+        { t: 'Escala', d: 'De tarea suelta a proceso repetible con control y métricas.' },
+      ]} />
+      <PresenterNote>Remate: “No gana quien abre ChatGPT. Gana quien convierte la IA en habilidad verificable y sistema de trabajo.”</PresenterNote>
+    </>
+  )
+}
